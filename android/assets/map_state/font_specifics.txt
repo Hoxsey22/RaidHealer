@@ -1,0 +1,3 @@
+Boss name - 24pt 
+description - 19pt
+font - Montserrat Alt

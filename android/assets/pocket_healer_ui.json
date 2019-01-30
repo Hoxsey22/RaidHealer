@@ -1,0 +1,142 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	cooldown_font: {
+		file: cooldown_font.fnt
+	}
+	floating_font: {
+		file: floating_font.fnt
+	}
+	game_font_large: {
+		file: game_font_large.fnt
+	}
+	game_font_large_border: {
+		file: game_font_large_border.fnt
+	}
+	game_font_medium: {
+		file: game_font_medium.fnt
+	}
+	game_font_medium_border: {
+		file: game_font_medium_border.fnt
+	}
+	game_font_small: {
+		file: game_font_small.fnt
+	}
+	game_font_small_border: {
+		file: game_font_small_border.fnt
+	}
+	game_font_xlarge: {
+		file: game_font_xlarge.fnt
+	}
+	game_font_xlarge_border: {
+		file: game_font_xlarge_border.fnt
+	}
+	game_title_font: {
+		file: game_title_font.fnt
+	}
+	title_font: {
+		file: title_font.fnt
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	Black: {
+		r: 0
+		g: 0
+		b: 0
+		a: 1
+	}
+	Cray: {
+		r: 0
+		g: 1
+		b: 0.77227664
+		a: 1
+	}
+	Gray: {
+		r: 0.27666646
+		g: 0.27666646
+		b: 0.27666646
+		a: 1
+	}
+	Red: {
+		r: 1
+		g: 0
+		b: 0
+		a: 1
+	}
+	White: {
+		r: 1
+		g: 1
+		b: 1
+		a: 1
+	}
+}
+com.hoxseygames.raidhealer.WindowFrame$WindowFrameStyle: {
+	default: {
+		stageBackground: disable_bg
+		background: end_game_frame
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+	defeated_boss_icon: {
+		imageUp: defeated_boss
+		imageChecked: selected_level
+	}
+	new_boss_icon: {
+		imageUp: boss_location
+		imageChecked: selected_level
+	}
+	page_right: {
+		imageUp: page_right_icon
+	}
+	page_left: {
+		imageUp: page_left_icon
+	}
+	exit_button: {
+		imageUp: exit_button
+		up: exit_button
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: {
+		font: game_font_large
+		fontColor: Black
+	}
+	header2: {
+		font: game_title_font
+		fontColor: White
+	}
+	floating: {
+		font: game_font_small_border
+		fontColor: Red
+	}
+	title: {
+		font: title_font
+		fontColor: White
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
+	default-horizontal: {
+		knobDown: knob_down
+		background: slider_bg
+		knob: knob
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	default: {
+		font: game_font_large
+		fontColor: Black
+		up: button
+		down: button_select
+		checked: button_select
+	}
+	small_button: {
+		font: game_font_medium
+		fontColor: Black
+		up: small_button
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: {
+		label: default
+	}
+}
+}
