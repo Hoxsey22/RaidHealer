@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.hoxseygames.raidhealer.states.LoadingState;
 import com.hoxseygames.raidhealer.states.StateManager;
 
+//Android AppID:ca-app-pub-5484375786839073~4582045941
 public class RaidHealer extends ApplicationAdapter {
 	public static final int WIDTH = 480;
 	public static final int HEIGHT = 800;
@@ -19,14 +20,22 @@ public class RaidHealer extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private StateManager sm;
 
+	private AdHandler adHandler;
+
+	public RaidHealer(AdHandler handler)	{
+		this.adHandler = handler;
+	}
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		sm = new StateManager();
+		sm = new StateManager(adHandler);
 		ui = new Skin(Gdx.files.internal("pocket_healer_ui.json"));
 		GameData.loadAudioSettings();
 		//System.out.println(audioManager.music.getVolume());
 		sm.push(new LoadingState(sm));
+		//sm.loadAd(4);
+		//adHandler.showAds(true);
 	}
 
 	@Override

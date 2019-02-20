@@ -106,7 +106,8 @@ public class EncounterState extends State {
         // remove after picture
         //player.setMana(400);
         System.out.println("STAGE - > Width:"+stage.getWidth()+" Height:"+stage.getHeight());
-
+        // Load Ad
+        sm.loadAd(3);
     }
 
     @Override
@@ -160,7 +161,6 @@ public class EncounterState extends State {
                         }
                         break;
                     case Input.Keys.BACK:
-
                         break;
                     case Input.Keys.BACKSPACE:
                         break;
@@ -322,6 +322,7 @@ public class EncounterState extends State {
                                 }
                             }
                         });
+                        sm.showAd(1);
                         shutterAnimation.start();
                         break;
                 }
@@ -341,6 +342,7 @@ public class EncounterState extends State {
                     @Override
                     public void run() {
                         sm.set(new MapState(sm, player));
+                        sm.showAd(1);
                     }
                 });
                 shutterAnimation.start();

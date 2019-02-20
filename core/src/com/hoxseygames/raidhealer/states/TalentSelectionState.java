@@ -83,6 +83,8 @@ public class TalentSelectionState extends State {
 
         shutterAnimation = new ShutterAnimation(stage, assets, false);
         shutterAnimation.start();
+
+        sm.loadAd(4);
     }
 
     private void createText()    {
@@ -116,10 +118,6 @@ public class TalentSelectionState extends State {
         topTable.row();
         topTable.add(pointTracker.getLabel()).width(topTable.getWidth());
         stage.addActor(topTable);
-
-
-
-
 
     }
 
@@ -161,7 +159,10 @@ public class TalentSelectionState extends State {
                     if(hit != null) {
                         switch (hit.getName())  {
                             case "RESET":
-                                player.getTalentTree().reset();
+                                if(player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints()) {
+                                    sm.showAd(2);
+                                    player.getTalentTree().reset();
+                                }
                                 break;
                             case "DONE":
                                 player.save();

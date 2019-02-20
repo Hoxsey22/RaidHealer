@@ -1,6 +1,7 @@
 package com.hoxseygames.raidhealer.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.hoxseygames.raidhealer.AdHandler;
 
 import java.util.Stack;
 
@@ -10,9 +11,15 @@ import java.util.Stack;
 public class StateManager {
 
     private final Stack<State> states;
+    private AdHandler adHandler;
 
     public StateManager()   {
         states = new Stack<>();
+    }
+
+    public StateManager(AdHandler adHandler)   {
+        states = new Stack<>();
+        this.adHandler = adHandler;
     }
 
     public void push(State state)  {
@@ -34,5 +41,31 @@ public class StateManager {
 
     public void render(SpriteBatch sb)  {
         states.peek().render(sb);
+    }
+
+    public void loadAd(int controller)   {
+        if(adHandler != null)   {
+            switch (controller)   {
+                case 3:
+                    adHandler.showAds(controller);
+                    break;
+                case 4:
+                    adHandler.showAds(controller);
+                    break;
+            }
+        }
+    }
+
+    public void showAd(int controller)   {
+        if(adHandler != null)   {
+            switch (controller)   {
+                case 1:
+                    adHandler.showAds(controller);
+                    break;
+                case 2:
+                    adHandler.showAds(controller);
+                    break;
+            }
+        }
     }
 }

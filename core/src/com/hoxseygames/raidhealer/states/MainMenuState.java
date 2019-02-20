@@ -114,7 +114,7 @@ public class MainMenuState extends State{
 
                 }
             });
-            buttonTable.add(continueButton).padBottom(15);;
+            buttonTable.add(continueButton).padBottom(15);
             buttonTable.row();
         }
 
