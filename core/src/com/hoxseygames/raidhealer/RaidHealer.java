@@ -34,7 +34,9 @@ public class RaidHealer extends ApplicationAdapter {
 		GameData.loadAudioSettings();
 		//System.out.println(audioManager.music.getVolume());
 		sm.push(new LoadingState(sm));
-		//sm.loadAd(4);
+		// Load Ad
+		sm.loadAd(3);
+		sm.loadAd(4);
 		//adHandler.showAds(true);
 	}
 

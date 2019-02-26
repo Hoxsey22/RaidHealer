@@ -84,7 +84,7 @@ public class TalentSelectionState extends State {
         shutterAnimation = new ShutterAnimation(stage, assets, false);
         shutterAnimation.start();
 
-        sm.loadAd(4);
+        //sm.loadAd(4);
     }
 
     private void createText()    {
@@ -160,8 +160,9 @@ public class TalentSelectionState extends State {
                         switch (hit.getName())  {
                             case "RESET":
                                 if(player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints()) {
+                                    sm.referencePlayer(player);
                                     sm.showAd(2);
-                                    player.getTalentTree().reset();
+                                    //player.getTalentTree().reset();
                                 }
                                 break;
                             case "DONE":

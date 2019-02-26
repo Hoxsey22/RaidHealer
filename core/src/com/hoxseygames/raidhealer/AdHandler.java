@@ -7,5 +7,6 @@ package com.hoxseygames.raidhealer;
 public interface AdHandler {
 
     void showAds(int controller);
+    void importPlayer(Player player);
 
 }

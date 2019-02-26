@@ -2,6 +2,7 @@ package com.hoxseygames.raidhealer.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.hoxseygames.raidhealer.AdHandler;
+import com.hoxseygames.raidhealer.Player;
 
 import java.util.Stack;
 
@@ -67,5 +68,9 @@ public class StateManager {
                     break;
             }
         }
+    }
+
+    public void referencePlayer(Player player) {
+        adHandler.importPlayer(player);
     }
 }

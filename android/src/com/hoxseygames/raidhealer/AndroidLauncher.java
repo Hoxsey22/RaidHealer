@@ -27,6 +27,7 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler,Rew
 	private final int SHOW_REWARD_AD = 2;
 	private final int LOAD_INTERSTITIAL_AD = 3;
 	private final int LOAD_REWARD_AD = 4;
+	private Player player;
 
 
 	@SuppressLint("HandlerLeak")
@@ -106,9 +107,16 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler,Rew
 	}
 
 	@Override
+	public void importPlayer(Player player) {
+		this.player = player;
+	}
+
+	@Override
 	public void onRewarded(RewardItem reward) {
 		Toast.makeText(this, "Healer's talents are now cleared.", Toast.LENGTH_SHORT).show();
 		// Reward the user.
+		player.getTalentTree().reset();
+
 	}
 
 	@Override
