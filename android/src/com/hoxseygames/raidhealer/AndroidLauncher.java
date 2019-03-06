@@ -67,14 +67,15 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler,Rew
 
 
 		//RelativeLayout layout = new RelativeLayout(this);
-		//MobileAds.initialize(this, "ca-app-pub-9873789688498401/3227780832");
-		interstitialAd = new InterstitialAd(this);
-		interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/5224354917");
-		//loadInterstitialAd();
-
+		MobileAds.initialize(this, "ca-app-pub-9873789688498401~4137204680");
 
 		rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(this);
 		rewardedVideoAd.setRewardedVideoAdListener(this);
+
+		interstitialAd = new InterstitialAd(this);
+		interstitialAd.setAdUnitId("ca-app-pub-9873789688498401/8504836869");
+		//loadInterstitialAd();
+
 		//loadRewardedVideoAd();
 		// This is the Raid Healer's ad id
 		//rewardedVideoAd.setAdUnitId("ca-app-pub-9873789688498401~4137204680");
@@ -92,7 +93,7 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler,Rew
 	}
 
 	private void loadRewardedVideoAd()	{
-		rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
+		rewardedVideoAd.loadAd("ca-app-pub-9873789688498401/3227780832", new AdRequest.Builder().build());
 		//rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
 	}
 
@@ -133,7 +134,7 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler,Rew
 
 	@Override
 	public void onRewardedVideoAdFailedToLoad(int errorCode) {
-		Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
+		Toast.makeText(this, "onRewardedVideoAdFailedToLoad - Error Code: "+errorCode, Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
