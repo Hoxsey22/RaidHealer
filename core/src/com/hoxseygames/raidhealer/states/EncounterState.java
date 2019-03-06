@@ -396,8 +396,8 @@ public class EncounterState extends State {
 
     @Override
     public void resize(int width, int height) {
+        super.resize(width,height);
         stage.getViewport().update(width, height,true);
-        System.out.println("Width:"+width+" Height:"+height);
     }
 
     @Override
