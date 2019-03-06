@@ -1,5 +1,7 @@
 package com.hoxseygames.raidhealer.states;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.hoxseygames.raidhealer.AdHandler;
 import com.hoxseygames.raidhealer.Player;
@@ -45,27 +47,31 @@ public class StateManager {
     }
 
     public void loadAd(int controller)   {
-        if(adHandler != null)   {
-            switch (controller)   {
-                case 3:
-                    adHandler.showAds(controller);
-                    break;
-                case 4:
-                    adHandler.showAds(controller);
-                    break;
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            if (adHandler != null) {
+                switch (controller) {
+                    case 3:
+                        adHandler.showAds(controller);
+                        break;
+                    case 4:
+                        adHandler.showAds(controller);
+                        break;
+                }
             }
         }
     }
 
     public void showAd(int controller)   {
-        if(adHandler != null)   {
-            switch (controller)   {
-                case 1:
-                    adHandler.showAds(controller);
-                    break;
-                case 2:
-                    adHandler.showAds(controller);
-                    break;
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            if (adHandler != null) {
+                switch (controller) {
+                    case 1:
+                        adHandler.showAds(controller);
+                        break;
+                    case 2:
+                        adHandler.showAds(controller);
+                        break;
+                }
             }
         }
     }
