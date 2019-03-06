@@ -135,6 +135,7 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler,Rew
 	@Override
 	public void onRewardedVideoAdFailedToLoad(int errorCode) {
 		Toast.makeText(this, "onRewardedVideoAdFailedToLoad - Error Code: "+errorCode, Toast.LENGTH_SHORT).show();
+		player.getTalentTree().reset();
 	}
 
 	@Override
