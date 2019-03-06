@@ -52,7 +52,7 @@ public class TutorialFrame extends Group {
         getTable().setBounds(RaidHealer.WIDTH/2 -150,RaidHealer.HEIGHT/2-150,300,300);
 
 
-        setText(new Text("Welcome to Pocket Healer! This is the tutorial on how to be a healer so pay close attention!",24, Color.WHITE, false, getAssets()));
+        setText(new Text("Welcome Healer! This is the tutorial on how to be a healer so pay close attention!",24, Color.WHITE, false, getAssets()));
         getText().setWrap();
         getText().setAlignment(Align.center);
 

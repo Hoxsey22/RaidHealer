@@ -172,7 +172,13 @@ public class CreditsState extends State{
         Gdx.gl.glClearColor(Color.BLACK.r,Color.BLACK.g,Color.BLACK.b,Color.BLACK.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
-        //sb.setProjectionMatrix(cam.combined);
+        sb.setProjectionMatrix(cam.combined);
+
+        viewport.apply();
+
+        cam.update();
+        sb.setProjectionMatrix(cam.combined);
+
         update(Gdx.graphics.getDeltaTime());
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();

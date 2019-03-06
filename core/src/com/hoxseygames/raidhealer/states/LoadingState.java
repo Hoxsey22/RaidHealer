@@ -173,6 +173,13 @@ public class LoadingState extends State {
         Gdx.gl.glClearColor(255,254,219,Color.DARK_GRAY.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
+
+        sb.setProjectionMatrix(cam.combined);
+
+        viewport.apply();
+
+        cam.update();
+
         stage.act(Gdx.graphics.getDeltaTime());
         /*shapeRenderer.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);

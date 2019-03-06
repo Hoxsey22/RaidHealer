@@ -30,9 +30,23 @@ abstract class State extends ApplicationAdapter {
     public abstract void dispose();
 
     @Override
-    public void resize(int width, int height) {
-        super.resize(width, height);
-        viewport.update(width,height);
+    public void pause() {
+        super.pause();
+    }
+
+    @Override
+    public void resume() {
+        super.resume();
+        viewport.update(RaidHealer.WIDTH, RaidHealer.HEIGHT, true);
         cam.position.set(cam.viewportWidth/2,cam.viewportHeight/2,0);
+        System.out.println("*********************************************");
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        //super.resize(width, height);
+        viewport.update(width,height, true);
+        cam.position.set(cam.viewportWidth/2,cam.viewportHeight/2,0);
+        System.out.println("*********************************************");
     }
 }

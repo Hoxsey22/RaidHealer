@@ -227,7 +227,11 @@ public class SpellSelectionState extends State {
         Gdx.gl.glEnable(GL20.GL_BLEND);
         update(Gdx.graphics.getDeltaTime());
 
-        sb.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
+        sb.setProjectionMatrix(cam.combined);
+
+        viewport.apply();
+
+        cam.update();
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();

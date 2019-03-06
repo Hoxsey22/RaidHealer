@@ -92,7 +92,7 @@ public class TalentSelectionState extends State {
         lowerTable.setName("Lower Table");
 
         title  = new Text("", 24, Color.BLACK, false, assets);
-        body  = new Text("", 16, Color.BLACK, false, assets);
+        body  = new Text("Double tab to select.", 16, Color.BLACK, false, assets);
         body.setWrap();
 
         title.setWrap();
@@ -180,10 +180,6 @@ public class TalentSelectionState extends State {
 
 
                 }
-
-
-
-
                 return false;
             }
 
@@ -222,14 +218,28 @@ public class TalentSelectionState extends State {
         Gdx.gl.glClearColor(Color.BLACK.r,Color.BLACK.g,Color.BLACK.b,Color.BLACK.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         Gdx.gl.glEnable(GL20.GL_BLEND);
+
+        sb.setProjectionMatrix(cam.combined);
+
+        viewport.apply();
+
+        cam.update();
+
+
         update(Gdx.graphics.getDeltaTime());
 
-        sb.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
+        //sb.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
 
 
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        super.resize(width,height);
+        stage.getViewport().update(width, height,true);
     }
 
     @Override
