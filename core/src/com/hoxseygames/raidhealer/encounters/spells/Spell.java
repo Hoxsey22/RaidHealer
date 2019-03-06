@@ -343,7 +343,12 @@ public abstract class Spell extends Actor {
     }
 
     public void applyAtonement(RaidMember target)    {
-        target.addStatusEffect(new AtonementEffect(owner));
+        if(name.equalsIgnoreCase("Barrier")) {
+            target.addStatusEffect(new AtonementEffect(owner, true));
+        }
+        else    {
+            target.addStatusEffect(new AtonementEffect(owner, false));
+        }
     }
 
     public void checkCriticalHealer()   {
@@ -356,8 +361,9 @@ public abstract class Spell extends Actor {
         if(CriticalDice.roll(60, 100,1)) {
             int newOutput = output;
             float missingHpPercentage = 1f - target.getFullHealthPercent();
+            float spellIncrease = 0.5f * missingHpPercentage;
 
-            newOutput = newOutput + (int) ((float) newOutput * missingHpPercentage);
+            newOutput = newOutput + (int) ((float) newOutput * spellIncrease);
 
             target.receiveHealing(newOutput, criticalChance.isCritical());
         }
@@ -369,6 +375,7 @@ public abstract class Spell extends Actor {
             RaidMember raidMember = owner.getRaid().getRaidMembersWithLowestHp(1).get(0);
             raidMember.receiveHealing((int) ((float) output / 2f), criticalChance.isCritical());
         }
+
 
     }
 
