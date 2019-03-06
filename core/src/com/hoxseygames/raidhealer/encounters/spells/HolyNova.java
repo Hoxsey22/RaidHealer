@@ -65,7 +65,7 @@ public class HolyNova extends Castable {
         }
         else if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             for(int i = 0; i < getTargets().size(); i++) {
-                applyMasteringHealing(getTargets().get(i),getOutput());
+                applyMasteringHealing(getTargets().get(i), (int)(getOutput()*(1-((i+1)*0.1))));
             }
             applyMasteringHealing(target, getOutput());
 
@@ -83,9 +83,6 @@ public class HolyNova extends Castable {
             }
             applyAtonement(target);
         }
-
-
-        System.out.println("checking renew");
     }
 
     @Override
@@ -93,11 +90,11 @@ public class HolyNova extends Castable {
         if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             int roll = chainHealChance.nextInt(100);
             System.out.println("ROLL: "+roll);
-            if(roll > 80)    {
-                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+3);
-                System.out.println("# of targets: "+numOfTargets+3);
+            if(roll > 85)    {
+                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets + 3);
+                System.out.println("# of targets: " + numOfTargets + 3);
             }
-            else if(roll > 50)   {
+            else if(roll > 60)   {
                 targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+2);
                 System.out.println("# of targets: "+numOfTargets+2);
             }
