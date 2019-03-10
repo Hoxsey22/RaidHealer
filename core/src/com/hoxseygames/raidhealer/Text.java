@@ -47,6 +47,14 @@ public class Text extends Actor{
         label.setAlignment(Align.left);
     }
 
+    public Text(String text, Color color, Assets assets)    {
+        this.assets = assets;
+        labelStyle = new Label.LabelStyle(loadFont(160,false), color);
+        label = new Label(text,labelStyle);
+
+        label.setAlignment(Align.left);
+    }
+
     public void setText(String string)   {
         label.setText(string);
     }
@@ -106,6 +114,8 @@ public class Text extends Actor{
                     return assets.getFont(assets.gameFont32);
                 case 45:
                     return assets.getFont(assets.gameFont45);
+                case 160:
+                    return assets.getFont(assets.cdFont);
             }
         }
         return assets.getFont(assets.gameFontB16);

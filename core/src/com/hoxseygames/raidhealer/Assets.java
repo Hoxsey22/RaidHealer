@@ -40,6 +40,7 @@ public class Assets {
     public final String gameFontB24 = "fonts/game_font_medium_border.fnt";
     public final String gameFontB32 = "fonts/game_font_large_border.fnt";
     public final String gameFontB45 = "fonts/game_font_xlarge_border.fnt";
+    public final String cdFont = "fonts/cd_font.fnt";
 
 
     // pngss
@@ -200,7 +201,7 @@ public class Assets {
     // OLD CODE
     //public final String barrierSFX ="sfx/barrier_sfx.mp3";
     public final String castingSFX ="sfx/casting_sfx.mp3";
-    //public final String healSFX ="sfx/heal_sfx.mp3";
+    public final String cdSFX ="sfx/SFX/cd_sfx.wav";
     public final String hotSFX ="sfx/hot_sfx.mp3";
 
 
@@ -496,6 +497,7 @@ public class Assets {
         manager.load(biteSFX,Sound.class);
         manager.load(darkMagicSFX,Sound.class);
         manager.load(electricStrikeSFX,Sound.class);
+        manager.load(cdSFX, Sound.class);
 
     }
 
@@ -553,6 +555,7 @@ public class Assets {
         manager.load(gameFontB24,BitmapFont.class);
         manager.load(gameFontB32,BitmapFont.class);
         manager.load(gameFontB45,BitmapFont.class);
+        manager.load(cdFont, BitmapFont.class);
     }
 
     private void loadSkin()  {

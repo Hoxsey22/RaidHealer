@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.AudioManager;
+import com.hoxseygames.raidhealer.EncounterCountDown;
 import com.hoxseygames.raidhealer.GameOverFrame;
 import com.hoxseygames.raidhealer.Player;
 import com.hoxseygames.raidhealer.RaidHealer;
@@ -38,8 +39,10 @@ public class EncounterState extends State {
     protected Assets assets;
     protected GameOverFrame gameOverFrame;
     protected boolean isDone;
+    protected boolean isReady;
     protected int page;
     protected ShutterAnimation shutterAnimation;
+    protected EncounterCountDown encounterCountDown;
 
 
     public EncounterState(StateManager sm, Player player, Boss boss) {
@@ -50,6 +53,7 @@ public class EncounterState extends State {
 
         this.boss = boss;
         this.boss.reset();
+
         boss.setPlayer(player);
 
         raid = this.boss.getEnemies();
@@ -58,8 +62,21 @@ public class EncounterState extends State {
         player.setBoss(this.boss);
 
         create();
-        shutterAnimation = new ShutterAnimation(stage,player.getAssets(), false);
+
+        isReady = false;
+
+        encounterCountDown = new EncounterCountDown(player.getAssets(), new Runnable() {
+            @Override
+            public void run() {
+                start();
+            }
+        });
+
+        stage.addActor(encounterCountDown);
+
+        shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);
         shutterAnimation.start();
+        encounterCountDown.start();
     }
 
     @Override
@@ -101,7 +118,7 @@ public class EncounterState extends State {
         stage.addActor(manaBar);
         stage.addActor(castBar);
         //
-        boss.start();
+        //boss.start();
 
         // remove after picture
         //player.setMana(400);
@@ -381,6 +398,13 @@ public class EncounterState extends State {
         raid.stop();
         raid.getHealingTracker().printHealingDone();
         player.stop();
+    }
+
+    /**
+     * Starts the boss and player can now use actions.
+     */
+    protected void start()  {
+        boss.start();
 
     }
 
