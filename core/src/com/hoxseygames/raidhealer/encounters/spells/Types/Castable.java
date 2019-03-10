@@ -72,6 +72,9 @@ public abstract class Castable extends Spell {
             @Override
             public void run() {
                 counter++;
+                if(sTarget.isDead())    {
+                    stop();
+                }
                 getOwner().setSpellCastPercent((counter*0.01f)/castTime);
 
                 if(counter * 0.01f >= castTime)    {

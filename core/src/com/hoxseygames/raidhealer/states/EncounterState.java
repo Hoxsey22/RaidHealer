@@ -68,6 +68,7 @@ public class EncounterState extends State {
         encounterCountDown = new EncounterCountDown(player.getAssets(), new Runnable() {
             @Override
             public void run() {
+                isReady = true;
                 start();
             }
         });
@@ -242,15 +243,16 @@ public class EncounterState extends State {
 
     @Override
     public void update(float dt) {
-        if(!isDone) {
-            handleInput();
-            boss.update();
-            if (boss.isDead())
-                victory();
-            else if (raid.isRaidDead())
-                defeat();
+        if(isReady) {
+            if (!isDone) {
+                handleInput();
+                boss.update();
+                if (boss.isDead())
+                    victory();
+                else if (raid.isRaidDead())
+                    defeat();
+            }
         }
-
     }
 
     /**

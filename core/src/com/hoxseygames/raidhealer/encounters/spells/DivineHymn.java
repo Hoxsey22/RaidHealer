@@ -31,7 +31,7 @@ public class DivineHymn extends ChannelCast {
 
     @Override
     public void applySpell(RaidMember target) {
-        ArrayList<RaidMember> randoms = getOwner().getRaid().getRaidMembersWithLowestHp(8/*(int)(owner.getRaid().raidMembers.size()*0.7f)*/);
+        ArrayList<RaidMember> randoms = getOwner().getRaid().getRaidMembersWithLowestHp(7/*(int)(owner.getRaid().raidMembers.size()*0.7f)*/);
 
         for(int i = 0; i < randoms.size(); i++)   {
             if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
@@ -41,6 +41,7 @@ public class DivineHymn extends ChannelCast {
                 randoms.get(i).receiveHealing(getOutput(), getCriticalChance().isCritical());
             }
         }
+        target.receiveHealing(getOutput(), getCriticalChance().isCritical());
     }
 
     @Override

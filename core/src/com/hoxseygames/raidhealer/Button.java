@@ -116,6 +116,13 @@ public class Button extends Actor {
         isHighlight = highlight;
     }
 
+    public void toggle()    {
+        if(!isHighlight)
+            isHighlight = true;
+        else
+            isHighlight = false;
+    }
+
     @Override
     public void setPosition(float x, float y) {
         super.setPosition(x, y);

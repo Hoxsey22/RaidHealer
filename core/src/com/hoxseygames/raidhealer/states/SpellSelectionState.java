@@ -112,7 +112,7 @@ public class SpellSelectionState extends State {
 
         spellDescriptionName = new Text("", 32, Color.BLACK, false, assets);
 
-        spellDescription = new Text("", 24, Color.YELLOW, false, assets);
+        spellDescription = new Text("Tap on spell to see info. Drag spell to spell bar to equip.", 24, Color.YELLOW, false, assets);
         spellDescription.setWrap();
         spellDescription.setAlignment(Align.center);
 
@@ -166,6 +166,7 @@ public class SpellSelectionState extends State {
 
                 if(done.pressed(coords.x, coords.y))    {
                     player.save();
+                    done.toggle();
                     shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
                         @Override
                         public void run() {
@@ -179,6 +180,7 @@ public class SpellSelectionState extends State {
 
                 if(clear.pressed(coords.x, coords.y))    {
                     System.out.println("Clear pressed");
+                    clear.toggle();
                     player.getSpellBar().clearBar();
 
                     return false;

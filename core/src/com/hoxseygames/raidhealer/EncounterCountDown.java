@@ -56,7 +56,7 @@ public class EncounterCountDown extends Group {
             @Override
             public void run() {
                 index--;
-                if(index == -1)  {
+                if(index == 0)  {
                     isFinished = true;
                     finished();
                 }   else {
