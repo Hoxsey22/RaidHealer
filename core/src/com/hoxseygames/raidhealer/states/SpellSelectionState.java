@@ -40,11 +40,13 @@ public class SpellSelectionState extends State {
     private Text spellType;
     private Text spellCooldown;
     private final Button done;
+    private final Button clear;
     private Spell selectedSpell;
     private final SpellBook spellBook;
     private final SpellBar spellBar;
     private boolean isSpellSelected;
     private ShutterAnimation shutterAnimation;
+    private Table buttonTable;
 
     public SpellSelectionState(StateManager sm, Player player) {
         super(sm);
@@ -55,8 +57,19 @@ public class SpellSelectionState extends State {
         spellBook = player.getSpellBook();
         spellBar = player.getSpellBar();
 
+
+
         done = new Button("DONE", false,assets);
-        done.setPosition((spellBook.getRight() - spellBook.getLeft())/2 + spellBook.getLeft()-done.getWidth()/2, spellBar.getY()+spellBar.getHeight()+ 10);
+        //done.setPosition((spellBook.getRight() - spellBook.getLeft())/2 + spellBook.getLeft()-done.getWidth()/2, spellBar.getY()+spellBar.getHeight()+ 10);
+
+        clear = new Button("CLEAR", false,assets);
+        //clear.setPosition((spellBook.getRight() - spellBook.getLeft())/2 + spellBook.getLeft()-done.getWidth()/2, spellBar.getY()+spellBar.getHeight()+ 10);
+
+        buttonTable = new Table();
+        buttonTable.setBounds(0, spellBar.getY()+spellBar.getHeight()+ 10, 480, 300);
+        buttonTable.add(done).padRight(20);
+        buttonTable.add(clear);
+        buttonTable.debugAll();
 
         background = new Image(assets.getTexture(assets.spellBG));
         background.setBounds(0,0,RaidHealer.WIDTH, RaidHealer.HEIGHT);
@@ -65,7 +78,8 @@ public class SpellSelectionState extends State {
         stage = new Stage(viewport);
 
         stage.addActor(background);
-        stage.addActor(done);
+        stage.addActor(buttonTable);
+        //stage.addActor(done);
         stage.addActor(spellBook);
         stage.addActor(spellBar);
 
@@ -159,6 +173,13 @@ public class SpellSelectionState extends State {
                         }
                     });
                     shutterAnimation.start();
+
+                    return false;
+                }
+
+                if(clear.pressed(coords.x, coords.y))    {
+                    System.out.println("Clear pressed");
+                    player.getSpellBar().clearBar();
 
                     return false;
                 }

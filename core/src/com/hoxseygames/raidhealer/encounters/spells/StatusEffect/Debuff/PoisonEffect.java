@@ -21,7 +21,7 @@ public class PoisonEffect extends Debuff {
         super(owner,
                 3,
                 "Poison Effect",
-                "Poisons the target taking constant damage until dispel or poison wearing off.",
+                "Poisons the target dealing constant damage and reduces healing taken by 50% until dispel or poison wearing off.",
                 owner.getAssets().getTexture(owner.getAssets().poisonIcon),
                 20f,
                 2f,

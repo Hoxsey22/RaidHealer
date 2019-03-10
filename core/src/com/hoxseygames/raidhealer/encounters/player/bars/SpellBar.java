@@ -24,12 +24,15 @@ public class SpellBar extends Group {
     private Player owner;
     private Assets assets;
     private ArrayList<Rectangle> positions;
+    private boolean isLocked;
 
     public SpellBar(Player owner) {
         setBounds(0,0,480,97);
 
         spells = new ArrayList<>(4);
         positions = new ArrayList<>(4);
+
+        isLocked = true;
 
         this.owner = owner;
 
@@ -49,6 +52,21 @@ public class SpellBar extends Group {
     }
 
 
+    public Spell getSpell(float x, float y) {
+        System.out.println("Cord - x:"+x+", y:"+y);
+        for (int i = 0; i < positions.size(); i++) {
+            System.out.println("Position["+i+"]- x:"+positions.get(i).getX()+", y:"+positions.get(i).getY()+", width:"+positions.get(i).getWidth()+", height:"+positions.get(i).getHeight());
+            if(positions.get(i).contains(x,y))  {
+                System.out.println("Spell size: "+spells.size());
+                if(i < spells.size())   {
+                    return spells.get(i);
+                }
+            }
+        }
+        return null;
+    }
+
+
     /**
      * This method will check if a spell actor collides with one of the available spaces and if so,
      * it will add the spell to the spell bar.
@@ -58,6 +76,13 @@ public class SpellBar extends Group {
      */
     public boolean addSpell(Spell spell)   {
         return  positionSpell(spell);
+    }
+
+    public void clearBar()  {
+        for(int i = 0; i < spells.size(); i++)   {
+            removeActor(spells.get(i));
+        }
+        clearSpells();
     }
 
     private boolean positionSpell(Spell spell)    {
@@ -94,10 +119,6 @@ public class SpellBar extends Group {
 
         return Math.abs(r1Center.y - r2Center.y) + Math.abs(r1Center.x - r2Center.x);
     }
-
-
-
-
 
     private void addSpell(int index, Spell spell)  {
         if(index > spells.size()-1)   {
@@ -252,14 +273,12 @@ public class SpellBar extends Group {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         image.draw(batch, parentAlpha);
-        for(int i = 0; i < 4; i++)   {
-            if(i > spells.size()-1)    {
-                batch.draw(assets.getTexture(assets.blankIcon),
-                        positions.get(i).getX(),
-                        positions.get(i).getY(),
-                        positions.get(i).getWidth(),
-                        positions.get(i).getHeight());
-            }
+        for(int i = 0; i < positions.size(); i++)   {
+            batch.draw(assets.getTexture(assets.blankIcon),
+                    positions.get(i).getX(),
+                    positions.get(i).getY(),
+                    positions.get(i).getWidth(),
+                    positions.get(i).getHeight());
         }
         super.draw(batch, parentAlpha);
     }

@@ -20,7 +20,7 @@ public class WildBoar extends Boss {
 
     public WildBoar(Assets assets) {
         super("Wild Boar", Strings.BOAR_DESCRIPTION,
-                /*120*/5,
+                120,
                 new Raid(6,assets),
                 assets);
         setId(2);

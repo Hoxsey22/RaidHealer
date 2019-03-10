@@ -10,7 +10,7 @@ public class AtonementEffect extends Buff {
     /**
      * @param owner       : The player that owns this status effect.
      */
-    public AtonementEffect(Player owner) {
+    public AtonementEffect(Player owner, boolean isBarrier) {
         super(owner,
                 1,
                 "Atonement Effect",
@@ -20,6 +20,11 @@ public class AtonementEffect extends Buff {
                 0.1f,
                 0
         );
+
+        // Holy Nova has reduced atonement.
+        if(!isBarrier)  {
+            setDuration(8f);
+        }
     }
 
     @Override

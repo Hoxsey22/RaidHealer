@@ -43,7 +43,7 @@ public class VampiricBiteEffect extends Debuff {
                 }
         //30f
             }
-        },90f,90f);
+        },45f,45f);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class VampiricBiteEffect extends Debuff {
             getTarget().setDamage(getTarget().getDamage() * 3);
         }
         else {
-            getTarget().setDamage(getTarget().getDamage() * 10);
+            getTarget().setDamage(getTarget().getDamage() * 5);
         }
 
         startPassTimer();
