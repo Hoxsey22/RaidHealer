@@ -5,8 +5,10 @@ import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.Strings;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.Boss;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.AutoAttack;
+import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.Eviscerate;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.Pounce;
+import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.Swipe;
 import com.hoxseygames.raidhealer.encounters.entities.raid.Raid;
 import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 
@@ -18,11 +20,13 @@ public class WampusCat extends Boss {
 
     private Pounce pounce;
     private AutoAttack autoAttack;
+    private Eviscerate eviscerate;
+    private Swipe swipe;
 
     public WampusCat(Assets assets) {
         super("Wampus Cat",
                 Strings.WAMPUS_CAT_DESCRIPTION,
-                210 ,
+                150 ,
                 new Raid(9, assets),
                 assets);
 
@@ -36,9 +40,11 @@ public class WampusCat extends Boss {
         setDamage(20);
         autoAttack = new AutoAttack(this);
         pounce = new Pounce(this);
+        eviscerate = new Eviscerate(this, 10f);
+        swipe = new Swipe(this);
 
-        getPhaseManager().addPhase(new Phase(this, getName()+" is in her Cat Form!",30f, pounce, autoAttack));
-        getPhaseManager().addPhase(new Phase(this,getName()+"is in her Human Form!", 30f, autoAttack));
+        getPhaseManager().addPhase(new Phase(this,30f, autoAttack, pounce));
+        getPhaseManager().addPhase(new Phase(this, 30f, autoAttack, swipe, eviscerate));
 
         loadDebuff(new BleedEffect(this));
     }

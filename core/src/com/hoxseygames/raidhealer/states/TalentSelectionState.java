@@ -1,5 +1,6 @@
 package com.hoxseygames.raidhealer.states;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
@@ -162,6 +163,9 @@ public class TalentSelectionState extends State {
                                 if(player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints()) {
                                     sm.referencePlayer(player);
                                     sm.showAd(2);
+                                    if(Gdx.app.getType() == Application.ApplicationType.Desktop)    {
+                                        player.getTalentTree().reset();
+                                    }
                                     //player.getTalentTree().reset();
                                 }
                                 break;

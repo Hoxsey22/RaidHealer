@@ -1,7 +1,10 @@
 package com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics;
 
+import com.hoxseygames.raidhealer.AudioManager;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.Boss;
 import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
+import com.hoxseygames.raidhealer.encounters.spells.CriticalDice;
+import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 
 import java.util.ArrayList;
 
@@ -11,37 +14,31 @@ import java.util.ArrayList;
 
 public class Swipe extends Mechanic {
 
-    public Swipe(Boss owner) {
-        super("Swipe", owner.getDamage(), 1.5f, owner);
-    }
+    private int numOfTargets;
 
-    public Swipe(Boss owner, float speed) {
-        super("Swipe", owner.getDamage(), speed, owner);
+    public Swipe(Boss owner) {
+        super("Swipe", 25, 4f, owner);
+        numOfTargets = 4;
+        setAnnounce();
     }
 
     @Override
     public void action() {
-        if(getMainTank().isDead() && getOffTank().isDead())    {
-            ArrayList<RaidMember> randoms = getRaid().getRandomRaidMember(2);
-            randoms.get(0).takeDamage(getDamage());
-            randoms.get(1).takeDamage(getDamage()/2);
-            return;
+        AudioManager.playSFX(getAssets().getSound(getAssets().finishImpactSFX), false);
+        ArrayList<RaidMember> raidMembers = getRaid().getRandomRaidMember(numOfTargets);
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            raidMembers.get(i).takeDamage(getDamage());
+            if(CriticalDice.roll(20,100,0)) {
+                raidMembers.get(i).addStatusEffect(new BleedEffect(getOwner(), 3f, 5));
+            }
         }
+    }
 
-        if(getMainTank().isDead())    {
+    public int getNumOfTargets() {
+        return numOfTargets;
+    }
 
-            getOffTank().takeDamage(getDamage());
-            getRaid().getRandomRaidMember(1).get(0).takeDamage(getDamage()/2);
-            return;
-        }
-
-        if(getOffTank().isDead())    {
-            getMainTank().takeDamage(getDamage());
-            getRaid().getRandomRaidMember(1).get(0).takeDamage(getDamage()/2);
-            return;
-        }
-        getMainTank().takeDamage(getDamage());
-        getOffTank().takeDamage(getDamage()/2);
-
+    public void setNumOfTargets(int numOfTargets) {
+        this.numOfTargets = numOfTargets;
     }
 }
