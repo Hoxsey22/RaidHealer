@@ -45,7 +45,7 @@ public class EncounterState extends State {
     protected EncounterCountDown encounterCountDown;
 
 
-    public EncounterState(StateManager sm, Player player, Boss boss) {
+    public EncounterState(StateManager sm, Player player, final Boss boss) {
         super(sm);
         this.player = player;
         this.player.loadTalents();
@@ -63,22 +63,42 @@ public class EncounterState extends State {
 
         create();
 
-        isReady = false;
+        /*isReady = false;
 
+        *//*encounterCountDown = new EncounterCountDown(player.getAssets(), new Runnable() {
+            @Override
+            public void run() {
+                isReady = true;
+                boss.start();
+            }
+        });*//*
+
+        stage.addActor(encounterCountDown);
+
+        shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);
+
+
+        shutterAnimation.start();
+        createCountDown();*/
+    }
+
+    public void createCountDown()   {
         encounterCountDown = new EncounterCountDown(player.getAssets(), new Runnable() {
             @Override
             public void run() {
                 isReady = true;
-                start();
+                boss.start();
             }
         });
 
         stage.addActor(encounterCountDown);
 
-        shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);
-        shutterAnimation.start();
         encounterCountDown.start();
+
     }
+
+
+
 
     @Override
     public void create() {
@@ -126,6 +146,24 @@ public class EncounterState extends State {
         System.out.println("STAGE - > Width:"+stage.getWidth()+" Height:"+stage.getHeight());
         // Load Ad
         sm.loadAd(3);
+
+        isReady = false;
+
+        /*encounterCountDown = new EncounterCountDown(player.getAssets(), new Runnable() {
+            @Override
+            public void run() {
+                isReady = true;
+                boss.start();
+            }
+        });*/
+
+        //stage.addActor(encounterCountDown);
+
+        shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);
+
+
+        shutterAnimation.start();
+        createCountDown();
     }
 
     @Override
@@ -407,7 +445,6 @@ public class EncounterState extends State {
      */
     protected void start()  {
         boss.start();
-
     }
 
     @Override

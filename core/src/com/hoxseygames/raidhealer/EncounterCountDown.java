@@ -20,6 +20,7 @@ public class EncounterCountDown extends Group {
     private Text displayCount;
     private boolean isFinished = false;
     private Runnable finishedRunnable;
+    private Timer timer;
 
     public EncounterCountDown(Assets assets, Runnable finishedRunnable)  {
         this.assets = assets;
@@ -37,6 +38,9 @@ public class EncounterCountDown extends Group {
     }
 
     private void create()   {
+        // create timer
+        timer = new Timer();
+
         // create disable bg
         disableBG = new Image(assets.getTexture(assets.disableBG));
         addActor(disableBG);
@@ -52,7 +56,7 @@ public class EncounterCountDown extends Group {
 
     public void start()    {
 
-        Timer.schedule(new Timer.Task() {
+        timer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
                 index--;
@@ -66,6 +70,14 @@ public class EncounterCountDown extends Group {
 
             }
         },1f,1f, 4);
+    }
+
+    public void stop()  {
+         if(timer != null)   {
+             timer.stop();
+             timer.clear();
+             remove();
+         }
     }
 
     private void finished() {

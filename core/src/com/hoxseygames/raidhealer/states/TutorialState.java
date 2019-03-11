@@ -26,7 +26,7 @@ public class TutorialState extends EncounterState {
     private final TutorialFrame tutorialFrame;
     private BlinkingOutline blinkingOutline;
     private ArrayList<Rectangle> outlines;
-    private boolean isReady;
+    private boolean isTutorialOver;
 
 
     public TutorialState(StateManager sm, Player player) {
@@ -43,7 +43,7 @@ public class TutorialState extends EncounterState {
         shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false, new Runnable() {
             @Override
             public void run() {
-                isReady = true;
+                isTutorialOver = true;
                 stage.addActor(tutorialFrame);
                 stage.addActor(blinkingOutline);
             }
@@ -104,6 +104,8 @@ public class TutorialState extends EncounterState {
         blinkingOutline.setOutline(outlines.get(0));
 
         boss.stop();
+        encounterCountDown.stop();
+        isReady = true;
     }
 
     @Override
@@ -196,7 +198,7 @@ public class TutorialState extends EncounterState {
                     }
                 }
                 else{
-                    if(isReady) {
+                    if(isTutorialOver) {
                         tutorialFrame.nextStage();
                         if (!tutorialFrame.isComplete())
                             blinkingOutline.setOutline(outlines.get(tutorialFrame.stageNumber - 1));
