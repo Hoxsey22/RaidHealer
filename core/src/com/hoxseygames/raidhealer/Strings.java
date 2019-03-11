@@ -9,13 +9,13 @@ public final class Strings {
     // Bosses
     public static final String STAGE_1_INTRO = "There has been a lot of incidents around the area. " +
             "Figure out what’s going on and try to stop it! Remember, it's your job to protect your " +
-            "raid at all costs!";
+            "team at all costs!";
 
     public static final String STAGE_2_INTRO = "After the defeat of Nax, he didn’t give up too " +
-            "much information about what the Sorcerer was going to do with the materials he stole " +
-            "for her. But in Nax’s hideout, there was a note with instructions for their last " +
-            "delivery. The note said the last delivery was to be dropped off in a few days from " +
-            "now and the location was just past the valley. Find the last delivery spot and stop " +
+            "much information about the Sorcerer's plan with the materials he stole " +
+            "for her. In Nax’s hideout, a note with instructions for their last " +
+            "delivery was found. The note indicated the last delivery was to be dropped off in a few days" +
+            " just past the valley. Find the last delivery spot and stop " +
             "the Sorcerer.";
 
     public static final String STAGE_3_INTRO = "The Sorcerer has been defeated! She tried to summon" +
@@ -40,11 +40,11 @@ public final class Strings {
     public static final String GOLEM_DESCRIPTION = "There have been reports of ground rumblings in " +
             "between a mountain pass. Passerbys noticed loose rocks swirling in the air to form " +
             "something while a woman looked over her shoulder giving an evil smile. Suddenly, a " +
-            "monsterous rock create formed. The golem was throwing boulders everywhere and causing " +
+            "monstrous rock create formed. The golem was throwing boulders everywhere and causing " +
             "earthquakes. The woman who summoned this monster fled the scene. She must have been " +
             "The Sorcerer we have been looking for!";
 
-    public static final String NAXS_WOLF_DESCRIPTION = "The Sorcerer hasn’t been seen in  a few " +
+    public static final String NAXS_WOLF_DESCRIPTION = "The Sorcerer hasn’t been seen in a few " +
             "days. It’s been reported that she was communicating with Nax, The Bandit Leader, and" +
             " they were making some sort of agreement. Nax’s Wolf has been guarding the area around" +
             " his secret hideout. Nax’s Wolf looks to be supercharged. The Sorcerer must have given" +
@@ -82,7 +82,7 @@ public final class Strings {
     public static final String SORCERER_DESCRIPTION = "With her apprentice defeated, the Sorcerer" +
             " has no choice, but to fight. From various reports, her fire based abilities and " +
             "devastating dark spells are more intense than her apprentice’s, but the biggest " +
-            "concern is this-a person  trapped with nowhere to run will do anything to stay alive." +
+            "concern is this-a person trapped with nowhere to run will do anything to stay alive." +
             " Defeat her and end this!";
 
     public static final String MOTHER_SPIDER_DESCRIPTION = "In order to get through the mountain " +

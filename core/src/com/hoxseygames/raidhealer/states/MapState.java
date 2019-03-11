@@ -35,6 +35,7 @@ public class MapState extends State {
 
     private final ImageButton pageLeft;
     private final ImageButton pageRight;
+    private ImageButton exitButton;
     private TextButton talentButton;
     private TextButton startButton;
     private TextButton spellButton;
@@ -65,6 +66,9 @@ public class MapState extends State {
 
         pageRight = new ImageButton(assets.getSkin(), "page_right");
         pageRight.setBounds(410, 550, 30,30);
+
+        exitButton = new ImageButton(assets.getSkin(), "exit_button");
+        exitButton.setPosition(405, 725);
 
         page = 1;
 
@@ -97,6 +101,9 @@ public class MapState extends State {
         pageRight = new ImageButton(assets.getSkin(), "page_right");
         pageRight.setBounds(410, 550, 30,30);
 
+        exitButton = new ImageButton(assets.getSkin(), "exit_button");
+        exitButton.setPosition(405, 725);
+
         page = 1;
 
         this.player = player;
@@ -113,6 +120,7 @@ public class MapState extends State {
 
         pageLeft.remove();
         pageRight.remove();
+        exitButton.remove();
 
         mapFrame.remove();
 
@@ -139,6 +147,7 @@ public class MapState extends State {
                 stage.addActor(pageLeft);
                 break;
         }
+        stage.addActor(exitButton);
         loadPage();
         createBossIconListeners();
         createButtons();
@@ -157,6 +166,7 @@ public class MapState extends State {
 
         pageLeft.remove();
         pageRight.remove();
+        exitButton.remove();
 
         page = mapFrame.getPage();
         mapFrame.remove();
@@ -182,6 +192,7 @@ public class MapState extends State {
                 stage.addActor(pageLeft);
                 break;
         }
+        stage.addActor(exitButton);
         loadPage();
         createBossIconListeners();
 
@@ -369,6 +380,13 @@ public class MapState extends State {
                 page++;
                 turnPage();
                 System.out.println("Page Right");
+            }
+        });
+
+        exitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                sm.set(new MainMenuState(sm, player));
             }
         });
     }

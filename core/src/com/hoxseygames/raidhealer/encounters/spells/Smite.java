@@ -19,7 +19,7 @@ public class Smite extends Castable {
     public Smite(Player player, Assets assets) {
         super(player, "Smite",
                 "Smites a boss for a small amount of damage that will heal the most injured ally unit for a faction of the damage.",
-                6,
+                7,
                 1.25f,
                 5,
                 0.5f,

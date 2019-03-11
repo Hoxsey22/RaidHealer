@@ -18,7 +18,7 @@ public class Penance extends ChannelCast {
         super(player, "Penance",
                 "Throws a volley of holy light at an ally unit. If atonement is present, Penance will be casted on the enemy unit" +
                         " dealing damage and healing all those with atonement.",
-                8,
+                9,
                 2.5f,
                 4,
                 15,

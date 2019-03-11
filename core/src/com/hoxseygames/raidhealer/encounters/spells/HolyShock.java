@@ -18,7 +18,7 @@ public class HolyShock extends InstantCast {
     public HolyShock(Player player, Assets assets) {
         super(player, "Holy Shock",
                 "Instantly shocks an ally unit with holy light for a moderate amount and also empowers the next Heal by 50%.",
-                7,
+                8,
                 1,
                 35,
                 2f,

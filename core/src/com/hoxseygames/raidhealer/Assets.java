@@ -429,7 +429,6 @@ public class Assets {
         manager.load(creditsLayer3, Texture.class, param);
         manager.load(creditsLayer4, Texture.class, param);
         manager.load(creditsLayer5, Texture.class, param);
-        manager.load(exitButton, Texture.class, param);
 
     }
 
