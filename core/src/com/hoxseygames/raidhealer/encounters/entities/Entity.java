@@ -278,6 +278,12 @@ public class Entity extends Actor{
         return hpPercent;
     }
 
+    public boolean isFullHealth()   {
+        if(getHp() == getMaxHp())
+            return true;
+        return false;
+    }
+
     public float getShieldPercent() {
         return (float)shield/(float)maxHp;
     }

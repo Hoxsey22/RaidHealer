@@ -226,6 +226,29 @@ public class Raid extends Group {
         return lowest;
     }
 
+    public ArrayList<RaidMember> getInjuriedRaidMembers(int cap)    {
+        ArrayList<RaidMember> lowest = new ArrayList<>();
+        ArrayList<RaidMember> temp = new ArrayList<>();
+
+        temp.addAll(raidMembers);
+
+        Collections.shuffle(temp);
+
+        int counter = 0;
+        for(int i = 0; i < temp.size(); i++) {
+            if (!temp.get(i).isDead() && !temp.get(i).isFullHealth()) {
+                lowest.add(temp.get(i));
+                counter++;
+                if(counter == cap)    {
+                    return lowest;
+                }
+            }
+        }
+        if(lowest.size() == 0)
+            return getRandomRaidMember(1);
+        return lowest;
+    }
+
     public RaidMember getRaidMemberWithLowestHp()    {
         ArrayList<RaidMember> temp = new ArrayList<>();
         temp.addAll(raidMembers);

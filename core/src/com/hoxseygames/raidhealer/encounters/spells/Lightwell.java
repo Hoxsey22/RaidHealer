@@ -41,7 +41,7 @@ public class Lightwell extends Periodical {
 
             @Override
             public void run() {
-                RaidMember lowest = getOwner().getRaid().getRaidMemberWithLowestHp();
+                RaidMember lowest = getOwner().getRaid().getInjuriedRaidMembers(1).get(0);
                 currentTime = currentTime + getSpeed();
 
                 if(currentTime >= getDuration() )    {

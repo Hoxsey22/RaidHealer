@@ -2,6 +2,8 @@ package com.hoxseygames.raidhealer.encounters.spells;
 
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.Player;
+import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
+import com.hoxseygames.raidhealer.encounters.spells.Talents.TalentTree;
 
 /**
  * Created by Hoxsey on 6/18/2017.
@@ -28,5 +30,14 @@ class FlashHeal extends Heal {
         setCriticalChance(getMIN_CRITICAL());
 
         setLevelRequirement(5);
+    }
+
+    @Override
+    public void applySpell(RaidMember target) {
+        super.applySpell(target);
+
+        if(getOwner().getTalentTree().getTalent(TalentTree.RENEWING_NOVA).isSelected())    {
+            applyRenewingNova(target);
+        }
     }
 }

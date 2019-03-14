@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygames.raidhealer.AnimatedBackground;
@@ -31,6 +32,7 @@ public class CreditsState extends State{
     private int previousState;
     private boolean isReady;
     private ShutterAnimation shutterAnimation;
+    private Image titleImage;
 
     public CreditsState(StateManager sm, Player player, int previousState) {
         super(sm);
@@ -54,6 +56,10 @@ public class CreditsState extends State{
 
         assets = player.getAssets();
 
+        titleImage = new Image(assets.getTexture(assets.title));
+        titleImage.setBounds(RaidHealer.WIDTH/2- 380/2,RaidHealer.HEIGHT - 225,380,214);
+        titleImage.setName("titleImage");
+
         AudioManager.playMusic(assets.getMusic(assets.creditsMusic));
 
         table = new Table();
@@ -61,7 +67,7 @@ public class CreditsState extends State{
         //title
         table.add(new Text("Credits",32, Color.BLACK, false, assets).getLabel()).left().padBottom(10);
         table.row();
-        table.add(new Text("Game Design & Programming",24, Color.BLACK, false, assets).getLabel()).left();
+        table.add(new Text("Game Development & Design",24, Color.BLACK, false, assets).getLabel()).left();
         table.row();
         table.add(new Text("- Joseph Hoxsey",24, Color.BLACK, false, assets).getLabel()).left().padBottom(10);
         table.row();
@@ -71,13 +77,13 @@ public class CreditsState extends State{
         table.row();
         table.add(new Text("- Chuchilko @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left();
         table.row();
-        table.add(new Text("- cruizRF @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left();
+        table.add(new Text("- CruizRF @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left();
         table.row();
         table.add(new Text("- Rexard @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left().padBottom(10);
         table.row();
         table.add(new Text("Music",24, Color.BLACK, false, assets).getLabel()).left();
         table.row();
-        table.add(new Text("- wowsoundsg @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left();
+        table.add(new Text("- Wowsoundsg @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left();
         table.row();
         table.add(new Text("- Riku20xx @ Gamedevmarket.com",24, Color.BLACK, false, assets).getLabel()).left();
 
@@ -94,6 +100,7 @@ public class CreditsState extends State{
 
         stage.addActor(animatedBackground);
         stage.addActor(table);
+        stage.addActor(titleImage);
 
         animatedBackground.start();
         shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);

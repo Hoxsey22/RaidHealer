@@ -77,7 +77,7 @@ public class TalentTree extends Group{
         talents.add(new Talent(this, 1, LIFEBOOM, "When a Renew expires, the ally unit will receive a burst of healing based on 50% of Renew’s total healing done.", getAssets().getTexture(getAssets().lifeboomIcon), assets));
         talents.add(new Talent(this, 2, HEALER_CHANNEL, "All healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().workTogetherIcon), assets));
-        talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova will now place a Renew on each of the ally units healed by Holy Nova.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova will now place a Renew on each of the ally units healed by Holy Nova as well as Flash Heal.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().renewingNovaIcon), assets));
         talents.add(new Talent(this, 4, AOD,"Renew now does more healing, the time between ticks are faster and ally units will now be able to receive one additional Renew.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().aodIcon), assets));
