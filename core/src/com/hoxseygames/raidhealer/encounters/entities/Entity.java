@@ -1,14 +1,14 @@
 package com.hoxseygames.raidhealer.encounters.entities;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.HealingTracker;
 
 /**
  * Created by Hoxsey on 6/16/2017.
  */
-public class Entity extends Actor{
+public class Entity extends Button{
 
     private int id;
     private String name;

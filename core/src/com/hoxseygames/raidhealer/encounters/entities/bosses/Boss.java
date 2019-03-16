@@ -43,7 +43,7 @@ public abstract class Boss extends Entity {
     public Boss(String name, String description, int maxHp, Assets assets) {
         super(name, maxHp, assets);
         this.description = description;
-        setBounds(20, 740, 445, 40);
+        setBounds(20, 740, 400, 40);
         target = getMainTank();
         mechanics = new ArrayList<>();
         debuffList = new ArrayList<>();
@@ -52,7 +52,7 @@ public abstract class Boss extends Entity {
 
     protected Boss(String name, String description, int bossLength, Raid enemies, Assets assets) {
         super(name, enemies.getRaidDamage()*bossLength, assets);
-        setBounds(20, 740, 445, 40);
+        setBounds(20, 740, 400, 40);
         this.description = description;
         this.enemies = enemies;
         raidSize = enemies.getRaidMembers().size();

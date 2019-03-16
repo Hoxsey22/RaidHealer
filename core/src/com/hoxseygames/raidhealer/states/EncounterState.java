@@ -2,15 +2,22 @@ package com.hoxseygames.raidhealer.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.AudioManager;
 import com.hoxseygames.raidhealer.EncounterCountDown;
@@ -18,6 +25,7 @@ import com.hoxseygames.raidhealer.GameOverFrame;
 import com.hoxseygames.raidhealer.Player;
 import com.hoxseygames.raidhealer.RaidHealer;
 import com.hoxseygames.raidhealer.ShutterAnimation;
+import com.hoxseygames.raidhealer.WindowFrame;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.Boss;
 import com.hoxseygames.raidhealer.encounters.entities.raid.Raid;
 import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
@@ -43,6 +51,11 @@ public class EncounterState extends State {
     protected int page;
     protected ShutterAnimation shutterAnimation;
     protected EncounterCountDown encounterCountDown;
+    protected ImageButton exitButton;
+    private WindowFrame ngConfirmationWindow;
+    private Label ngConfirmationText;
+    private TextButton confirmButton;
+    private TextButton backButton;
 
 
     public EncounterState(StateManager sm, Player player, final Boss boss) {
@@ -62,24 +75,6 @@ public class EncounterState extends State {
         player.setBoss(this.boss);
 
         create();
-
-        /*isReady = false;
-
-        *//*encounterCountDown = new EncounterCountDown(player.getAssets(), new Runnable() {
-            @Override
-            public void run() {
-                isReady = true;
-                boss.start();
-            }
-        });*//*
-
-        stage.addActor(encounterCountDown);
-
-        shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);
-
-
-        shutterAnimation.start();
-        createCountDown();*/
     }
 
     public void createCountDown()   {
@@ -159,60 +154,121 @@ public class EncounterState extends State {
 
         //stage.addActor(encounterCountDown);
 
+        exitButton = new ImageButton(assets.getSkin(), "exit_button");
+        exitButton.setPosition(boss.getX() + boss.getWidth() + 5, boss.getY());
+        exitButton.setTouchable(Touchable.enabled);
+        exitButton.addListener( new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                ngConfirmationWindow.show(stage);
+                System.out.println("BANG");
+                return super.touchDown(event, x, y, pointer, button);
+            }
+        });
+
+
+         stage.addActor(exitButton);
+
         shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);
 
-
         shutterAnimation.start();
+
         createCountDown();
+        initNewGameConfirmationWindow();
+        raid.setupListener();
+        //setupRaidListener();
+        setupSpellListener();
+
+    }
+
+    private void initNewGameConfirmationWindow() {
+        ngConfirmationWindow = new WindowFrame(RaidHealer.ui);
+        //ngConfirmationWindow.setDebug(true);
+
+        ngConfirmationText = new Label("Are you sure you want to quit?", RaidHealer.ui);
+        ngConfirmationText.setWrap(true);
+        ngConfirmationText.setAlignment(Align.center);
+
+        confirmButton = new TextButton("Quit",RaidHealer.ui, "small_button");
+        confirmButton.setTouchable(Touchable.enabled);
+        confirmButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                stop();
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new MapState(sm, player, 1));
+                    }
+                });
+                sm.showAd(1);
+                shutterAnimation.start();
+            }
+        });
+
+        backButton = new TextButton("Back",RaidHealer.ui, "small_button");
+        backButton.setTouchable(Touchable.enabled);
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                ngConfirmationWindow.hide();
+            }
+        });
+
+        ngConfirmationWindow.center();
+        ngConfirmationWindow.add(ngConfirmationText).width(ngConfirmationWindow.getWidth()).center().colspan(2).pad(10).row();
+        ngConfirmationWindow.add(confirmButton).center();
+        ngConfirmationWindow.add(backButton).center();
     }
 
     @Override
     protected void handleInput() {
 
-        Gdx.input.setInputProcessor(new InputProcessor() {
+        Gdx.input.setInputProcessor(new InputMultiplexer(stage,new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
-                switch (keycode)    {
+                switch (keycode) {
                     case Input.Keys.NUM_0:
                         boss.takeDamage(1000);
                         break;
                     case Input.Keys.NUM_9:
-                        for(int i = 0; i < raid.getRaidMembers().size(); i++)   {
+                        for (int i = 0; i < raid.getRaidMembers().size(); i++) {
                             raid.getRaidMembers().get(i).takeDamage(50);
                         }
                         break;
                     case Input.Keys.NUM_1:
-                        if(player.getSpellBar().getSpells().size() > 0)    {
-                            if(!player.isCasting())
+                        if (player.getSpellBar().getSpells().size() > 0) {
+                            if (!player.isCasting())
                                 player.getSpellBar().getSpells().get(0).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_2:
-                        if(player.getSpellBar().getSpells().size() > 1)    {
-                            if(!player.isCasting())
+                        if (player.getSpellBar().getSpells().size() > 1) {
+                            if (!player.isCasting())
                                 player.getSpellBar().getSpells().get(1).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_3:
-                        if(player.getSpellBar().getSpells().size() > 2)    {
-                            if(!player.isCasting())
+                        if (player.getSpellBar().getSpells().size() > 2) {
+                            if (!player.isCasting())
                                 player.getSpellBar().getSpells().get(2).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_4:
-                        if(player.getSpellBar().getSpells().size() > 3)    {
-                            if(!player.isCasting())
+                        if (player.getSpellBar().getSpells().size() > 3) {
+                            if (!player.isCasting())
                                 player.getSpellBar().getSpells().get(3).castSpell();
                         }
                         break;
                     case Input.Keys.L:
                         System.out.println("********** Raid Stats **********");
                         System.out.println("id|role|maxhp|hp|damage");
-                        for(int i = 0; i < boss.getEnemies().getRaidMembers().size(); i++)   {
-                            System.out.println(boss.getEnemies().getRaidMember(i).getId() + "|"+
-                                    boss.getEnemies().getRaidMember(i).getRole() + "|"+
-                                    boss.getEnemies().getRaidMember(i).getMaxHp() + "|"+
-                                    boss.getEnemies().getRaidMember(i).getHp() + "|"+
+                        for (int i = 0; i < boss.getEnemies().getRaidMembers().size(); i++) {
+                            System.out.println(boss.getEnemies().getRaidMember(i).getId() + "|" +
+                                    boss.getEnemies().getRaidMember(i).getRole() + "|" +
+                                    boss.getEnemies().getRaidMember(i).getMaxHp() + "|" +
+                                    boss.getEnemies().getRaidMember(i).getHp() + "|" +
                                     boss.getEnemies().getRaidMember(i).getDamage());
                         }
                         break;
@@ -236,7 +292,7 @@ public class EncounterState extends State {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
+                /*Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
                 if(coord.y > 300) {
                     RaidMember raidTarget = (RaidMember) raid.hit(coord.x, coord.y, false);
                     if (raidTarget != null) {
@@ -252,7 +308,7 @@ public class EncounterState extends State {
                             spell.castSpell();
                         }
                     }
-                }
+                }*/
                 return false;
             }
 
@@ -275,7 +331,7 @@ public class EncounterState extends State {
             public boolean scrolled(int amount) {
                 return false;
             }
-        });
+        }));
 
     }
 
@@ -297,7 +353,7 @@ public class EncounterState extends State {
      * This is a end game sub-state if the player wins.
      */
     protected void victory()  {
-        Gdx.input.setInputProcessor(stage);
+        //Gdx.input.setInputProcessor(stage);
 
         AudioManager.playMusic(assets.getMusic(assets.victoryMusic));
 
@@ -326,7 +382,7 @@ public class EncounterState extends State {
      * This is a end game sub-state if the player loses.
      */
     protected void defeat() {
-        Gdx.input.setInputProcessor(stage);
+        //Gdx.input.setInputProcessor(stage);
 
         AudioManager.playMusic(assets.getMusic(assets.defeatMusic));
 
@@ -335,7 +391,6 @@ public class EncounterState extends State {
         stateResetButtonListener();
         stateLeaveButtonListener();
         gameOverFrame.show(stage);
-
 
         stop();
 
@@ -426,9 +481,33 @@ public class EncounterState extends State {
         });
     }
 
+    protected void setupSpellListener()   {
+
+        for(int i = 0; i < player.getSpellBar().getSpells().size(); i++)   {
+            player.getSpellBar().getSpells().get(i).addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    System.out.println("Spell hit");
+                    Spell spell = (Spell) actor;
+                    spell.castSpell();
+                }
+            });
+        }
+    }
 
 
-
+    protected void setupRaidListener()   {
+        for(int i = 0; i < player.getRaid().getRaidMembers().size(); i++)   {
+            player.getRaid().getRaidMember(i).addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    System.out.println("Member hit");
+                    player.setTarget((RaidMember)actor);
+                    player.getTarget().selected();
+                }
+            });
+        }
+    }
 
     /**
      * Stops all timers in boss raid and player.

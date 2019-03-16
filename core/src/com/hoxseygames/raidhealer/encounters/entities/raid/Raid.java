@@ -2,6 +2,7 @@ package com.hoxseygames.raidhealer.encounters.entities.raid;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.HealingTracker;
@@ -402,6 +403,19 @@ public class Raid extends Group {
             totalDamage = totalDamage + raidMembers.get(i).getDamage();
         }
         return totalDamage;
+    }
+
+    public void setupListener()   {
+        for(int i = 0; i < raidMembers.size(); i++)   {
+            raidMembers.get(i).addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    System.out.println("Member hit");
+                    player.setTarget((RaidMember)actor);
+                    player.getTarget().selected();
+                }
+            });
+        }
     }
 
     public Player getPlayer() {

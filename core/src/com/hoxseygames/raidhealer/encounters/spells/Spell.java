@@ -3,7 +3,7 @@ package com.hoxseygames.raidhealer.encounters.spells;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygames.raidhealer.Assets;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Created by Hoxsey on 6/17/2017.
  */
-public abstract class Spell extends Actor {
+public abstract class Spell extends Button{
 
 
     public static class SpellData implements Serializable {

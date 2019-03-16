@@ -69,7 +69,6 @@ public class SpellSelectionState extends State {
         buttonTable.setBounds(0, spellBar.getY()+spellBar.getHeight()+ 10, 480, 300);
         buttonTable.add(done).padRight(20);
         buttonTable.add(clear);
-        buttonTable.debugAll();
 
         background = new Image(assets.getTexture(assets.spellBG));
         background.setBounds(0,0,RaidHealer.WIDTH, RaidHealer.HEIGHT);
