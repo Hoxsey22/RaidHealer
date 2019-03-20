@@ -2,6 +2,7 @@ package com.hoxseygames.raidhealer.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -111,7 +112,7 @@ public class TutorialState extends EncounterState {
     @Override
     protected void handleInput() {
 
-        Gdx.input.setInputProcessor(new InputProcessor() {
+        Gdx.input.setInputProcessor(new InputMultiplexer(stage,new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
                 switch (keycode)    {
@@ -234,7 +235,7 @@ public class TutorialState extends EncounterState {
             public boolean scrolled(int amount) {
                 return false;
             }
-        });
+        }));
 
     }
 

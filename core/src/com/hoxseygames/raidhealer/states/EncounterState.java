@@ -167,8 +167,7 @@ public class EncounterState extends State {
             }
         });
 
-
-         stage.addActor(exitButton);
+        stage.addActor(exitButton);
 
         shutterAnimation = new ShutterAnimation(stage, player.getAssets(), false);
 

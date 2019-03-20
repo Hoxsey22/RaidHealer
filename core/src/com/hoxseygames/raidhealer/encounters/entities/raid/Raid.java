@@ -372,12 +372,15 @@ public class Raid extends Group {
     }
 
     public ArrayList<RaidMember> getBuffedRaidMembers(String name)    {
+        System.out.println("\n--- "+name+" ---");
         ArrayList<RaidMember> buffed = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
             if(raidMembers.get(i).getStatusEffectList().contains(name))    {
+                System.out.println(raidMembers.get(i).toString());
                 buffed.add(raidMembers.get(i));
             }
         }
+        System.out.println("==================");
         return  buffed;
     }
 

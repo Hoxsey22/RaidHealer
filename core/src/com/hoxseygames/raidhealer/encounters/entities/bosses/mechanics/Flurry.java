@@ -43,22 +43,28 @@ public class Flurry extends Mechanic{
             ArrayList<RaidMember> random  = getRaid().getRandomRaidMember(1);
             @Override
             public void run() {
-                if(count != 10) {
-                    count++;
-                    if(random != null) {
-                        if (random != null && random.size() != 0) {
-                            triggerSFX();
-                            random.get(0).takeDamage(getDamage());
+                try {
+                    if (count != 10) {
+                        count++;
+                        if (random != null) {
+                            if (random != null && random.size() != 0) {
+                                triggerSFX();
+                                random.get(0).takeDamage(getDamage());
+                            }
+                            if (random.get(0).isDead()) {
+                                random = getRaid().getRandomRaidMember(1);
+                            }
                         }
-                        if (random.get(0).isDead()) {
-                            random = getRaid().getRandomRaidMember(1);
-                        }
+                    } else {
+                        channel.stop();
+                        channel.clear();
+                        resume();
                     }
-                }
-                else    {
-                    channel.stop();
-                    channel.clear();
-                    resume();
+                } catch (IndexOutOfBoundsException e) {
+                    if(channel != null) {
+                        channel.stop();
+                        channel.clear();
+                    }
                 }
             }
         },0.5f,0.5f,10);

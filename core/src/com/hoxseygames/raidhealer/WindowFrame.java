@@ -51,6 +51,7 @@ public class WindowFrame extends Table {
             pack();
             setPosition(stage.getWidth()/2 - getWidth()/2, stage.getHeight()/2 - getHeight()/2);
             stage.addActor(this);
+            toFront();
         }
     }
 

@@ -50,6 +50,7 @@ public class Wolf extends Boss {
     public void reward() {
         if(getPlayer().getLevel() >= getId()) {
             getRewardPackage().addNewLevelText();
+            getRewardPackage().addNewTalentText();
             getRewardPackage().addNewSpellText();
             getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().greaterHealerIcon)));
             getRewardPackage().addImage(new Image(getAssets().getTexture(getAssets().barrierIcon)));

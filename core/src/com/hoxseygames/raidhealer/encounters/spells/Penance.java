@@ -40,7 +40,7 @@ public class Penance extends ChannelCast {
             target.receiveHealing(getOutput(), getCriticalChance().isCritical());
         }
         else {
-            if (getOwner().getRaid().getBuffLessRaidMembers("Atonement Effect").size() > 0) {
+            if (getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").size() > 0) {
                 newOutput = (int)(getOwner().getBoss().takeDamage(getOutput(), getCriticalChance().isCritical())*0.7);
                 if (getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
                     for (int i = 0; i < getOwner().getRaid().getBuffedRaidMembers("Atonement Effect").size(); i++) {
