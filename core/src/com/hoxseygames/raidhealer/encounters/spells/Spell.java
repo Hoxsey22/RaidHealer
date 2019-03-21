@@ -112,7 +112,7 @@ public abstract class Spell extends Button{
 
     public abstract void checkTalents();
 
-    public abstract void applySpell(RaidMember target);
+    public abstract void applySpell(final RaidMember target);
 
     /**
      * This starts the cooldown timer for the spell

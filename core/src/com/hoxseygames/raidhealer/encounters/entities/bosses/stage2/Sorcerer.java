@@ -41,13 +41,13 @@ public class Sorcerer extends Boss {
         super.create();
         setDamage(0);
 
-        agony = new Agony(this);
+        agony = new Agony(this,14f);
 
         blanketCorruption = new BlanketCorruption(this,40f);
 
         fireball = new Fireball(this, 3f);
 
-        pyroblast = new Pyroblast(this, 5f);
+        pyroblast = new Pyroblast(this, 3f);
         pyroblast.setDamage(60);
 
         fireBreath = new FireBreath(this);

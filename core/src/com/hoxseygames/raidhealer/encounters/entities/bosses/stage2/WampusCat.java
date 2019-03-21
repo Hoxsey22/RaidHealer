@@ -9,6 +9,7 @@ import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.Eviscerat
 import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.Phase;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.Pounce;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.Swipe;
+import com.hoxseygames.raidhealer.encounters.entities.bosses.mechanics.TankSwap;
 import com.hoxseygames.raidhealer.encounters.entities.raid.Raid;
 import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Debuff.BleedEffect;
 
@@ -22,6 +23,7 @@ public class WampusCat extends Boss {
     private AutoAttack autoAttack;
     private Eviscerate eviscerate;
     private Swipe swipe;
+    private TankSwap tankSwap;
 
     public WampusCat(Assets assets) {
         super("Wampus Cat",
@@ -39,12 +41,13 @@ public class WampusCat extends Boss {
         super.create();
         setDamage(20);
         autoAttack = new AutoAttack(this);
+        tankSwap = new TankSwap(this, 12f);
         pounce = new Pounce(this);
         eviscerate = new Eviscerate(this, 10f);
         swipe = new Swipe(this);
 
-        getPhaseManager().addPhase(new Phase(this,30f, autoAttack, pounce));
-        getPhaseManager().addPhase(new Phase(this, 30f, autoAttack, swipe, eviscerate));
+        getPhaseManager().addPhase(new Phase(this,30f, autoAttack,tankSwap, pounce));
+        getPhaseManager().addPhase(new Phase(this, 30f, autoAttack,tankSwap, swipe, eviscerate));
 
         loadDebuff(new BleedEffect(this));
     }

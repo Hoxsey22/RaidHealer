@@ -41,7 +41,7 @@ public class Proctor extends Boss {
 
         autoAttack = new AutoAttack(this);
         bullCharge = new BullCharge(this);
-        cleave = new Cleave(this, 5f);
+        cleave = new Cleave(this, 3.5f);
         fireBreath = new FireBreath(this,8,18f);
         tankSwap = new TankSwap(this);
 

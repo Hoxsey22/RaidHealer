@@ -37,6 +37,11 @@ public class Heal extends Castable {
             currentOutput = getOutput() + (int)(getOutput()*0.5);
             getOwner().setHolyShockIncrease(false);
         }
+        if(getOwner().getTalentTree().getTalent(TalentTree.LIFEBOOM).isSelected())   {
+            if(target.getStatusEffectList().contains("Lifeboom Effect"))   {
+                currentOutput = currentOutput + (int)(getOutput()*0.3);
+            }
+        }
 
         if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
             applyCriticalHealerII(target, currentOutput);

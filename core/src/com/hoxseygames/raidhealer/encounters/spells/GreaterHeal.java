@@ -13,7 +13,7 @@ class GreaterHeal extends Heal {
         setName("Greater Heal");
         setOutput(60);
 
-        setMIN_OUTPUT(60);
+        setMIN_OUTPUT(70);
 
         setDescription("Heals an ally unit for "+getOutput()+"hp.");
 

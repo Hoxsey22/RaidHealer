@@ -26,7 +26,7 @@ public class Renew2 extends Periodical {
         super(player, "Renew", "A renewing amount of holy light is place on an ally unit.",
                 0,
                 1,
-                7,
+                8,
                 1f,
                 0.5f,
                 10f,

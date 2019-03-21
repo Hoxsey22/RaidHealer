@@ -60,7 +60,7 @@ public abstract class Periodical extends InstantCast {
     protected void checkAoD()  {
         if(getOwner().getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
             setOutput(10);
-            duration = 12;
+            duration = 13;
             speed = 1.5f;
         }
     }
