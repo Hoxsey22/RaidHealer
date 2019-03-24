@@ -358,12 +358,13 @@ public abstract class Spell extends Button{
     }
 
     public void applyMasteringHealing(RaidMember target, int output) {
-        if(CriticalDice.roll(60, 100,1)) {
+        float missingHpPercentage = 1f - target.getHealthPercent();
+        System.out.println("MISSING HP %" + (int)(missingHpPercentage*100));
+        if(CriticalDice.roll((int)(missingHpPercentage*100), 100,1)) {
             int newOutput = output;
-            float missingHpPercentage = 1f - target.getFullHealthPercent();
-            float spellIncrease = 0.5f * missingHpPercentage;
+            float spellIncrease = 0.5f * output;
 
-            newOutput = newOutput + (int) ((float) newOutput * spellIncrease);
+            newOutput = (int) (newOutput + spellIncrease);
 
             target.receiveHealing(newOutput, criticalChance.isCritical());
         }
@@ -372,7 +373,7 @@ public abstract class Spell extends Button{
         }
 
         if (this.name.equalsIgnoreCase("Heal")) {
-            RaidMember raidMember = owner.getRaid().getRaidMembersWithLowestHp(1).get(0);
+            RaidMember raidMember = owner.getRaid().getRaidMemberWithLowestHp(target);
             raidMember.receiveHealing((int) ((float) output / 2f), criticalChance.isCritical());
         }
 

@@ -37,19 +37,21 @@ public class SeedOfCorruptionEffect extends Debuff {
 
     @Override
     public void remove() {
-        super.remove();
-        ArrayList<RaidMember> group = getRandomGroup();
+
+        ArrayList<RaidMember> group = getOwner().getEnemies().getRandomRaidMember(
+                2, getOwner().getEnemies().getBuffLessRaidMembers("Corruption Effect"));
 
         AudioManager.playSFX(getAssets().getSound(getAssets().bigDebuffSFX), false);
-        getOwner().getEnemies().takeDamage(30);
+        getOwner().getEnemies().takeDamage(getModValue());
 
         for(int i = 0; i < group.size(); i++)   {
             CorruptionEffect corruptionEffect = new CorruptionEffect(getOwner());
-            corruptionEffect.setModValue(10);
+            corruptionEffect.setModValue(15);
+            corruptionEffect.setDispellable(false);
 
             group.get(i).addStatusEffect(corruptionEffect);
         }
-
+        super.remove();
     }
 
     @Override
@@ -61,9 +63,6 @@ public class SeedOfCorruptionEffect extends Debuff {
         if(!getTarget().isDead()) {
             getTarget().takeDamage(getModValue());
             setModValue(getModValue() + 1);
-        }
-        else    {
-            remove();
         }
     }
 

@@ -260,8 +260,25 @@ public class Raid extends Group {
                 return temp.get(i);
             }
         }
-        return null;
+        return temp.get(0);
+    }
 
+    /**
+     * Method find the lowest hp raid member that isn't the selected target.
+     * @param selectedMember
+     * @return
+     */
+    public RaidMember getRaidMemberWithLowestHp(final RaidMember selectedMember)    {
+        ArrayList<RaidMember> temp = new ArrayList<>();
+        temp.addAll(raidMembers);
+        Collections.sort(temp);
+
+        for(int i = 0; i <  temp.size(); i++)   {
+            if(!temp.get(i).isDead() && !selectedMember.isSelected())    {
+                return temp.get(i);
+            }
+        }
+        return temp.get(0);
     }
 
     public void receiveHealing(int output)    {
@@ -330,11 +347,11 @@ public class Raid extends Group {
         return  debuffLess;
     }
 
-    public ArrayList<RaidMember> getDebuffLessRaidMembers(String name, ArrayList<RaidMember> rm)    {
+    public ArrayList<RaidMember> getDebuffLessRaidMembers(String name, ArrayList<RaidMember> group)    {
         ArrayList<RaidMember> debuffLess = new ArrayList<>();
-        for(int i = 0; i <  rm.size(); i++)   {
-            if(!rm.get(i).getStatusEffectList().contains(name) && !rm.get(i).isDead())    {
-                debuffLess.add(rm.get(i));
+        for(int i = 0; i <  group.size(); i++)   {
+            if(!group.get(i).getStatusEffectList().contains(name) && !group.get(i).isDead())    {
+                debuffLess.add(group.get(i));
             }
         }
         return  debuffLess;

@@ -48,7 +48,7 @@ public class Hydra extends Boss {
         thunderStorm = new ThunderStorm(this, 15f);
 
         getPhaseManager().addPhase(new Phase(this, 40f, autoAttack, doubleAttack,p1Poison, thunderStorm));
-        getPhaseManager().addPhase(new Phase(this, 25f, rampage));
+        getPhaseManager().addPhase(new Phase(this, 15f, rampage));
 
         loadDebuff(new StoneSkinEffect(this), new PoisonEffect(this));
 

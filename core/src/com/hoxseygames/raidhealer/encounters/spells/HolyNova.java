@@ -65,7 +65,7 @@ public class HolyNova extends Castable {
         }
         else if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             for(int i = 0; i < getTargets().size(); i++) {
-                applyMasteringHealing(getTargets().get(i), (int)(getOutput()*(1-((i+1)*0.1))));
+                applyMasteringHealing(getTargets().get(i), (int)(getOutput()*(1-((i+1)*0.05))));
             }
             applyMasteringHealing(target, getOutput());
 

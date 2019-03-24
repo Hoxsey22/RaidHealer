@@ -48,7 +48,7 @@ public class MapState extends State {
         super(sm);
 
         if(player.getLevel() < 2)    {
-            player.setLevel(2);
+            player.newLevel(2);
         }
 
         stage = new Stage(viewport);

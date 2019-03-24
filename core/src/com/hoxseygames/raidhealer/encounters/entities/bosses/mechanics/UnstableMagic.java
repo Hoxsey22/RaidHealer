@@ -14,20 +14,44 @@ import java.util.ArrayList;
 public class UnstableMagic extends Mechanic {
 
     private int numOfTargets;
+    private int totalCounter;
+    private int dpsCounter;
+    private int healerCounter;
 
     public UnstableMagic(Boss owner) {
         super("Unstable Magic", 0, 8f, owner);
         numOfTargets = 1;
         setAnnounce();
+        totalCounter = 0;
     }
 
     @Override
     public void action() {
         AudioManager.playSFX(getAssets().getSound(getAssets().bigDebuffSFX), false);
-        ArrayList<RaidMember> temp  = getOwner().getEnemies().getRandomRaidMember(numOfTargets,getOwner().getEnemies().getDebuffLessRaidMembers("Unstable Magic Effect"));
 
-        for (int i = 0; i < temp.size(); i++)   {
-            temp.get(i).addStatusEffect(new UnstableMagicEffect(getOwner()));
+        if(totalCounter < 5)    {
+            totalCounter++;
+            ArrayList<RaidMember> dps = getRaid().getDebuffLessRaidMembers("Unstable Magic Effect", getRaid().dpsAlive());
+            if(dps != null)    {
+                dps.get(0).addStatusEffect(new UnstableMagicEffect(getOwner()));
+            }
+            else {
+                ArrayList<RaidMember> temp = getRaid().getDebuffLessRaidMembers("Unstable Magic Effect");
+                if(temp != null) {
+                    temp.get(0).addStatusEffect(new UnstableMagicEffect(getOwner()));
+                }
+            }
+        } else {
+            ArrayList<RaidMember> healers = getRaid().getDebuffLessRaidMembers("Unstable Magic Effect", getRaid().healersAlive());
+            if(healers != null)    {
+                healers.get(0).addStatusEffect(new UnstableMagicEffect(getOwner()));
+            }
+            else {
+                ArrayList<RaidMember> temp = getRaid().getDebuffLessRaidMembers("Unstable Magic Effect");
+                if(temp != null) {
+                    temp.get(0).addStatusEffect(new UnstableMagicEffect(getOwner()));
+                }
+            }
         }
     }
 

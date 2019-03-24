@@ -24,7 +24,7 @@ public class VampiricBiteEffect extends Debuff {
                         " by 10 times and only increases healer's damage by 3 times.",
                 owner.getAssets().getTexture(owner.getAssets().biteIcon),
                 600f,
-                5f,
+                7f,
                 1,
                 false);
     }
@@ -43,7 +43,7 @@ public class VampiricBiteEffect extends Debuff {
                 }
         //30f
             }
-        },45f,45f);
+        },42f,42f);
     }
 
     @Override

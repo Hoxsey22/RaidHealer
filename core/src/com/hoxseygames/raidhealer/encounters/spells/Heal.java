@@ -6,8 +6,6 @@ import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
 import com.hoxseygames.raidhealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygames.raidhealer.encounters.spells.Types.Castable;
 
-import java.util.ArrayList;
-
 /**
  * Created by Hoxsey on 6/18/2017.
  */
@@ -49,11 +47,6 @@ public class Heal extends Castable {
         }
         else if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             applyMasteringHealing(target, currentOutput);
-            // healing the second target
-            ArrayList<RaidMember> secondTarget = getOwner().getRaid().getRandomRaidMember(1);
-            for (int i = 0; i < secondTarget.size(); i++)   {
-                secondTarget.get(i).receiveHealing(currentOutput/2, getCriticalChance().isCritical());
-            }
         }
         else    {
             target.receiveHealing(currentOutput, getCriticalChance().isCritical());

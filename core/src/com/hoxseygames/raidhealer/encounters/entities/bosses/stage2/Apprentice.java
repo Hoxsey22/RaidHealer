@@ -25,7 +25,7 @@ public class Apprentice extends Boss {
     public Apprentice(Assets assets) {
         super("Apprentice",
                 Strings.APPRENTICE_DESCRIPTION,
-                240,
+                210,
                 new Raid(12,assets),
                 assets);
         setId(10);

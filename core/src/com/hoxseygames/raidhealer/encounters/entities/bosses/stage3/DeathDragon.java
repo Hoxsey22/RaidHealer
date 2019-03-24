@@ -62,23 +62,28 @@ public class DeathDragon extends Boss {
 
         setDamage(20);
 
+
+        // Phase 1
         agony = new Agony(this, 7f);
         agony.setDamage(25);
         pyroblast = new Pyroblast(this, 2.5f);
         pyroblast.setDamage(40);
         autoAttackp1 = new AutoAttack(this,2f);
 
+
+        // Phase 2
         unstableMagic = new UnstableMagic(this);
         unstablePyroblast = new UnstablePyroblast(this, 1.5f);
         autoAttackp2 = new AutoAttack(this,3f);
 
+        // Phase 3
         autoAttackp3 = new AutoAttack(this, 2f);
         ripTankSwap = new RipTankSwap(this, 10f);
-        flurry = new Flurry(this, 15, 10f);
-        tailSwipe = new TailSwipe(this, 20f);
+        flurry = new Flurry(this, 15, 20f);
+        tailSwipe = new TailSwipe(this, 30f);
         fireBreath = new FireBreath(this, 8, 30f);
+        ignite = new Ignite(this, 15f);
 
-        ignite = new Ignite(this, 8f);
         Phase phase1 = new Phase(this, 75, agony, pyroblast,autoAttackp1);
 
         Phase phase2 = new Phase(this, 60f, unstableMagic,unstablePyroblast, autoAttackp2);

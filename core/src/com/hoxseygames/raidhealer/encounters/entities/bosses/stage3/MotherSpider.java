@@ -26,7 +26,7 @@ public class MotherSpider extends Boss {
     public MotherSpider(Assets assets) {
         super("Mother Spider",
                 Strings.MOTHER_SPIDER_DESCRIPTION,
-                255,
+                240,
                 new Raid(12,assets),
                 assets);
         setId(12);

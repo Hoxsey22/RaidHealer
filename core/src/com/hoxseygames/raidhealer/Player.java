@@ -94,8 +94,7 @@ public class Player {
     }
 
     public void setLevel(int level)  {
-        if(level > this.level)
-            this.level = level;
+        this.level = level;
     }
 
     public int getLevel()   {

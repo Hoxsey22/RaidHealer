@@ -361,7 +361,7 @@ public class EncounterState extends State {
         if(!boss.isDefeated())    {
             boss.reward();
             boss.setDefeated(true);
-            player.setLevel(boss.getId()+1);
+            player.newLevel(boss.getId()+1);
             player.save();
             page = 1;
         }
