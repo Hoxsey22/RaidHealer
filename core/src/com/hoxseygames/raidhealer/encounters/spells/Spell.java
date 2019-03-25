@@ -343,10 +343,9 @@ public abstract class Spell extends Button{
     }
 
     public void applyAtonement(RaidMember target)    {
-        if(name.equalsIgnoreCase("Barrier")) {
+        if (name.equalsIgnoreCase("Barrier")) {
             target.addStatusEffect(new AtonementEffect(owner, true));
-        }
-        else    {
+        } else {
             target.addStatusEffect(new AtonementEffect(owner, false));
         }
     }

@@ -42,6 +42,9 @@ public class HolyNova extends Castable {
         if(getOwner().getTalentTree().getTalent(TalentTree.SUPER_NOVA).isSelected())    {
             setNumOfTargets(4);
         }
+        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+            setOutput((int)(getOutput()*0.8f));
+        }
     }
 
     @Override

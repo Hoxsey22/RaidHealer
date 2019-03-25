@@ -105,7 +105,7 @@ public class Entity extends Button{
 
     private void takeShieldDamage(int damage)  {
         int oldShield = shield;
-        shield = shield - damage;
+        shield = shield - (int)(damage*0.8f);
         if(shield <= 0) {
             hp = hp - Math.abs(shield);
             shield = 0;
@@ -113,8 +113,9 @@ public class Entity extends Button{
             amountAbsorbed = oldShield;
         }
         else {
-            amountAbsorbed = damage;
+            amountAbsorbed = (int)(damage*0.8f);
         }
+        hp = hp - (int)(damage*(0.2f));
     }
 
     private void reduceHealingAbsorb(int output)   {
@@ -182,8 +183,8 @@ public class Entity extends Button{
 
     public void applyShield(int output)   {
 
-        if(output + shield > maxHp) {
-            shield = maxHp;
+        if(output + shield > (int)(maxHp*0.8f)) {
+            shield = (int)(maxHp*0.8f);
             return;
         }
         shield = shield + output;
