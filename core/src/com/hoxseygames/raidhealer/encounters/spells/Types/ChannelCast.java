@@ -107,6 +107,11 @@ public abstract class ChannelCast extends Spell {
         if(castTimer != null) {
             castTimer.stop();
             castTimer.clear();
+            getOwner().setSpellCastPercent(0);
+            setCasting(false);
+            getOwner().setCasting(isCasting());
+            startCooldownTimer();
+            castingSFX.stop();
         }
     }
 

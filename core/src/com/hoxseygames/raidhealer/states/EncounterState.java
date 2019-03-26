@@ -106,7 +106,8 @@ public class EncounterState extends State {
         manaBar = new ManaBar(player, assets);
 
         castBar = new CastBar(player, assets);
-        castBar.anchor(manaBar);
+        castBar.setPosition(20, manaBar.getY()+manaBar.getHeight()+10);
+        //castBar.anchor(manaBar);
 
         player.setRaid(boss.getEnemies());
 

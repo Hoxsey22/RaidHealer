@@ -163,7 +163,7 @@ public abstract class Spell extends Button{
      *
      * @return boolean
      */
-    protected boolean isCasting() {
+    public boolean isCasting() {
         return isCasting;
     }
 

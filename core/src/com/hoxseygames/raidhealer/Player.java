@@ -6,6 +6,7 @@ import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
 import com.hoxseygames.raidhealer.encounters.player.bars.CastBar;
 import com.hoxseygames.raidhealer.encounters.player.bars.ManaBar;
 import com.hoxseygames.raidhealer.encounters.player.bars.SpellBar;
+import com.hoxseygames.raidhealer.encounters.spells.Spell;
 import com.hoxseygames.raidhealer.encounters.spells.SpellBook;
 import com.hoxseygames.raidhealer.encounters.spells.Talents.TalentTree;
 
@@ -77,7 +78,7 @@ public class Player {
         manaBar = new ManaBar(this, assets);
 
         castBar = new CastBar(this, assets);
-        castBar.anchor(manaBar);
+        //castBar.anchor(manaBar);
         playerData = new PlayerData();
     }
 
@@ -253,6 +254,22 @@ public class Player {
 
     public void setCastBar(CastBar castBar) {
         this.castBar = castBar;
+    }
+
+    public void stopCast()  {
+        Spell castingSpell = getCastingSpell();
+        if(castingSpell != null)    {
+            castingSpell.stop();
+        }
+    }
+
+    public Spell getCastingSpell()  {
+        for(int i = 0; i <  spellBar.getSpells().size(); i++)   {
+            if(spellBar.getSpells().get(i).isCasting()){
+                return spellBar.getSpells().get(i);
+            }
+        }
+        return null;
     }
 
     public void receiveMana(int amount)   {
