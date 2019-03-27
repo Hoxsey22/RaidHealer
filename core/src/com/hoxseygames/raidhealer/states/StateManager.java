@@ -61,19 +61,15 @@ public class StateManager {
         }
     }
 
-    public void showAd(int controller)   {
+    public boolean showAd(int controller)   {
         if(Gdx.app.getType() == Application.ApplicationType.Android) {
             if (adHandler != null) {
-                switch (controller) {
-                    case 1:
-                        adHandler.showAds(controller);
-                        break;
-                    case 2:
-                        adHandler.showAds(controller);
-                        break;
-                }
+                adHandler.showAds(controller);
+                return true;
             }
+            return false;
         }
+        return false;
     }
 
     public void referencePlayer(Player player) {

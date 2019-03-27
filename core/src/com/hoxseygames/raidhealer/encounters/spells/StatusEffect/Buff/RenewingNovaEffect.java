@@ -2,6 +2,7 @@ package com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Buff;
 
 import com.hoxseygames.raidhealer.Player;
 import com.hoxseygames.raidhealer.encounters.spells.CriticalDice;
+import com.hoxseygames.raidhealer.encounters.spells.Talents.TalentTree;
 
 /**
  * Created by Hoxsey on 12/1/2017.
@@ -16,10 +17,10 @@ public class RenewingNovaEffect extends Buff {
                 1,
                 "Renewing Nova",
                 "A periodic heal.",
-                owner.getAssets().getTexture(owner.getAssets().renewIcon),
-                10f,
-                2f,
-                5
+                owner.getAssets().getTexture(owner.getAssets().renewingNovaIcon),
+                8.75f,
+                1.25f,
+                8
         );
     }
 
@@ -43,6 +44,10 @@ public class RenewingNovaEffect extends Buff {
 
     @Override
     public void startConditions() {
+        if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())  {
+            setDuration(7f);
+            setSpeed(1f);
+        }
 
     }
 

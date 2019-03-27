@@ -45,6 +45,9 @@ public class HolyNova extends Castable {
         if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
             setOutput((int)(getOutput()*0.8f));
         }
+        if(getOwner().getTalentTree().getTalent(TalentTree.RENEWING_NOVA).isSelected())  {
+            setCooldown(4f);
+        }
     }
 
     @Override
@@ -61,10 +64,10 @@ public class HolyNova extends Castable {
         else if(getOwner().getTalentTree().getTalent(TalentTree.RENEWING_NOVA).isSelected())  {
             for(int i = 0; i < getTargets().size(); i++) {
                 applyRenewingNova(getTargets().get(i));
-                getTargets().get(i).receiveHealing(getOutput(), getCriticalChance().isCritical());
+                getTargets().get(i).receiveHealing((int)(getOutput()*0.4f), getCriticalChance().isCritical());
             }
             applyRenewingNova(target);
-            target.receiveHealing(getOutput(), getCriticalChance().isCritical());
+            target.receiveHealing((int)(getOutput()*0.4f), getCriticalChance().isCritical());
         }
         else if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             for(int i = 0; i < getTargets().size(); i++) {

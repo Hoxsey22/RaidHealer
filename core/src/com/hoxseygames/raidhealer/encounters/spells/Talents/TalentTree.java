@@ -77,7 +77,7 @@ public class TalentTree extends Group{
         talents.add(new Talent(this, 1, LIFEBOOM, "When a Renew expires, the ally unit will receive a burst of healing based on 50% of Renew’s total healing done. In addition, all direct heals are increased by 30% on ally units with lifebloom.", getAssets().getTexture(getAssets().lifeboomIcon), assets));
         talents.add(new Talent(this, 2, HEALER_CHANNEL, "All healers in the raid will no longer deal damage, but will instead heal.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().workTogetherIcon), assets));
-        talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova will now place a Renew on each of the ally units healed by Holy Nova as well as Flash Heal.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 3, RENEWING_NOVA, "Holy Nova will be reduced by 60%, but will place strong Renews. Flash Heal will now leave a Renew.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().renewingNovaIcon), assets));
         talents.add(new Talent(this, 4, AOD,"Renew now does more healing, the time between ticks are faster and ally units will now be able to receive one additional Renew.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().aodIcon), assets));
@@ -91,11 +91,11 @@ public class TalentTree extends Group{
                 talents.get(talents.size()-1), getAssets().getTexture(getAssets().criticalHealer2Icon), assets));
 
         talents.add(new Talent(this, 9,HASTE_BUILD,"All castable spells are now 0.5 second faster.", getAssets().getTexture(getAssets().flashIcon), assets));
-        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova will now heals 4 ally units.", talents.get(talents.size()-1),
+        talents.add(new Talent(this, 10, SUPER_NOVA,"Holy Nova will now heals 5 ally units.", talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().superNovaIcon), assets));
         talents.add(new Talent(this, 11,HOLY_FOCUS,"Divine Hymn and Light Well will now be available and Divine Hymn will now restores 15% mana back.",talents.get(talents.size()-1),
                 getAssets().getTexture(getAssets().divineHymnIcon), assets));
-        talents.add(new Talent(this, 12, MASTERING_HEALING,"All healing spells will now have a 60% chance to increase the heal base on the ally unit’s missing health and Heal will now heal an additional ally unit.",
+        talents.add(new Talent(this, 12, MASTERING_HEALING,"All healing spells will have a chance to increase by 50%. This chance increases based on the missing hp of the ally unit. Heal will now also heal an additional ally unit.",
                 talents.get(talents.size()-1), getAssets().getTexture(getAssets().innerFocusIcon), assets));
 
         for(int i = 0; i < talents.size(); i++)   {
