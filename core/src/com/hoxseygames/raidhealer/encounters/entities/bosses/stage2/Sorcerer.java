@@ -43,7 +43,7 @@ public class Sorcerer extends Boss {
 
         agony = new Agony(this,14f);
 
-        blanketCorruption = new BlanketCorruption(this,40f);
+        blanketCorruption = new BlanketCorruption(this,60f);
 
         fireball = new Fireball(this, 3f);
 

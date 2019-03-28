@@ -49,7 +49,7 @@ public abstract class InstantCast extends Spell {
     public void applySpell(RaidMember target)    {
         target.receiveHealing(getOutput(), getCriticalChance().isCritical());
         if(getNumOfTargets() > 1) {
-            getRandomTargets();
+            getRandomTargets(target);
             for (int i = 0; i < getTargets().size(); i++) {
                 getTargets().get(i).receiveHealing(getOutput(), getCriticalChance().isCritical());
             }
@@ -61,8 +61,8 @@ public abstract class InstantCast extends Spell {
 
     }
 
-    public void getRandomTargets() {
-        setTargets(getOwner().getRaid().getRaidMembersWithLowestHp(getNumOfTargets()));
+    public void getRandomTargets(RaidMember currentTarget) {
+        setTargets(getOwner().getRaid().getRaidMembersWithLowestHp(getNumOfTargets(), currentTarget));
     }
 
 }

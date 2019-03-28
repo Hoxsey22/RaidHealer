@@ -47,13 +47,14 @@ public class HolyNova extends Castable {
         }
         if(getOwner().getTalentTree().getTalent(TalentTree.RENEWING_NOVA).isSelected())  {
             setCooldown(4f);
+            setNumOfTargets(getNumOfTargets()+1);
         }
     }
 
     @Override
     public void applySpell(RaidMember target)    {
         // main tar
-        getRandomTargets();
+        getRandomTargets(target);
 
         if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
             for(int i = 0; i < getTargets().size(); i++) {
@@ -92,29 +93,29 @@ public class HolyNova extends Castable {
     }
 
     @Override
-    protected void getRandomTargets() {
+    protected void getRandomTargets(RaidMember currentTarget) {
         if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             int roll = chainHealChance.nextInt(100);
             System.out.println("ROLL: "+roll);
             if(roll > 85)    {
-                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets + 3);
+                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets + 3, currentTarget);
                 System.out.println("# of targets: " + numOfTargets + 3);
             }
             else if(roll > 60)   {
-                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+2);
+                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+2,currentTarget);
                 System.out.println("# of targets: "+numOfTargets+2);
             }
             else if(roll > 10)   {
-                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+1);
+                targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+1, currentTarget);
                 System.out.println("# of targets: "+numOfTargets+1);
             }
             else    {
-                super.getRandomTargets();
+                super.getRandomTargets(currentTarget);
             }
 
         }
         else {
-            super.getRandomTargets();
+            super.getRandomTargets(currentTarget);
         }
     }
 

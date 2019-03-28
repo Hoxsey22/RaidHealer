@@ -152,9 +152,7 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
 
     public void stop()  {
         if(statusEffects != null) {
-            for (int i = 0; i < statusEffects.size(); i++) {
-                statusEffects.clear();
-            }
+            statusEffects.clear();
         }
     }
 

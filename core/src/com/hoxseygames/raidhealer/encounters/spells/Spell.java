@@ -379,8 +379,8 @@ public abstract class Spell extends Button{
 
     }
 
-    protected void getRandomTargets()  {
-        targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets);
+    protected void getRandomTargets(RaidMember currentTarget)  {
+        targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets, currentTarget);
     }
 
     public void resetDefault()  {

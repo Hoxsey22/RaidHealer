@@ -208,7 +208,7 @@ public class Raid extends Group {
         return temp.get(0);
     }
 
-    public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap)    {
+    public ArrayList<RaidMember> getRaidMembersWithLowestHp(int cap, RaidMember currentTarget)    {
         ArrayList<RaidMember> lowest = new ArrayList<>();
         ArrayList<RaidMember> temp = new ArrayList<>();
         temp.addAll(raidMembers);
@@ -216,7 +216,7 @@ public class Raid extends Group {
         Collections.sort(temp);
         int counter = 0;
         for(int i = 0; i < temp.size(); i++) {
-            if (!temp.get(i).isSelected() && !temp.get(i).isDead()) {
+            if (temp.get(i) != currentTarget && !temp.get(i).isDead()) {
                 lowest.add(temp.get(i));
                 counter++;
                 if(counter == cap)    {

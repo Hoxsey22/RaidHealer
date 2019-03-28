@@ -45,14 +45,12 @@ public class IgniteEffect extends Debuff {
 
     @Override
     public void remove() {
-        if (isDispelled) {
-            AudioManager.playSFX(getAssets().getSound(getAssets().explosionSFX), false);
+        if (isDispelled)
             getOwner().getEnemies().takeDamage(20);
-        }
-        else {
-            AudioManager.playSFX(getAssets().getSound(getAssets().explosionSFX), false);
+        else
             getOwner().getEnemies().takeDamage(30);
-        }
+
+        AudioManager.playSFX(getAssets().getSound(getAssets().explosionSFX), false);
         super.remove();
     }
 }
