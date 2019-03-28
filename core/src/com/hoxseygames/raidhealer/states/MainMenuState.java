@@ -184,11 +184,13 @@ public class MainMenuState extends State{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 animatedBackground.stop();
-                player.newGame();
+                GameData.remove("save");
+                final Player newPlayer = new Player(assets);
+                newPlayer.newGame();
                 shutterAnimation = new ShutterAnimation(stage, assets,true,new Runnable() {
                     @Override
                     public void run() {
-                        sm.set(new TutorialState(sm, player));
+                        sm.set(new TutorialState(sm, newPlayer));
                         System.out.println("A New Game has been started.");
 
                     }
