@@ -257,7 +257,7 @@ public abstract class Spell extends Button{
             System.out.println(name + " IS NOT READY!");
             return false;
         }
-        if(isCasting) {
+        if(owner.isCasting()) {
             System.out.println(name + " IS STILL CASTING!");
             return false;
         }

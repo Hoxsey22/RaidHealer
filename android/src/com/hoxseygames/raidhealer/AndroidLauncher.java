@@ -93,12 +93,12 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler,Rew
 	}
 
 	private void loadRewardedVideoAd()	{
-		rewardedVideoAd.loadAd("ca-app-pub-9873789688498401/8504836869", new AdRequest.Builder().build());
+		rewardedVideoAd.loadAd("ca-app-pub-9873789688498401/3227780832", new AdRequest.Builder().addTestDevice("1B6AE19F0758C4DED95B52B75A02C1D6").build());
 		//rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
 	}
 
 	private void loadInterstitialAd()	{
-		interstitialAd.loadAd(new AdRequest.Builder().build());
+		interstitialAd.loadAd(new AdRequest.Builder().addTestDevice("1B6AE19F0758C4DED95B52B75A02C1D6").build());
 		//interstitialAd.loadAd(new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build());
 	}
 

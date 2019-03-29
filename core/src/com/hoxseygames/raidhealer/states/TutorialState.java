@@ -126,26 +126,22 @@ public class TutorialState extends EncounterState {
                         break;
                     case Input.Keys.NUM_1:
                         if(player.getSpellBar().getSpells().size() > 0)    {
-                            if(!player.isCasting())
-                                player.getSpellBar().getSpells().get(0).castSpell();
+                            player.getSpellBar().getSpells().get(0).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_2:
                         if(player.getSpellBar().getSpells().size() > 1)    {
-                            if(!player.isCasting())
-                                player.getSpellBar().getSpells().get(1).castSpell();
+                            player.getSpellBar().getSpells().get(1).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_3:
                         if(player.getSpellBar().getSpells().size() > 2)    {
-                            if(!player.isCasting())
-                                player.getSpellBar().getSpells().get(2).castSpell();
+                            player.getSpellBar().getSpells().get(2).castSpell();
                         }
                         break;
                     case Input.Keys.NUM_4:
                         if(player.getSpellBar().getSpells().size() > 3)    {
-                            if(!player.isCasting())
-                                player.getSpellBar().getSpells().get(3).castSpell();
+                            player.getSpellBar().getSpells().get(3).castSpell();
                         }
                         break;
                     case Input.Keys.L:
@@ -190,13 +186,11 @@ public class TutorialState extends EncounterState {
                             player.getTarget().selected();
                         }
                     } else {
-                        if (!player.isCasting()) {
                             Spell spell = (Spell) player.getSpellBar().hit(coord.x, coord.y, false);
                             if (spell != null) {
                                 spell.castSpell();
                             }
                         }
-                    }
                 }
                 else{
                     if(isTutorialOver) {
