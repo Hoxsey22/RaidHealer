@@ -6,6 +6,7 @@ import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
 import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Buff.AoDEffect;
 import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Buff.Buff;
 import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Buff.LifeboomEffect;
+import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Buff.RenewEffect;
 import com.hoxseygames.raidhealer.encounters.spells.Talents.TalentTree;
 import com.hoxseygames.raidhealer.encounters.spells.Types.Periodical;
 
@@ -13,7 +14,7 @@ import com.hoxseygames.raidhealer.encounters.spells.Types.Periodical;
  * Created by Hoxsey on 12/2/2017.
  */
 
-public class Renew2 extends Periodical {
+public class Renew extends Periodical {
 
     private Buff buff;
 
@@ -21,7 +22,7 @@ public class Renew2 extends Periodical {
      * @param player
      * @param assets
      */
-    public Renew2(Player player, Assets assets) {
+    public Renew(Player player, Assets assets) {
         super(player, "Renew", "A renewing amount of holy light is place on an ally unit.",
                 0,
                 1,
@@ -74,9 +75,9 @@ public class Renew2 extends Periodical {
         }
         else    {
             if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())
-                buff = new LifeboomEffect(getOwner(), 10.5f, 1.75f,getOutput());
+                buff = new RenewEffect(getOwner(), 10.5f, 1.75f,getOutput());
             else
-                buff = new LifeboomEffect(getOwner(), getDuration(), getSpeed(),getOutput());
+                buff = new RenewEffect(getOwner(), getDuration(), getSpeed(),getOutput());
         }
     }
 }

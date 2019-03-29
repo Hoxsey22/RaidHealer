@@ -65,7 +65,7 @@ public class SpellBook extends Group{
 
         // add spell to list
         spells.add(new Heal(owner, assets));
-        spells.add(new Renew2(owner, assets));
+        spells.add(new Renew(owner, assets));
         spells.add(new FlashHeal(owner, assets));
         spells.add(new Dispel(owner, assets));
         spells.add(new HolyNova(owner, assets));
@@ -167,7 +167,7 @@ public class SpellBook extends Group{
             case HOLY_NOVA:
                 return new HolyNova(owner,assets);
             case RENEW:
-                return new Renew2(owner,assets);
+                return new Renew(owner,assets);
             case BARRIER:
                 return new Barrier(owner,assets);
             case LIGHTWELL:

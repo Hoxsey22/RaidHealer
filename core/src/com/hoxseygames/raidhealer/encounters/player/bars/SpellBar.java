@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.Player;
 import com.hoxseygames.raidhealer.encounters.spells.Heal;
-import com.hoxseygames.raidhealer.encounters.spells.Renew2;
+import com.hoxseygames.raidhealer.encounters.spells.Renew;
 import com.hoxseygames.raidhealer.encounters.spells.Spell;
 
 import java.util.ArrayList;
@@ -165,14 +165,14 @@ public class SpellBar extends Group {
     public void resetToDefault()    {
         clearSpells();
         addSpell(0,new Heal(owner, assets));
-        addSpell(1,new Renew2(owner,assets));
+        addSpell(1,new Renew(owner,assets));
     }
 
     public void loadSpells(ArrayList<String> spellNames)    {
         clearSpells();
         if(spellNames.size() == 0)    {
             addSpell(0,new Heal(owner, assets));
-            addSpell(1,new Renew2(owner,assets));
+            addSpell(1,new Renew(owner,assets));
         }
         else {
 
