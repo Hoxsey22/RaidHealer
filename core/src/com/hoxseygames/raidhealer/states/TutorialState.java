@@ -7,12 +7,18 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.hoxseygames.raidhealer.BlinkingOutline;
 import com.hoxseygames.raidhealer.GameData;
 import com.hoxseygames.raidhealer.Player;
+import com.hoxseygames.raidhealer.RaidHealer;
 import com.hoxseygames.raidhealer.ShutterAnimation;
 import com.hoxseygames.raidhealer.TutorialFrame;
+import com.hoxseygames.raidhealer.WindowFrame;
 import com.hoxseygames.raidhealer.encounters.entities.bosses.stage1.Monster;
 import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
 import com.hoxseygames.raidhealer.encounters.spells.Spell;
@@ -107,6 +113,48 @@ public class TutorialState extends EncounterState {
         boss.stop();
         encounterCountDown.stop();
         isReady = true;
+    }
+
+    @Override
+    protected void initExitConfirmationWindow() {
+        ngConfirmationWindow = new WindowFrame(RaidHealer.ui);
+        //ngConfirmationWindow.setDebug(true);
+
+        ngConfirmationText = new Label("Are you sure you want to quit the tutorial?", RaidHealer.ui);
+        ngConfirmationText.setWrap(true);
+        ngConfirmationText.setAlignment(Align.center);
+
+        confirmButton = new TextButton("Quit",RaidHealer.ui, "small_button");
+        confirmButton.setTouchable(Touchable.enabled);
+        confirmButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                stop();
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        player.setLevel(2);
+                        sm.set(new MapState(sm, player, 1));
+                    }
+                });
+                sm.showAd(1);
+                shutterAnimation.start();
+            }
+        });
+
+        backButton = new TextButton("Back",RaidHealer.ui, "small_button");
+        backButton.setTouchable(Touchable.enabled);
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                ngConfirmationWindow.hide();
+            }
+        });
+
+        ngConfirmationWindow.center();
+        ngConfirmationWindow.add(ngConfirmationText).width(ngConfirmationWindow.getWidth()).center().colspan(2).pad(10).row();
+        ngConfirmationWindow.add(confirmButton).center();
+        ngConfirmationWindow.add(backButton).center();
     }
 
     @Override

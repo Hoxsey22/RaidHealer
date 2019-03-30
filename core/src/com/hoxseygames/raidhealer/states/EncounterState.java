@@ -52,10 +52,10 @@ public class EncounterState extends State {
     protected ShutterAnimation shutterAnimation;
     protected EncounterCountDown encounterCountDown;
     protected ImageButton exitButton;
-    private WindowFrame ngConfirmationWindow;
-    private Label ngConfirmationText;
-    private TextButton confirmButton;
-    private TextButton backButton;
+    protected WindowFrame ngConfirmationWindow;
+    protected Label ngConfirmationText;
+    protected TextButton confirmButton;
+    protected TextButton backButton;
 
 
     public EncounterState(StateManager sm, Player player, final Boss boss) {
@@ -155,6 +155,8 @@ public class EncounterState extends State {
 
         //stage.addActor(encounterCountDown);
 
+        initExitButton();
+
         exitButton = new ImageButton(assets.getSkin(), "exit_button");
         exitButton.setPosition(boss.getX() + boss.getWidth() + 5, boss.getY());
         exitButton.setTouchable(Touchable.enabled);
@@ -175,14 +177,14 @@ public class EncounterState extends State {
         shutterAnimation.start();
 
         createCountDown();
-        initNewGameConfirmationWindow();
+        initExitConfirmationWindow();
         raid.setupListener();
         //setupRaidListener();
         setupSpellListener();
 
     }
 
-    private void initNewGameConfirmationWindow() {
+    protected void initExitConfirmationWindow() {
         ngConfirmationWindow = new WindowFrame(RaidHealer.ui);
         //ngConfirmationWindow.setDebug(true);
 
@@ -220,6 +222,10 @@ public class EncounterState extends State {
         ngConfirmationWindow.add(ngConfirmationText).width(ngConfirmationWindow.getWidth()).center().colspan(2).pad(10).row();
         ngConfirmationWindow.add(confirmButton).center();
         ngConfirmationWindow.add(backButton).center();
+    }
+
+    protected void initExitButton() {
+
     }
 
     @Override
