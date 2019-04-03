@@ -24,7 +24,6 @@ public class SpellBar extends Group {
     private Player owner;
     private Assets assets;
     private ArrayList<Rectangle> positions;
-    private boolean isLocked;
 
     public SpellBar(Player owner) {
         setBounds(0,0,480,97);
@@ -32,7 +31,7 @@ public class SpellBar extends Group {
         spells = new ArrayList<>(4);
         positions = new ArrayList<>(4);
 
-        isLocked = true;
+        boolean isLocked = true;
 
         this.owner = owner;
 

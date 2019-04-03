@@ -21,9 +21,6 @@ public class WampusCat extends Boss {
 
     private Pounce pounce;
     private AutoAttack autoAttack;
-    private Eviscerate eviscerate;
-    private Swipe swipe;
-    private TankSwap tankSwap;
 
     public WampusCat(Assets assets) {
         super("Wampus Cat",
@@ -41,13 +38,13 @@ public class WampusCat extends Boss {
         super.create();
         setDamage(20);
         autoAttack = new AutoAttack(this);
-        tankSwap = new TankSwap(this, 12f);
+        TankSwap tankSwap = new TankSwap(this, 12f);
         pounce = new Pounce(this);
-        eviscerate = new Eviscerate(this, 10f);
-        swipe = new Swipe(this);
+        Eviscerate eviscerate = new Eviscerate(this, 10f);
+        Swipe swipe = new Swipe(this);
 
-        getPhaseManager().addPhase(new Phase(this,30f, autoAttack,tankSwap, pounce));
-        getPhaseManager().addPhase(new Phase(this, 30f, autoAttack,tankSwap, swipe, eviscerate));
+        getPhaseManager().addPhase(new Phase(this,30f, autoAttack, tankSwap, pounce));
+        getPhaseManager().addPhase(new Phase(this, 30f, autoAttack, tankSwap, swipe, eviscerate));
 
         loadDebuff(new BleedEffect(this));
     }

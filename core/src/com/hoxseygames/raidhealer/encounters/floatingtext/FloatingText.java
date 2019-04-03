@@ -19,9 +19,7 @@ public class FloatingText {
     public final static int SHIELD = 2;
 
     private int id;
-    private RaidMember owner;
     private String damage;
-    private int type;
     private Text floatingText;
     private Timer timer;
     private int duration;
@@ -34,9 +32,9 @@ public class FloatingText {
     public FloatingText(int id, RaidMember raidMember, int damage, int type, boolean isCritical, Assets assets)   {
         this.assets = assets;
         this.id = id;
-        owner = raidMember;
+        RaidMember owner = raidMember;
         this.damage = ""+damage;
-        this.type = type;
+        int type1 = type;
 
         if(isCritical)    {
             fontSize = 32;

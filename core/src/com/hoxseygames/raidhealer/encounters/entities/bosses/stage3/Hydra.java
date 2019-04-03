@@ -19,12 +19,6 @@ import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Debuff.StoneSki
 
 public class Hydra extends Boss {
 
-    private ThunderStorm thunderStorm;
-    private DoubleAttack doubleAttack;
-    private PoisonSpit p1Poison;
-    private Rampage rampage;
-    private AutoAttack autoAttack;
-
 
     public Hydra(Assets assets) {
         super("Ion, The Hydra",
@@ -41,13 +35,13 @@ public class Hydra extends Boss {
         super.create();
         setDamage(20);
 
-        autoAttack = new AutoAttack(this, 1.5f);
-        doubleAttack = new DoubleAttack(this, 13f);
-        p1Poison = new PoisonSpit(this, 5.1f, 4);
-        rampage = new Rampage(this, 15, 5f);
-        thunderStorm = new ThunderStorm(this, 15f);
+        AutoAttack autoAttack = new AutoAttack(this, 1.5f);
+        DoubleAttack doubleAttack = new DoubleAttack(this, 13f);
+        PoisonSpit p1Poison = new PoisonSpit(this, 5.1f, 4);
+        Rampage rampage = new Rampage(this, 15, 5f);
+        ThunderStorm thunderStorm = new ThunderStorm(this, 15f);
 
-        getPhaseManager().addPhase(new Phase(this, 40f, autoAttack, doubleAttack,p1Poison, thunderStorm));
+        getPhaseManager().addPhase(new Phase(this, 40f, autoAttack, doubleAttack, p1Poison, thunderStorm));
         getPhaseManager().addPhase(new Phase(this, 15f, rampage));
 
         loadDebuff(new StoneSkinEffect(this), new PoisonEffect(this));

@@ -25,14 +25,11 @@ import com.hoxseygames.raidhealer.Text;
 public class CreditsState extends State{
 
     private Stage stage;
-    private AnimatedBackground animatedBackground;
     private Assets assets;
-    private Table table;
     private Player player;
     private int previousState;
     private boolean isReady;
     private ShutterAnimation shutterAnimation;
-    private Image titleImage;
 
     public CreditsState(StateManager sm, Player player, int previousState) {
         super(sm);
@@ -56,13 +53,13 @@ public class CreditsState extends State{
 
         assets = player.getAssets();
 
-        titleImage = new Image(assets.getTexture(assets.title));
+        Image titleImage = new Image(assets.getTexture(assets.title));
         titleImage.setBounds(RaidHealer.WIDTH/2- 380/2,RaidHealer.HEIGHT - 225,380,214);
         titleImage.setName("titleImage");
 
         AudioManager.playMusic(assets.getMusic(assets.creditsMusic));
 
-        table = new Table();
+        Table table = new Table();
 
         //title
         table.add(new Text("Credits",32, Color.BLACK, false, assets).getLabel()).left().padBottom(10);
@@ -90,8 +87,7 @@ public class CreditsState extends State{
         table.setPosition(RaidHealer.WIDTH/2 - table.getWidth()/2,RaidHealer.HEIGHT/2 - table.getHeight()/2);
 
 
-
-        animatedBackground = new AnimatedBackground();
+        AnimatedBackground animatedBackground = new AnimatedBackground();
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.creditsLayer1),false, new Vector2(0,0),0f,assets));
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.creditsLayer2),false, new Vector2(0,0),1f,assets));
         animatedBackground.add(new ScrollImage(assets.getTexture(assets.creditsLayer3),false, new Vector2(0,0),2f,assets));

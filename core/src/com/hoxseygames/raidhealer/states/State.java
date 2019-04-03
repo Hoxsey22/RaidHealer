@@ -12,7 +12,6 @@ import com.hoxseygames.raidhealer.RaidHealer;
  */
 abstract class State extends ApplicationAdapter {
     public final OrthographicCamera cam;
-    private final Vector3 mouse;
     final com.hoxseygames.raidhealer.states.StateManager sm;
     final FitViewport viewport;
 
@@ -21,7 +20,7 @@ abstract class State extends ApplicationAdapter {
         cam = new OrthographicCamera();
         cam.setToOrtho(false, RaidHealer.WIDTH, RaidHealer.HEIGHT);
         viewport = new FitViewport(RaidHealer.WIDTH,RaidHealer.HEIGHT,cam);
-        mouse = new Vector3();
+        Vector3 mouse = new Vector3();
     }
 
     protected abstract void handleInput();

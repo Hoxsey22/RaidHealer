@@ -11,7 +11,6 @@ import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Debuff.Debuff;
 
 class DebuffIconButton extends ImageButton {
 
-    private Assets assets;
     private String description;
     private String name;
 
@@ -20,7 +19,7 @@ class DebuffIconButton extends ImageButton {
         setName(debuff.getName());
         setBounds(0,0,50,50);
 
-        this.assets = assets;
+        Assets assets1 = assets;
 
         description = debuff.getDescription();
 

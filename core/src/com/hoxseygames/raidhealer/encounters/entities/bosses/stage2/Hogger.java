@@ -16,8 +16,6 @@ import com.hoxseygames.raidhealer.encounters.entities.raid.Raid;
 
 public class Hogger extends Boss {
 
-    private AutoAttack autoAttack;
-    private TankSwap tankSwap;
     private Cleave cleave;
     private int phase;
 
@@ -37,8 +35,8 @@ public class Hogger extends Boss {
         super.create();
         setDamage(17);
 
-        autoAttack = new AutoAttack(this, 2f);
-        tankSwap = new TankSwap(this, 8f);
+        AutoAttack autoAttack = new AutoAttack(this, 2f);
+        TankSwap tankSwap = new TankSwap(this, 8f);
         cleave = new Cleave(this, 2f);
         cleave.setDamage(getDamage());
 

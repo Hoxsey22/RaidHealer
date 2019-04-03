@@ -30,10 +30,6 @@ public class SpellSelectionState extends State {
     private final Stage stage;
     private final Player player;
     private final Assets assets;
-    private final Image background;
-    private Table titleTable;
-    private Table descriptionTable;
-    private Text title;
     private Text spellDescriptionName;
     private Text spellDescription;
     private Text spellCost;
@@ -46,7 +42,6 @@ public class SpellSelectionState extends State {
     private final SpellBar spellBar;
     private boolean isSpellSelected;
     private ShutterAnimation shutterAnimation;
-    private Table buttonTable;
 
     public SpellSelectionState(StateManager sm, Player player) {
         super(sm);
@@ -63,12 +58,12 @@ public class SpellSelectionState extends State {
 
         clear = new Button("CLEAR", false,assets);
 
-        buttonTable = new Table();
+        Table buttonTable = new Table();
         buttonTable.setBounds(0, spellBar.getY()+spellBar.getHeight()+ 10, 480, 300);
         buttonTable.add(done).padRight(20);
         buttonTable.add(clear);
 
-        background = new Image(assets.getTexture(assets.spellBG));
+        Image background = new Image(assets.getTexture(assets.spellBG));
         background.setBounds(0,0,RaidHealer.WIDTH, RaidHealer.HEIGHT);
         background.setName("bg");
 
@@ -87,10 +82,10 @@ public class SpellSelectionState extends State {
     private void createText()    {
 
         // setting up title
-        titleTable = new Table();
+        Table titleTable = new Table();
         titleTable.setName("Title Table");
 
-        title  = new Text("Spell Selection", 45, Color.SKY, true, assets);
+        Text title = new Text("Spell Selection", 45, Color.SKY, true, assets);
         title.setWrap();
         title.setAlignment(top);
 
@@ -101,7 +96,7 @@ public class SpellSelectionState extends State {
         stage.addActor(titleTable);
 
         // setting up the description of the selected spell
-        descriptionTable = new Table();
+        Table descriptionTable = new Table();
         descriptionTable.setBounds(spellBook.getLeft(), spellBook.getBottom() - 30 - 100, spellBook.getRight() - spellBook.getLeft(), 100);
         descriptionTable.top();
 

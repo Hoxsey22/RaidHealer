@@ -15,14 +15,12 @@ import com.hoxseygames.raidhealer.Assets;
  */
 public class TestState extends State {
 
-    private final Assets assets;
-    private final Button frame;
     private final Stage stage;
 
     protected TestState(StateManager sm, Assets assets) {
         super(sm);
-        this.assets = assets;
-        frame = new Button(new Skin(Gdx.files.internal("frame_skin.json")));
+        Assets assets1 = assets;
+        Button frame = new Button(new Skin(Gdx.files.internal("frame_skin.json")));
         stage = new Stage(new FitViewport(800,480));
         frame.setBounds(100,100, 200, 80);
         frame.setBounds(150,0,200,100);

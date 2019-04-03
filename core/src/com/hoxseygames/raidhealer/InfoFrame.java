@@ -15,13 +15,10 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 public class InfoFrame extends Group {
 
     private Assets assets;
-    private Image disableBG;
     private Image infoFrame;
     private Text infoTitle;
     private Text infoDescription;
     private TextButton okButton;
-    private Table infoTable;
-    private boolean hasTitle = true;
 
     public InfoFrame(String title, String description, Assets assets)  {
         this.assets = assets;
@@ -30,6 +27,7 @@ public class InfoFrame extends Group {
 
         changeDescriptionTo(description);
 
+        boolean hasTitle = true;
         if(title.equalsIgnoreCase(""))    {
             hasTitle = false;
         }
@@ -37,7 +35,7 @@ public class InfoFrame extends Group {
         if(hasTitle)
             infoTitle = new Text(title, 32, Color.YELLOW, true, assets);
 
-        infoTable = new Table();
+        Table infoTable = new Table();
         infoTable.setBounds(infoFrame.getX()+10,infoFrame.getY(),infoFrame.getWidth()-20, infoFrame.getHeight());
         infoTable.top().center();
         if(hasTitle) {
@@ -57,7 +55,7 @@ public class InfoFrame extends Group {
         infoFrame.setPosition(RaidHealer.WIDTH/2 - 150, RaidHealer.HEIGHT/2 - 150 );
         infoFrame.setSize(300, 300);
         // create disable bg
-        disableBG = new Image(assets.getTexture(assets.disableBG));
+        Image disableBG = new Image(assets.getTexture(assets.disableBG));
         // create ok button
         okButton = new TextButton("OK", assets.getSkin(), "small_button");
         createOkButtonListener();

@@ -32,30 +32,18 @@ import com.hoxseygames.raidhealer.WindowFrame;
 public class MainMenuState extends State{
 
     private Stage stage;
-    private Image titleImage;
     private AnimatedBackground animatedBackground;
-    private TextButton newGameButton;
     public TextButton creditsButton;
-    private TextButton continueButton;
-    private TextButton settingsButton;
     // window and window components
     private Text title;
     private WindowFrame window;
-    private Label windowTitleText;
-    private Label musicText;
-    private Label sfxText;
     private Slider musicSlider;
     private Slider sfxSlider;
-    private TextButton okButton;
     // confirmation window for create a new game
     private WindowFrame ngConfirmationWindow;
-    private Label ngConfirmationText;
-    private TextButton confirmButton;
-    private TextButton backButton;
     private ShutterAnimation shutterAnimation;
 
 
-    private Table buttonTable;
     private Assets assets;
     private final Player player;
 
@@ -73,16 +61,16 @@ public class MainMenuState extends State{
 
         AudioManager.playMusic(assets.getMusic(assets.mainMusic));
 
-        titleImage = new Image(assets.getTexture(assets.title));
+        Image titleImage = new Image(assets.getTexture(assets.title));
         titleImage.setBounds(RaidHealer.WIDTH/2- 380/2,RaidHealer.HEIGHT - 250,380,214);
         titleImage.setName("titleImage");
 
-        buttonTable = new Table();
+        Table buttonTable = new Table();
         buttonTable.setName("button table");
-        buttonTable.setPosition(RaidHealer.WIDTH/2-buttonTable.getWidth()/2,RaidHealer.HEIGHT/5);
+        buttonTable.setPosition(RaidHealer.WIDTH/2- buttonTable.getWidth()/2,RaidHealer.HEIGHT/5);
         buttonTable.center().bottom().padBottom(20);
 
-        newGameButton = new TextButton("New", RaidHealer.ui);
+        TextButton newGameButton = new TextButton("New", RaidHealer.ui);
         newGameButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -93,7 +81,7 @@ public class MainMenuState extends State{
         buttonTable.row();
 
         if(GameData.doesDataExist("save")) {
-            continueButton = new TextButton("Continue", RaidHealer.ui);
+            TextButton continueButton = new TextButton("Continue", RaidHealer.ui);
             continueButton.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
@@ -115,7 +103,7 @@ public class MainMenuState extends State{
             buttonTable.row();
         }
 
-        settingsButton = new TextButton("Setting", RaidHealer.ui);
+        TextButton settingsButton = new TextButton("Setting", RaidHealer.ui);
         settingsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -167,11 +155,11 @@ public class MainMenuState extends State{
     private void initNewGameConfirmationWindow() {
         ngConfirmationWindow = new WindowFrame(RaidHealer.ui);
 
-        ngConfirmationText = new Label("Are you sure you want to start a new game?", RaidHealer.ui);
+        Label ngConfirmationText = new Label("Are you sure you want to start a new game?", RaidHealer.ui);
         ngConfirmationText.setWrap(true);
         ngConfirmationText.setAlignment(Align.center);
 
-        confirmButton = new TextButton("Confirm",RaidHealer.ui, "small_button");
+        TextButton confirmButton = new TextButton("Confirm", RaidHealer.ui, "small_button");
         confirmButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -190,7 +178,7 @@ public class MainMenuState extends State{
             }
         });
 
-        backButton = new TextButton("Back",RaidHealer.ui, "small_button");
+        TextButton backButton = new TextButton("Back", RaidHealer.ui, "small_button");
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -208,9 +196,9 @@ public class MainMenuState extends State{
         window = new WindowFrame(RaidHealer.ui);
         GameData.loadAudioSettings();
 
-        windowTitleText = new Label("Settings", RaidHealer.ui, "header2");
+        Label windowTitleText = new Label("Settings", RaidHealer.ui, "header2");
 
-        musicText = new Label("MUSIC", RaidHealer.ui);
+        Label musicText = new Label("MUSIC", RaidHealer.ui);
         musicText.getStyle().fontColor = Color.WHITE;
 
         musicSlider = new Slider(0.0f, 100f,1f, false, RaidHealer.ui);
@@ -222,7 +210,7 @@ public class MainMenuState extends State{
             }
         });
 
-        sfxText = new Label("SFX", RaidHealer.ui);
+        Label sfxText = new Label("SFX", RaidHealer.ui);
         sfxText.getStyle().fontColor = Color.WHITE;
 
         sfxSlider = new Slider(0.0f, 100f,1f, false, RaidHealer.ui);
@@ -234,7 +222,7 @@ public class MainMenuState extends State{
             }
         });
 
-        okButton = new TextButton("OK", RaidHealer.ui);
+        TextButton okButton = new TextButton("OK", RaidHealer.ui);
         okButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

@@ -23,8 +23,6 @@ import com.hoxseygames.raidhealer.RaidHealer;
  */
 public class LoadingState extends State {
 
-    private final Image logo;
-    private final Image libgdxLogo;
     private float progress;
     @SuppressWarnings("CanBeFinal")
     private ShapeRenderer shapeRenderer;
@@ -41,15 +39,15 @@ public class LoadingState extends State {
         Texture ls = new Texture(Gdx.files.internal("logo_screen.png"), true);
         ls.setFilter(Texture.TextureFilter.MipMap, Texture.TextureFilter.MipMapLinearNearest);
 
-        logo = new Image(ls);
+        Image logo = new Image(ls);
 
         logo.setBounds(RaidHealer.WIDTH/2 - 512/2,RaidHealer.HEIGHT/2 - 512/2+50,512, 512);
 
         Texture ll = new Texture(Gdx.files.internal("logo/libgdx_logo.png"), true);
         ll.setFilter(Texture.TextureFilter.MipMapLinearNearest, Texture.TextureFilter.MipMapLinearNearest);
 
-        libgdxLogo = new Image(ll);
-        libgdxLogo.setBounds(RaidHealer.WIDTH/2 - 300/2,logo.getY() - 20, 300, 50 );
+        Image libgdxLogo = new Image(ll);
+        libgdxLogo.setBounds(RaidHealer.WIDTH/2 - 300/2, logo.getY() - 20, 300, 50 );
 
 
         createFont();

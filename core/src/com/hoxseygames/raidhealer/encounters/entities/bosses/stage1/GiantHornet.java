@@ -16,9 +16,6 @@ import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Debuff.PoisonEf
 
 public class GiantHornet extends Boss {
 
-    private AutoAttack autoAttack;
-    private Sting sting;
-
     public GiantHornet(Assets assets) {
         super("Giant Hornet",
                 Strings.GIANT_HORNET_DESCRIPTION,
@@ -34,8 +31,8 @@ public class GiantHornet extends Boss {
         super.create();
         setDamage(5);
 
-        autoAttack = new AutoAttack(this, 0.5f);
-        sting = new Sting(this);
+        AutoAttack autoAttack = new AutoAttack(this, 0.5f);
+        Sting sting = new Sting(this);
         sting.setAnnounce();
         sting.setNumOfTargets(3);
 

@@ -15,9 +15,6 @@ import com.hoxseygames.raidhealer.encounters.entities.raid.Raid;
 
 public class Golem extends Boss {
 
-    private AutoAttack autoAttack;
-    private Earthquake earthquake;
-
     public Golem(Assets assets) {
         super("Golem",
                 Strings.GOLEM_DESCRIPTION,
@@ -33,8 +30,8 @@ public class Golem extends Boss {
         super.create();
         setDamage(50);
 
-        autoAttack = new AutoAttack(this, 3f);
-        earthquake = new Earthquake(this, 5f);
+        AutoAttack autoAttack = new AutoAttack(this, 3f);
+        Earthquake earthquake = new Earthquake(this, 5f);
         earthquake.setAnnounce();
 
         getPhaseManager().addPhase(new Phase(this, 0, autoAttack, earthquake));

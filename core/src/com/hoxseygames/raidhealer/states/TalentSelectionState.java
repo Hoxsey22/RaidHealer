@@ -30,15 +30,10 @@ public class TalentSelectionState extends State {
     private final Stage stage;
     private final Player player;
     private final Assets assets;
-    private Table lowerTable;
-    private Table topTable;
     private final Text talentTreeTitle;
     private Text title;
     private Text body;
     private final TalentTree talentTree;
-    private final Image background;
-    private final Button select;
-    private final Button done;
     public Button reset;
     private Talent selectedTalent;
     private final Text pointTracker;
@@ -56,16 +51,16 @@ public class TalentSelectionState extends State {
         pointTracker = new Text("POINTS:",24,Color.WHITE,false, assets);
         pointTracker.setName("Point tracker");
 
-        select = new Button("RESET", false, assets);
+        Button select = new Button("RESET", false, assets);
         select.setPosition(talentTree.getLeft(), 25);
 
-        done = new Button("DONE", false, assets);
+        Button done = new Button("DONE", false, assets);
         done.setPosition(talentTree.getRight() - done.getWidth(), 25);
 
         talentTreeTitle = new Text("Talent Tree", 45, Color.SKY, true, assets);
         talentTreeTitle.setName("Talent Tree Title");
 
-        background = new Image(assets.getTexture(assets.talentBg));
+        Image background = new Image(assets.getTexture(assets.talentBg));
         background.setBounds(0,0,RaidHealer.WIDTH, RaidHealer.HEIGHT);
         background.setName("bg");
 
@@ -82,7 +77,7 @@ public class TalentSelectionState extends State {
     }
 
     private void createText()    {
-        lowerTable = new Table();
+        Table lowerTable = new Table();
         lowerTable.setName("Lower Table");
 
         title  = new Text("", 24, Color.BLACK, false, assets);
@@ -99,7 +94,7 @@ public class TalentSelectionState extends State {
         lowerTable.add(body.getLabel()).width(lowerTable.getWidth());
         stage.addActor(lowerTable);
 
-        topTable = new Table();
+        Table topTable = new Table();
         topTable.setName("Top Table");
 
         talentTreeTitle.setWrap();

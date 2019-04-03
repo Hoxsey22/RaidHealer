@@ -14,8 +14,6 @@ import com.badlogic.gdx.utils.Timer;
 public class EncounterCountDown extends Group {
 
     private Assets assets;
-    private Image disableBG;
-    private Table infoTable;
     private int index;
     private Text displayCount;
     private boolean isFinished = false;
@@ -29,8 +27,8 @@ public class EncounterCountDown extends Group {
 
         create();
 
-        infoTable = new Table();
-        infoTable.setBounds(RaidHealer.WIDTH/2-infoTable.getWidth()/2,RaidHealer.HEIGHT/2-infoTable.getHeight()/2,50, 50);
+        Table infoTable = new Table();
+        infoTable.setBounds(RaidHealer.WIDTH/2- infoTable.getWidth()/2,RaidHealer.HEIGHT/2- infoTable.getHeight()/2,50, 50);
         infoTable.center();
         infoTable.add(displayCount.getLabel()).center();
 
@@ -42,7 +40,7 @@ public class EncounterCountDown extends Group {
         timer = new Timer();
 
         // create disable bg
-        disableBG = new Image(assets.getTexture(assets.disableBG));
+        Image disableBG = new Image(assets.getTexture(assets.disableBG));
         addActor(disableBG);
 
         //set index

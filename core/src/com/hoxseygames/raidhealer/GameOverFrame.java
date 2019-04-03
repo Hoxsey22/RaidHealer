@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class GameOverFrame extends WindowFrame {
 
-    private Image disableBG;
     private Image frame;
     private Label boxLabel;  //maybe for a later time
     private ArrayList<Label> chat;   // maybe for a later time
@@ -48,7 +47,7 @@ public class GameOverFrame extends WindowFrame {
     }
 
     private void create() {
-        disableBG = new Image(assets.getTexture(assets.disableBG));
+        Image disableBG = new Image(assets.getTexture(assets.disableBG));
         disableBG.setName("disable bg");
         disableBG.setBounds(0, 0, RaidHealer.WIDTH, RaidHealer.HEIGHT);
 
