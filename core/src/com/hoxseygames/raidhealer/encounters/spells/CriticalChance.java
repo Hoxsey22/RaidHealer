@@ -32,11 +32,6 @@ public class CriticalChance {
     }
 
     public boolean isCritical() {
-        if(roll() < chanceThreshold)    {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return roll() < chanceThreshold;
     }
 }

@@ -14,23 +14,13 @@ public class CriticalDice {
 
         int roll = diceRoll.nextInt(100);
 
-        if(roll < playerCritical)   {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return roll < playerCritical;
 
     }
 
     public static boolean roll(int critical, int max, int min)    {
         int roll = diceRoll.nextInt(max)+min;
 
-        if(roll < critical)   {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return roll < critical;
     }
 }

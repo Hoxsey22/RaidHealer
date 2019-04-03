@@ -277,9 +277,7 @@ public class Entity extends Button{
     }
 
     public boolean isFullHealth()   {
-        if(getHp() == getMaxHp())
-            return true;
-        return false;
+        return getHp() == getMaxHp();
     }
 
     public float getShieldPercent() {

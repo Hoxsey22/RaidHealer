@@ -255,11 +255,7 @@ public abstract class Spell extends Button{
         if(owner.isCasting()) {
             return false;
         }
-        if(owner.getTarget().isDead())    {
-            return false;
-        }
-
-        return true;
+        return !owner.getTarget().isDead();
     }
 
     public void setAssets(Assets assets) {

@@ -112,10 +112,7 @@ public class Button extends Actor {
     }
 
     public void toggle()    {
-        if(!isHighlight)
-            isHighlight = true;
-        else
-            isHighlight = false;
+        isHighlight = !isHighlight;
     }
 
     @Override
