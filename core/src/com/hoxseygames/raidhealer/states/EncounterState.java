@@ -107,7 +107,6 @@ public class EncounterState extends State {
 
         castBar = new CastBar(player, assets);
         castBar.setPosition(20, manaBar.getY()+manaBar.getHeight()+10);
-        //castBar.anchor(manaBar);
 
         player.setRaid(boss.getEnemies());
 
@@ -134,26 +133,10 @@ public class EncounterState extends State {
         stage.addActor(player.getSpellBar());
         stage.addActor(manaBar);
         stage.addActor(castBar);
-        //
-        //boss.start();
-
-        // remove after picture
-        //player.setMana(400);
-        System.out.println("STAGE - > Width:"+stage.getWidth()+" Height:"+stage.getHeight());
         // Load Ad
         sm.loadAd(3);
 
         isReady = false;
-
-        /*encounterCountDown = new EncounterCountDown(player.getAssets(), new Runnable() {
-            @Override
-            public void run() {
-                isReady = true;
-                boss.start();
-            }
-        });*/
-
-        //stage.addActor(encounterCountDown);
 
         initExitButton();
 
@@ -165,7 +148,6 @@ public class EncounterState extends State {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 
                 ngConfirmationWindow.show(stage);
-                System.out.println("BANG");
                 return super.touchDown(event, x, y, pointer, button);
             }
         });
@@ -179,14 +161,12 @@ public class EncounterState extends State {
         createCountDown();
         initExitConfirmationWindow();
         raid.setupListener();
-        //setupRaidListener();
         setupSpellListener();
 
     }
 
     protected void initExitConfirmationWindow() {
         ngConfirmationWindow = new WindowFrame(RaidHealer.ui);
-        //ngConfirmationWindow.setDebug(true);
 
         ngConfirmationText = new Label("Are you sure you want to quit?", RaidHealer.ui);
         ngConfirmationText.setWrap(true);
@@ -235,14 +215,14 @@ public class EncounterState extends State {
             @Override
             public boolean keyDown(int keycode) {
                 switch (keycode) {
-                    case Input.Keys.NUM_0:
+                    /*case Input.Keys.NUM_0:
                         boss.takeDamage(1000);
                         break;
                     case Input.Keys.NUM_9:
                         for (int i = 0; i < raid.getRaidMembers().size(); i++) {
                             raid.getRaidMembers().get(i).takeDamage(50);
                         }
-                        break;
+                        break;*/
                     case Input.Keys.NUM_1:
                         if (player.getSpellBar().getSpells().size() > 0) {
                             player.getSpellBar().getSpells().get(0).castSpell();
@@ -261,17 +241,6 @@ public class EncounterState extends State {
                     case Input.Keys.NUM_4:
                         if (player.getSpellBar().getSpells().size() > 3) {
                             player.getSpellBar().getSpells().get(3).castSpell();
-                        }
-                        break;
-                    case Input.Keys.L:
-                        System.out.println("********** Raid Stats **********");
-                        System.out.println("id|role|maxhp|hp|damage");
-                        for (int i = 0; i < boss.getEnemies().getRaidMembers().size(); i++) {
-                            System.out.println(boss.getEnemies().getRaidMember(i).getId() + "|" +
-                                    boss.getEnemies().getRaidMember(i).getRole() + "|" +
-                                    boss.getEnemies().getRaidMember(i).getMaxHp() + "|" +
-                                    boss.getEnemies().getRaidMember(i).getHp() + "|" +
-                                    boss.getEnemies().getRaidMember(i).getDamage());
                         }
                         break;
                     case Input.Keys.BACK:
@@ -294,23 +263,6 @@ public class EncounterState extends State {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                /*Vector2 coord = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
-                if(coord.y > 300) {
-                    RaidMember raidTarget = (RaidMember) raid.hit(coord.x, coord.y, false);
-                    if (raidTarget != null) {
-                        System.out.println("found a target");
-                        player.setTarget(raidTarget);
-                        player.getTarget().selected();
-                    }
-                }
-                else    {
-                    if(!player.isCasting()) {
-                        Spell spell = (Spell) player.getSpellBar().hit(coord.x, coord.y, false);
-                        if (spell != null) {
-                            spell.castSpell();
-                        }
-                    }
-                }*/
                 return false;
             }
 
@@ -355,8 +307,6 @@ public class EncounterState extends State {
      * This is a end game sub-state if the player wins.
      */
     protected void victory()  {
-        //Gdx.input.setInputProcessor(stage);
-
         AudioManager.playMusic(assets.getMusic(assets.victoryMusic));
 
         page = 2;
@@ -384,8 +334,6 @@ public class EncounterState extends State {
      * This is a end game sub-state if the player loses.
      */
     protected void defeat() {
-        //Gdx.input.setInputProcessor(stage);
-
         AudioManager.playMusic(assets.getMusic(assets.defeatMusic));
 
         gameOverFrame = new GameOverFrame(false, boss, assets);
@@ -489,7 +437,6 @@ public class EncounterState extends State {
             player.getSpellBar().getSpells().get(i).addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    System.out.println("Spell hit");
                     Spell spell = (Spell) actor;
                     spell.castSpell();
                 }
@@ -503,7 +450,6 @@ public class EncounterState extends State {
             player.getRaid().getRaidMember(i).addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    System.out.println("Member hit");
                     player.setTarget((RaidMember)actor);
                     player.getTarget().selected();
                 }

@@ -63,7 +63,6 @@ public abstract class Castable extends Spell {
         setCasting(true);
         getOwner().setCasting(isCasting());
         AudioManager.playSFX(castingSFX,true);
-        //castingSFX.loop(0.3f);
 
         final RaidMember sTarget = getOwnerTarget();
 
@@ -79,14 +78,16 @@ public abstract class Castable extends Spell {
 
                 if(counter * 0.01f >= castTime)    {
                     AudioManager.stopSFX(castingSFX);
-                    //castingSFX.stop();
                     AudioManager.playSFX(spellSFX, false);
-                    //spellSFX.play(0.3f);
-                    System.out.println("applying spell");
+
                     applySpell(sTarget);
+
                     setCasting(false);
+
                     getOwner().setCasting(isCasting());
+
                     useMana();
+
                     startCooldownTimer();
                 }
             }

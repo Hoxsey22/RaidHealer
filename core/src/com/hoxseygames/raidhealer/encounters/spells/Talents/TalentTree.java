@@ -46,7 +46,6 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
-        //  toJSON();
     }
 
     public TalentTree(Player player, int unusedPoints, int totalPoints) {
@@ -57,7 +56,6 @@ public class TalentTree extends Group{
         assets = owner.getAssets();
         createTalents();
         placeTalentPosition();
-        //toJSON();
     }
 
     public void toJSON()    {
@@ -127,7 +125,6 @@ public class TalentTree extends Group{
                 return talents.get(i);
             }
         }
-        System.out.println("Cannot find talent!");
         return null;
     }
 
@@ -178,7 +175,6 @@ public class TalentTree extends Group{
         for(int i = 0; i < talentNames.size(); i++)   {
             getTalent(talentNames.get(i)).setSelected(true);
         }
-        System.out.println("-- Talents loaded.");
     }
 
     public int getUnusedPoints() {

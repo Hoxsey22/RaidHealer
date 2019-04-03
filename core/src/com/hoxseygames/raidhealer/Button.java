@@ -38,8 +38,6 @@ public class Button extends Actor {
         setWidth(image.getWidth());
         setHeight(image.getHeight());
 
-        //setBounds(0,0,image.getWidth(), image.getHeight());
-
         isHit = false;
         isHighlight = false;
 
@@ -61,8 +59,6 @@ public class Button extends Actor {
 
         setWidth(image.getWidth());
         setHeight(image.getHeight());
-
-        //setBounds(0,0,image.getWidth(), image.getHeight());
 
         isHit = false;
         isHighlight = false;
@@ -86,8 +82,7 @@ public class Button extends Actor {
             text = new Text(getName(),32, Color.BLACK, false, assets);
         else
             text = new Text(getName(),24, Color.BLACK, false, assets);
-        //title.setFontSize(32);
-        //title.setColor(Color.BLACK);
+
         text.setWrap();
 
         text.setPosition(getX()+getWidth()/2-text.getWidth()/2,getY()+ getHeight()/2 - text.getHeight()/2);

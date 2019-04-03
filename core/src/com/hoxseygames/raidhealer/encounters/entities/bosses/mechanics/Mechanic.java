@@ -56,7 +56,6 @@ public abstract class Mechanic {
     }
 
     private void create()    {
-        System.out.println("Mechanic created");
     }
 
     public void pausePhase()    {
@@ -75,7 +74,6 @@ public abstract class Mechanic {
     protected abstract void action();
 
     public void start()    {
-        System.out.println("Timer started!");
         timer = new Timer();
 
         getTimer().scheduleTask(new Timer.Task() {
@@ -120,7 +118,6 @@ public abstract class Mechanic {
         if(timer != null)    {
             getTimer().stop();
             getTimer().clear();
-            System.out.println(name+" announcement timer stopped");
         }
     }
 
@@ -129,7 +126,6 @@ public abstract class Mechanic {
         isActive = false;
         if(timer != null)   {
             getTimer().stop();
-            System.out.println(name+" timer paused");
         }
     }
 
@@ -138,15 +134,8 @@ public abstract class Mechanic {
         isActive = true;
         if(timer != null)   {
             getTimer().start();
-            System.out.println(name+" timer resumed");
         }
     }
-
-    public void applyMechanic()  {
-        System.out.println("Mechanic applied");
-    }
-
-
     public String getName() {
         return name;
     }

@@ -30,7 +30,6 @@ public class Nax extends Boss {
                 180,
                 new Raid(9, assets),
                 assets);
-        System.out.println(getName()+" hp: "+getHp());
         setId(6);
         create();
     }

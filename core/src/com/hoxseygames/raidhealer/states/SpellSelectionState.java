@@ -60,10 +60,8 @@ public class SpellSelectionState extends State {
 
 
         done = new Button("DONE", false,assets);
-        //done.setPosition((spellBook.getRight() - spellBook.getLeft())/2 + spellBook.getLeft()-done.getWidth()/2, spellBar.getY()+spellBar.getHeight()+ 10);
 
         clear = new Button("CLEAR", false,assets);
-        //clear.setPosition((spellBook.getRight() - spellBook.getLeft())/2 + spellBook.getLeft()-done.getWidth()/2, spellBar.getY()+spellBar.getHeight()+ 10);
 
         buttonTable = new Table();
         buttonTable.setBounds(0, spellBar.getY()+spellBar.getHeight()+ 10, 480, 300);
@@ -78,7 +76,6 @@ public class SpellSelectionState extends State {
 
         stage.addActor(background);
         stage.addActor(buttonTable);
-        //stage.addActor(done);
         stage.addActor(spellBook);
         stage.addActor(spellBar);
 
@@ -105,7 +102,6 @@ public class SpellSelectionState extends State {
 
         // setting up the description of the selected spell
         descriptionTable = new Table();
-        //descriptionTable.debug();
         descriptionTable.setBounds(spellBook.getLeft(), spellBook.getBottom() - 30 - 100, spellBook.getRight() - spellBook.getLeft(), 100);
         descriptionTable.top();
 
@@ -178,7 +174,6 @@ public class SpellSelectionState extends State {
                 }
 
                 if(clear.pressed(coords.x, coords.y))    {
-                    System.out.println("Clear pressed");
                     clear.toggle();
                     player.getSpellBar().clearBar();
 

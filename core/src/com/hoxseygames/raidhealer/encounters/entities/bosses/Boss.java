@@ -73,7 +73,6 @@ public abstract class Boss extends Entity {
     }
 
     public void create()    {
-        System.out.println("boss created!");
     }
 
     public void update()    {
@@ -117,7 +116,6 @@ public abstract class Boss extends Entity {
     }
 
     public void start() {
-        System.out.println("BOSS IS NOW ACTIVE!");
         create();
         enemies.start(this);
         getPhaseManager().startPhase();
@@ -129,10 +127,6 @@ public abstract class Boss extends Entity {
     }
 
     public void stop()  {
-        System.out.println("BOSS IS NOW INACTIVE!");
-        /*for (int i = 0; i <  mechanics.size(); i++)
-            mechanics.get(i).stop();
-            */
         enemies.stop();
         getPhaseManager().reset();
     }
@@ -159,18 +153,6 @@ public abstract class Boss extends Entity {
                     }
                     break;
             }
-
-
-            /*
-            for (int i = 0; i < enemies.raidMembers.size(); i++) {
-                if (enemies.getRaidMember(i).getRole() == "Tank" && !enemies.getRaidMember(i).isDead()) {
-                    target = enemies.getRaidMember(i);
-                    return;
-                }
-            }
-            System.out.println("New threat is random!");
-            target = enemies.getRandomRaidMember(1).get(0);
-            */
         }
 
     }

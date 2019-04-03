@@ -26,10 +26,7 @@ public class ShutterAnimation {
         this.closing = closing;
         endRunnable = new Runnable() {
             @Override
-            public void run() {
-                unloadBlackBars();
-                System.out.println("End of animation");
-            }
+            public void run() {unloadBlackBars();}
         };
     }
 
@@ -40,10 +37,7 @@ public class ShutterAnimation {
         addRunnable(runnable);
         endRunnable = new Runnable() {
             @Override
-            public void run() {
-                unloadBlackBars();
-                System.out.println("End of animation");
-            }
+            public void run() {unloadBlackBars();}
         };
     }
 

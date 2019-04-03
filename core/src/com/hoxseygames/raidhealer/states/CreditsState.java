@@ -194,6 +194,5 @@ public class CreditsState extends State{
 
     @Override
     public void dispose() {
-        System.out.println("DISPOSE MM!");
     }
 }

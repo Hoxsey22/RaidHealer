@@ -15,7 +15,6 @@ public class CriticalDice {
         int roll = diceRoll.nextInt(100);
 
         if(roll < playerCritical)   {
-            System.out.println("CRITICAL!");
             return true;
         }
         else {
@@ -28,7 +27,6 @@ public class CriticalDice {
         int roll = diceRoll.nextInt(max)+min;
 
         if(roll < critical)   {
-            System.out.println("CRITICAL!");
             return true;
         }
         else {

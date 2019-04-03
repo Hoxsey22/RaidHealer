@@ -20,7 +20,6 @@ public class AutoAttack extends Mechanic {
 
     @Override
     public void action() {
-        System.out.println("Owner: "+getOwner()+"\n Target: "+getOwner().getTarget());
         if(getOwner().getTarget().isDead())
             getOwner().nextThreat();
         if(!getOwner().getTarget().isDead()) {

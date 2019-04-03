@@ -60,7 +60,6 @@ public class Hydra extends Boss {
         for(int i = 0; i < getEnemies().getRaidMembers().size(); i++)   {
             getEnemies().getRaidMember(i).addStatusEffect(new StoneSkinEffect(this));
         }
-        System.out.println("Phase Manager - number of phases: "+getPhaseManager().getPhases().size()+".");
     }
 
     @Override

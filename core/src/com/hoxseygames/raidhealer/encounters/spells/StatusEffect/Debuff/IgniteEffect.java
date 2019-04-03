@@ -16,7 +16,7 @@ public class IgniteEffect extends Debuff {
                 "Ignite Effect",
                 "Dispellable: Burns the target over time and increases the damage over time. It will combust when " +
                         "dispelled or falls off.",
-                owner.getAssets().getTexture(owner.getAssets().igniteIcon), //need to change the icon
+                owner.getAssets().getTexture(owner.getAssets().igniteIcon),
                 12f,
                 3f,
                 5,

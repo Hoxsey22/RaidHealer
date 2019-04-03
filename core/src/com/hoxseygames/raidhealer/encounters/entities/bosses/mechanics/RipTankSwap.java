@@ -27,8 +27,6 @@ public class RipTankSwap extends Mechanic {
     public void action() {
         getOwner().getTarget().addStatusEffect(new RipEffect(getOwner(),getSpeed()));
         tankSwap();
-
-        System.out.println("TANK SWAP!");
     }
 
     private void tankSwap()  {

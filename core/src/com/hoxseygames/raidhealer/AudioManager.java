@@ -163,7 +163,6 @@ public class AudioManager {
             music.stop();
             //music = null;
         }
-        System.out.println("Music has been cleared.");
     }
 
     /**
@@ -176,7 +175,6 @@ public class AudioManager {
                 soundEffects.remove(i);
             }
         }
-        System.out.println("All SFX have been cleared.");
     }
 
     /*

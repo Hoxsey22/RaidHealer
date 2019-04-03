@@ -41,7 +41,6 @@ public class VampiricBiteEffect extends Debuff {
                     newTarget.addStatusEffect(new VampiricBiteEffect(getOwner()));
 
                 }
-        //30f
             }
         },42f,42f);
     }

@@ -186,7 +186,6 @@ public class Phase {
     private void stop()  {
         if(timer != null)   {
             getTimer().stop();
-            System.out.println("phase stopped!");
         }
         if(mechanics != null)    {
             stopMechanics();
@@ -232,7 +231,6 @@ public class Phase {
         long millis=System.currentTimeMillis();
         java.util.Date date=new java.util.Date(millis);
 
-        System.out.println(date+" :"+currentMechanic.getName()+" paused the other mechanics.");
         for(int i = 0; i < mechanics.size(); i++)   {
             if(!currentMechanic.getName().equalsIgnoreCase(mechanics.get(i).getName()) && !mechanics.get(i).isBgMech()) {
                 mechanics.get(i).pause();

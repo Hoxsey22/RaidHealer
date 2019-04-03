@@ -13,7 +13,6 @@ import com.hoxseygames.raidhealer.encounters.entities.bosses.Boss;
 public class LastBossEncounterState extends EncounterState {
     private int progression;
 
-    //commit
     public LastBossEncounterState(StateManager sm, Player player, Boss boss) {
         super(sm, player, boss);
     }

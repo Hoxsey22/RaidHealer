@@ -121,7 +121,6 @@ public abstract class Spell extends Button{
         cdTimer = new Timer();
         isReady = false;
         setCdCounter(cooldown);
-        System.out.println("start cd");
         cdTimer.scheduleTask(new Timer.Task() {
             @Override
             public void run() {
@@ -245,24 +244,18 @@ public abstract class Spell extends Button{
     }
 
     protected boolean isCastable() {
-        if(owner.getTarget() == null)    {
-            System.out.println("NO TARGET FOUND!");
+        if(owner.getTarget() == null)
             return false;
-        }
         if(owner.getMana() < cost) {
-            System.out.println("OUT OF MANA!");
             return false;
         }
         if(!isReady) {
-            System.out.println(name + " IS NOT READY!");
             return false;
         }
         if(owner.isCasting()) {
-            System.out.println(name + " IS STILL CASTING!");
             return false;
         }
         if(owner.getTarget().isDead())    {
-            System.out.println("ID:"+owner.getTarget().getId()+" Target is dead!");
             return false;
         }
 
@@ -358,7 +351,7 @@ public abstract class Spell extends Button{
 
     public void applyMasteringHealing(RaidMember target, int output) {
         float missingHpPercentage = 1f - target.getHealthPercent();
-        System.out.println("MISSING HP %" + (int)(missingHpPercentage*100));
+
         if(CriticalDice.roll((int)(missingHpPercentage*100), 100,1)) {
             int newOutput = output;
             float spellIncrease = 0.5f * output;

@@ -15,7 +15,7 @@ public class BurnEffect extends Debuff {
                 2,
                 "Burn Effect",
                 "Dispellable: Burns the target for moderate damage, but very quickly over time.",
-                owner.getAssets().getTexture(owner.getAssets().burnIcon), //need to change the icon
+                owner.getAssets().getTexture(owner.getAssets().burnIcon),
                 10f,
                 1f,
                 10,
@@ -34,7 +34,6 @@ public class BurnEffect extends Debuff {
     @Override
     public void applyEffect() {
         getTarget().takeDamage(getModValue());
-        //setModValue(getModValue()+5);
     }
 
     @Override

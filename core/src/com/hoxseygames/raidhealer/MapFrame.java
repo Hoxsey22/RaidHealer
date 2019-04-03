@@ -38,7 +38,6 @@ public class MapFrame extends Group {
     private TextButton infoButton;
     private DebuffInfoFrame infoFrame;
     private ButtonGroup<BossIcon> bossIconList;
-    //private ArrayList<BossIcon> bossIconsList;
     private Table table;
     private Text title;
     private Text body;
@@ -115,7 +114,6 @@ public class MapFrame extends Group {
             public void changed(ChangeEvent event, Actor actor) {
                 infoFrame.addInfo(selectedBoss);
                 getParent().addActor(getInfoFrame());
-                System.out.println("-----Info Frame hit");
             }
         });
     }

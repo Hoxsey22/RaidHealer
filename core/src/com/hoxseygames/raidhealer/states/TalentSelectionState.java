@@ -55,7 +55,6 @@ public class TalentSelectionState extends State {
 
         pointTracker = new Text("POINTS:",24,Color.WHITE,false, assets);
         pointTracker.setName("Point tracker");
-        //pointTracker.setPosition(talentTree.getRight()-talentTree.getLeft()-pointTracker.getWidth()/2, talentTree.getTop() + 20 );
 
         select = new Button("RESET", false, assets);
         select.setPosition(talentTree.getLeft(), 25);
@@ -65,7 +64,6 @@ public class TalentSelectionState extends State {
 
         talentTreeTitle = new Text("Talent Tree", 45, Color.SKY, true, assets);
         talentTreeTitle.setName("Talent Tree Title");
-        //talentTreeTitle.setPosition(talentTree.getRight()-talentTree.getLeft()-talentTreeTitle.getWidth()/2, 730);
 
         background = new Image(assets.getTexture(assets.talentBg));
         background.setBounds(0,0,RaidHealer.WIDTH, RaidHealer.HEIGHT);
@@ -73,18 +71,14 @@ public class TalentSelectionState extends State {
 
         stage = new Stage(viewport);
         stage.addActor(background);
-        //stageNumber.addActor(talentTreeTitle.getLabel());
         stage.addActor(talentTree);
-        //stageNumber.addActor(pointTracker.getLabel());
         stage.addActor(select);
         stage.addActor(done);
-        //stageNumber.setDebugAll(true);
+
         createText();
 
         shutterAnimation = new ShutterAnimation(stage, assets, false);
         shutterAnimation.start();
-
-        //sm.loadAd(4);
     }
 
     private void createText()    {
@@ -226,10 +220,7 @@ public class TalentSelectionState extends State {
 
         cam.update();
 
-
         update(Gdx.graphics.getDeltaTime());
-
-        //sb.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
 
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();

@@ -34,7 +34,6 @@ public class MainMenuState extends State{
     private Stage stage;
     private Image titleImage;
     private AnimatedBackground animatedBackground;
-    //public Button newGameButton;
     private TextButton newGameButton;
     public TextButton creditsButton;
     private TextButton continueButton;
@@ -80,7 +79,6 @@ public class MainMenuState extends State{
 
         buttonTable = new Table();
         buttonTable.setName("button table");
-        //buttonTable.setBounds(0,0,RaidHealer.WIDTH,RaidHealer.HEIGHT);
         buttonTable.setPosition(RaidHealer.WIDTH/2-buttonTable.getWidth()/2,RaidHealer.HEIGHT/5);
         buttonTable.center().bottom().padBottom(20);
 
@@ -106,7 +104,6 @@ public class MainMenuState extends State{
                         @Override
                         public void run() {
                             sm.set(new MapState(sm, player));
-                            System.out.println("Continued Game has been started.");
                         }
                     });
                     shutterAnimation.start();
@@ -155,10 +152,6 @@ public class MainMenuState extends State{
 
         stage.addActor(buttonTable);
 
-
-
-        //stage.addActor(creditsButton);
-
         animatedBackground.start();
     }
 
@@ -173,7 +166,6 @@ public class MainMenuState extends State{
 
     private void initNewGameConfirmationWindow() {
         ngConfirmationWindow = new WindowFrame(RaidHealer.ui);
-        //ngConfirmationWindow.setDebug(true);
 
         ngConfirmationText = new Label("Are you sure you want to start a new game?", RaidHealer.ui);
         ngConfirmationText.setWrap(true);
@@ -191,7 +183,6 @@ public class MainMenuState extends State{
                     @Override
                     public void run() {
                         sm.set(new TutorialState(sm, newPlayer));
-                        System.out.println("A New Game has been started.");
 
                     }
                 });
@@ -217,7 +208,6 @@ public class MainMenuState extends State{
         window = new WindowFrame(RaidHealer.ui);
         GameData.loadAudioSettings();
 
-        //window.setDebug(true);
         windowTitleText = new Label("Settings", RaidHealer.ui, "header2");
 
         musicText = new Label("MUSIC", RaidHealer.ui);
@@ -228,9 +218,7 @@ public class MainMenuState extends State{
         musicSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                AudioManager.updateMusicVolume(musicSlider.getValue()/100f);//  musicVolume = musicSlider.getValue()/100f;
-                System.out.println("AM Music: " + AudioManager.musicVolume);
-                System.out.println("Music Slider: " + musicSlider.getValue());
+                AudioManager.updateMusicVolume(musicSlider.getValue()/100f);
             }
         });
 
@@ -243,8 +231,6 @@ public class MainMenuState extends State{
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 AudioManager.updateSFXVolume(sfxSlider.getValue()/100f);
-                System.out.println("AM SFX: " + AudioManager.sfxVolume);
-                System.out.println("SFX Slider: " + sfxSlider.getValue());
             }
         });
 
@@ -304,6 +290,5 @@ public class MainMenuState extends State{
 
     @Override
     public void dispose() {
-        System.out.println("DISPOSE MM!");
     }
 }

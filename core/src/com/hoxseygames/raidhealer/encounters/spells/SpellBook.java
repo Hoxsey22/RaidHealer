@@ -46,8 +46,6 @@ public class SpellBook extends Group{
         createSpells();
         placeSpellPosition();
         setName("Spell Book");
-        //setBounds(spells.get(3).getX(), spells.get(3).getY(),(spells.get(11).getX() + spells.get(11).getWidth())-spells.get(3).getX(),
-                //(spells.get(0).getX() +spells.get(0).getHeight())-spells.get(3).getY());
     }
 
     public SpellBook(Player player, int addedPoints) {
@@ -57,8 +55,6 @@ public class SpellBook extends Group{
         createSpells();
         placeSpellPosition();
         setName("Spell Book");
-        //setBounds(spells.get(3).getX(), spells.get(3).getY(),(spells.get(11).getX() + spells.get(11).getWidth())-spells.get(3).getX(),
-                //(spells.get(0).getX() +spells.get(0).getHeight())-spells.get(3).getY());
     }
 
     private void createSpells()  {
@@ -84,7 +80,6 @@ public class SpellBook extends Group{
         for(int i = 0; i < spells.size(); i++)   {
             addActor(spells.get(i));
         }
-        //toJSON();
     }
 
     public void toJSON()    {
@@ -135,7 +130,6 @@ public class SpellBook extends Group{
                 return spells.get(i);
             }
         }
-        System.out.println("Cannot find spell!");
         return null;
     }
 

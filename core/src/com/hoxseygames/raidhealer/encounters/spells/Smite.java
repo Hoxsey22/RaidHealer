@@ -66,23 +66,6 @@ public class Smite extends Castable {
         else    {
             getOwner().getRaid().getRaidMemberWithLowestHp().receiveHealing(newOutput, getCriticalChance().isCritical());
         }
-
-
-
-        /*if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
-            applyCriticalHealerII(lowest, newOutput);
-        }
-        else {
-            lowest.receiveHealing(newOutput,getCriticalChance().isCritical());
-        }
-
-        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-            for (int i = 0; i < getOwner().getRaid().getRaidMembers().size(); i++) {
-                if(getOwner().getRaid().getRaidMembers().get(i).getStatusEffectList().contains("Atonement Effect")) {
-                    getOwner().getRaid().getRaidMembers().get(i).receiveHealing(newOutput, getCriticalChance().isCritical());
-                }
-            }
-        }*/
     }
 
 

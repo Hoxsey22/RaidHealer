@@ -41,23 +41,6 @@ public class CastBar extends Group {
         protected void update() {
             progressionBar.setWidth((blackBar.getWidth() - 8) * getPercentage());
         }
-
-//        @Override
-//        public void setPosition(float x, float y) {
-//            super.setPosition(x, y);
-//            //blackBar.setPosition(x, getY());
-//            whiteBar.setPosition(x+4, y+4);
-//            progressionBar.setPosition(x+4, y+4);
-//        }
-//
-//        @Override
-//        public void setBounds(float x, float y, float width, float height) {
-//            super.setBounds(x, y, width, height);
-//
-//            //blackBar.setBounds(x, getY(), width, height);
-//            whiteBar.setBounds(x + 4, y + 4, width - 8, height - 8);
-//            progressionBar.setBounds(x + 4, y + 4, (width - 8) * getPercentage(), height - 8);
-//        }
     }
 
     private Player owner;

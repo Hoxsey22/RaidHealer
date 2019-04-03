@@ -78,7 +78,7 @@ public class Player {
         manaBar = new ManaBar(this, assets);
 
         castBar = new CastBar(this, assets);
-        //castBar.anchor(manaBar);
+
         playerData = new PlayerData();
     }
 
@@ -173,7 +173,7 @@ public class Player {
 
     public void reset() {
         mana = maxMana;
-        //stop();
+
         for (int i = 0; i < spellBar.getSpells().size(); i++) {
             spellBar.getSpells().get(i).resetCD();
         }
@@ -305,14 +305,12 @@ public class Player {
         talentTree.setUnusedPoints(data.unusedPoints);
         talentTree.loadTalents(data.talents);
         spellBar.loadSpells(data.spells);
-        System.out.println("- Player loaded.");
     }
 
     private void resetData()   {
         setLevel(0);
         talentTree.resetToDefault();
         spellBar.resetToDefault();
-        System.out.println("- Player reset");
     }
 
     public int getOriginCritical() {

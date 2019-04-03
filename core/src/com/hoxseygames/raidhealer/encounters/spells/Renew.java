@@ -62,7 +62,6 @@ public class Renew extends Periodical {
 
         checkAoD();
         checkCriticalHealer();
-        //checkHasteBuild();
     }
 
     @Override

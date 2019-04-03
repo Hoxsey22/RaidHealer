@@ -42,9 +42,6 @@ public class Raid extends Group {
         customRaid(numOfTanks,numOfHealers,numOfDps);
         isRaidAlive = true;
         healingTracker = new HealingTracker();
-        for(int i = 0; i < raidMembers.size();i++)   {
-            System.out.println("raid memeber role "+ raidMembers.get(i).getRole());
-        }
     }
 
     public void start(final Boss t)   {
@@ -62,7 +59,6 @@ public class Raid extends Group {
                             player.receiveMana(raidMembers.get(i).getDamage());
                             if(healerChannel) {
                                 getRaidMemberWithLowestHp().receiveHealing(raidMembers.get(i).getDamage(),false);
-                                //getRaidMemberWithLowestHp().receiveHealing(200,false);
                             }
                             else {
                                 t.takeDamage(raidMembers.get(i).getDamage());
@@ -94,7 +90,6 @@ public class Raid extends Group {
         switch(size) {
             case 3:
                 addTank(1);
-                //addHealer(1);
                 addDps(2);
                 break;
             case 6:
@@ -362,7 +357,6 @@ public class Raid extends Group {
         for(int i = 0; i <  raidMembers.size(); i++)   {
             if(!raidMembers.get(i).getRole().equalsIgnoreCase(role) && !raidMembers.get(i).isDead())    {
                 roleLess.add(raidMembers.get(i));
-                System.out.println("Roleless member: "+raidMembers.get(i).getId());
             }
         }
         return  roleLess;
@@ -389,15 +383,12 @@ public class Raid extends Group {
     }
 
     public ArrayList<RaidMember> getBuffedRaidMembers(String name)    {
-        System.out.println("\n--- "+name+" ---");
         ArrayList<RaidMember> buffed = new ArrayList<>();
         for(int i = 0; i <  raidMembers.size(); i++)   {
             if(raidMembers.get(i).getStatusEffectList().contains(name))    {
-                System.out.println(raidMembers.get(i).toString());
                 buffed.add(raidMembers.get(i));
             }
         }
-        System.out.println("==================");
         return  buffed;
     }
 
@@ -430,7 +421,6 @@ public class Raid extends Group {
             raidMembers.get(i).addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    System.out.println("Member hit");
                     player.setTarget((RaidMember)actor);
                     player.getTarget().selected();
                 }

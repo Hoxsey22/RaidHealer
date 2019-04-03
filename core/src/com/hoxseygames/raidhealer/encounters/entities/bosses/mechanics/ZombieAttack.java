@@ -26,7 +26,6 @@ public class ZombieAttack extends Mechanic {
         ArrayList<RaidMember> targets = getOwner().getEnemies().getRandomRaidMember(8);
         for (int i = 0; i < targets.size() ;i++)
             targets.get(i).takeDamage(getZombieDamage());
-        //getOwner().getEnemies().takeDamage(getZombieDamage());
     }
 
     private int getZombieDamage()    {

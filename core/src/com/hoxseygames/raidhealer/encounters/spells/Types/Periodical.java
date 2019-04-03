@@ -45,7 +45,6 @@ public abstract class Periodical extends InstantCast {
     @Override
     public void applySpell(RaidMember target) {
         startDurationTimer();
-        System.out.println(getName()+" applied.");
     }
 
     protected abstract void startDurationTimer();

@@ -24,9 +24,7 @@ public class TestState extends State {
         this.assets = assets;
         frame = new Button(new Skin(Gdx.files.internal("frame_skin.json")));
         stage = new Stage(new FitViewport(800,480));
-        //stageNumber = new Stage(new FitViewport(1280,720));
         frame.setBounds(100,100, 200, 80);
-        //frame.setBounds(150,200,(1280/3),(720/3));
         frame.setBounds(150,0,200,100);
         stage.addActor(frame);
 

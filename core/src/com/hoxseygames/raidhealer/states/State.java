@@ -39,14 +39,11 @@ abstract class State extends ApplicationAdapter {
         super.resume();
         viewport.update(RaidHealer.WIDTH, RaidHealer.HEIGHT, true);
         cam.position.set(cam.viewportWidth/2,cam.viewportHeight/2,0);
-        System.out.println("*********************************************");
     }
 
     @Override
     public void resize(int width, int height) {
-        //super.resize(width, height);
         viewport.update(width,height, true);
         cam.position.set(cam.viewportWidth/2,cam.viewportHeight/2,0);
-        System.out.println("*********************************************");
     }
 }

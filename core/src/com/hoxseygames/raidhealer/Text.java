@@ -173,7 +173,6 @@ public class Text extends Actor{
         this.fontSize = fontSize;
     }
 
-    //@Override
     public void draw(Batch batch, float parentAlpha) {
         label.draw(batch,parentAlpha);
     }

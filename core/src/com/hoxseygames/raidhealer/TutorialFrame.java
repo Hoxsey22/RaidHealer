@@ -64,7 +64,6 @@ public class TutorialFrame extends Group {
     public void nextStage() {
 
         setStageNumber(getStageNumber() + 1);
-        System.out.println(getStageNumber());
         switch(getStageNumber())    {
             case 2:
                 getText().setText("This is the Boss Frame. When the health bar is completely empty or red then the boss has been defeated!");

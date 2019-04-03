@@ -188,9 +188,6 @@ public class Entity extends Button{
             return;
         }
         shield = shield + output;
-
-
-        System.out.println("SHIELD APPLIED!");
     }
 
     public void applyHealingAbsorb(int output) {

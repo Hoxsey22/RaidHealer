@@ -39,8 +39,6 @@ public class TankSwap extends Mechanic {
             getOwner().getTarget().addStatusEffect(debuff);
         }
         tankSwap();
-
-        System.out.println("TANK SWAP!");
     }
 
     private void tankSwap()  {

@@ -53,7 +53,6 @@ public class HolyNova extends Castable {
 
     @Override
     public void applySpell(RaidMember target)    {
-        // main tar
         getRandomTargets(target);
 
         if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
@@ -96,18 +95,14 @@ public class HolyNova extends Castable {
     protected void getRandomTargets(RaidMember currentTarget) {
         if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             int roll = chainHealChance.nextInt(100);
-            System.out.println("ROLL: "+roll);
             if(roll > 85)    {
                 targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets + 3, currentTarget);
-                System.out.println("# of targets: " + numOfTargets + 3);
             }
             else if(roll > 60)   {
                 targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+2,currentTarget);
-                System.out.println("# of targets: "+numOfTargets+2);
             }
             else if(roll > 10)   {
                 targets = getOwner().getRaid().getRaidMembersWithLowestHp(numOfTargets+1, currentTarget);
-                System.out.println("# of targets: "+numOfTargets+1);
             }
             else    {
                 super.getRandomTargets(currentTarget);

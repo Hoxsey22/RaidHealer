@@ -57,7 +57,6 @@ public abstract class StatusEffect{
         this.dispellable = dispellable;
         timer = new Timer();
         this.assets = assets;
-        //this.parent = parent;
     }
 
     protected abstract void startConditions();

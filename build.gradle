@@ -79,6 +79,7 @@ project(":android") {
         compile "com.badlogicgames.ashley:ashley:$ashleyVersion"
         compile "de.tomgrill.gdxdialogs:gdx-dialogs-android:1.2.5"
         compile "com.google.android.gms:play-services-ads:$admobVersion"
+        compile 'com.android.support:appcompat-v7:23.0.1'
     }
 }
 

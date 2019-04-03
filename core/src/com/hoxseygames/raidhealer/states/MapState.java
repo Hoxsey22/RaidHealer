@@ -196,7 +196,6 @@ public class MapState extends State {
         loadPage();
         createBossIconListeners();
 
-        System.out.println("Player Level:"+player.getLevel());
         InfoFrame infoFrame;
         switch (previousState) {
             case 1:
@@ -336,8 +335,6 @@ public class MapState extends State {
                     shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
                         @Override
                         public void run() {
-                            System.out.println("++++Boss: " + selectedLevel.getBoss().getId());
-
                             if (selectedLevel.getBoss().getId() == 16)
                                 sm.set(new LastBossEncounterState(sm, player, selectedLevel.boss));
                             else
@@ -370,7 +367,6 @@ public class MapState extends State {
             public void changed(ChangeEvent event, Actor actor) {
                 page--;
                 turnPage();
-                System.out.println("Page Left");
             }
         });
 
@@ -379,7 +375,6 @@ public class MapState extends State {
             public void changed(ChangeEvent event, Actor actor) {
                 page++;
                 turnPage();
-                System.out.println("Page Right");
             }
         });
 
@@ -405,8 +400,6 @@ public class MapState extends State {
 
                     mapFrame.setTitle(selectedLevel.getName());
                     mapFrame.setBody(selectedLevel.getDescription());
-                    System.out.println("map body size: "+mapFrame.getBody().getFontSize());
-                    //mapFrame.getInfoFrame().addInfo(selectedLevel.boss);
                     mapFrame.addBossSelection(selectedLevel.boss);
                     mapFrame.disableInfoButton();
                     mapFrame.showInfoButton();
@@ -423,7 +416,6 @@ public class MapState extends State {
     public void render(SpriteBatch sb) {
         Gdx.gl.glClearColor(Color.BLACK.r,Color.BLACK.g,Color.BLACK.b,Color.BLACK.a);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        //Gdx.gl.glEnable(GL20.GL_BLEND);
 
         sb.setProjectionMatrix(cam.combined);
 
@@ -438,6 +430,5 @@ public class MapState extends State {
 
     @Override
     public void dispose() {
-        System.out.println("Map Disposed!");
     }
 }

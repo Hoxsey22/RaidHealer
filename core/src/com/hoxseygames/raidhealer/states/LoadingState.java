@@ -43,7 +43,6 @@ public class LoadingState extends State {
 
         logo = new Image(ls);
 
-        //logo.setSize(RaidHealer.WIDTH,RaidHealer.HEIGHT);
         logo.setBounds(RaidHealer.WIDTH/2 - 512/2,RaidHealer.HEIGHT/2 - 512/2+50,512, 512);
 
         Texture ll = new Texture(Gdx.files.internal("logo/libgdx_logo.png"), true);
@@ -56,8 +55,6 @@ public class LoadingState extends State {
         createFont();
 
         progress = 0f;
-
-        //shapeRenderer = new ShapeRenderer();
 
         isReady = false;
 
@@ -86,8 +83,6 @@ public class LoadingState extends State {
         loadingText.setColor(Color.GOLD);
         loadingText.setPosition((RaidHealer.WIDTH/2)-(loadingText.getWidth()/2),50);
         loadingText.setAlignment(Align.center);
-
-        //stage.addActor(container);
     }
 
     @Override
@@ -181,11 +176,6 @@ public class LoadingState extends State {
         cam.update();
 
         stage.act(Gdx.graphics.getDeltaTime());
-        /*shapeRenderer.setProjectionMatrix(stage.getBatch().getProjectionMatrix());
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.GOLD);
-        shapeRenderer.rect(logo.getWidth()/4, logo.getY()+logo.getHeight()-2, logo.getWidth()/2, 0-progress*logo.getHeight()+10);
-        shapeRenderer.end();*/
         stage.draw();
 
     }

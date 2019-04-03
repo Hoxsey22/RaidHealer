@@ -118,7 +118,6 @@ public class TutorialState extends EncounterState {
     @Override
     protected void initExitConfirmationWindow() {
         ngConfirmationWindow = new WindowFrame(RaidHealer.ui);
-        //ngConfirmationWindow.setDebug(true);
 
         ngConfirmationText = new Label("Are you sure you want to quit the tutorial?", RaidHealer.ui);
         ngConfirmationText.setWrap(true);
@@ -164,14 +163,14 @@ public class TutorialState extends EncounterState {
             @Override
             public boolean keyDown(int keycode) {
                 switch (keycode)    {
-                    case Input.Keys.NUM_0:
+                    /*case Input.Keys.NUM_0:
                         boss.takeDamage(1000);
                         break;
                     case Input.Keys.NUM_9:
                         for(int i = 0; i < raid.getRaidMembers().size(); i++)   {
                             raid.getRaidMembers().get(i).takeDamage(50);
                         }
-                        break;
+                        break;*/
                     case Input.Keys.NUM_1:
                         if(player.getSpellBar().getSpells().size() > 0)    {
                             player.getSpellBar().getSpells().get(0).castSpell();
@@ -192,19 +191,7 @@ public class TutorialState extends EncounterState {
                             player.getSpellBar().getSpells().get(3).castSpell();
                         }
                         break;
-                    case Input.Keys.L:
-                        System.out.println("********** Raid Stats **********");
-                        System.out.println("id|role|maxhp|hp|damage");
-                        for(int i = 0; i < boss.getEnemies().getRaidMembers().size(); i++)   {
-                            System.out.println(boss.getEnemies().getRaidMember(i).getId() + "|"+
-                                    boss.getEnemies().getRaidMember(i).getRole() + "|"+
-                                    boss.getEnemies().getRaidMember(i).getMaxHp() + "|"+
-                                    boss.getEnemies().getRaidMember(i).getHp() + "|"+
-                                    boss.getEnemies().getRaidMember(i).getDamage());
-                        }
-                        break;
                     case Input.Keys.BACK:
-
                         break;
                     case Input.Keys.BACKSPACE:
                         break;
@@ -229,7 +216,6 @@ public class TutorialState extends EncounterState {
                     if (coord.y > 300) {
                         RaidMember raidTarget = (RaidMember) raid.hit(coord.x, coord.y, false);
                         if (raidTarget != null) {
-                            System.out.println("found a target");
                             player.setTarget(raidTarget);
                             player.getTarget().selected();
                         }

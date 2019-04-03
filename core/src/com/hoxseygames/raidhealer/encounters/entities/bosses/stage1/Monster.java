@@ -31,7 +31,6 @@ public class Monster extends Boss {
         bite.setAnnounce();
         autoAttack = new AutoAttack(this, 1f);
 
-        //loadMechanics(autoAttack, bite);
         getPhaseManager().addPhase(new Phase(this, 0, autoAttack, bite));
     }
 

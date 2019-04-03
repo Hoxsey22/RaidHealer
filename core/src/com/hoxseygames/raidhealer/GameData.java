@@ -25,7 +25,6 @@ public class GameData {
             Json json = new Json();
             String parsedData =  Base64Coder.decodeString(prefs.getString("save"));
             player.setData(json.fromJson(PlayerData.class, parsedData));
-            System.out.println("save point found!");
             return true;
         }
         else {
@@ -38,19 +37,16 @@ public class GameData {
     public static boolean save(Player player)   {
         Json json = new Json();
         json.toJson(player.getData());
-        System.out.println(json.prettyPrint(player.getData()));
 
         prefs.putString("save", Base64Coder.encodeString(json.toJson(player.getData())));
         prefs.flush();
 
-        System.out.println("save successful!");
         return true;
     }
 
     public static boolean loadAudioSettings()   {
 
         if(prefs.contains("audio settings"))  {
-            System.out.println("save point found!");
             Json json = new Json();
             AudioManager.setData(json.fromJson(AudioManager.AudioData.class, Base64Coder.decodeString(prefs.getString("audio settings"))));
             return true;
@@ -64,12 +60,10 @@ public class GameData {
     public static boolean saveAudioSettings()   {
         Json json = new Json();
         json.toJson(AudioManager.getData());
-        System.out.println(json.prettyPrint(AudioManager.getData()));
 
         prefs.putString("audio settings", Base64Coder.encodeString(json.toJson(AudioManager.getData())));
         prefs.flush();
 
-        System.out.println("save successful!");
         return true;
     }
 

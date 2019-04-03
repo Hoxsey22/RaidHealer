@@ -72,7 +72,6 @@ public class InfoFrame extends Group {
 
     public void changeDescriptionTo(String newDescription) {
         infoDescription.setText(newDescription);
-        System.out.println("length:"+newDescription.length());
 
         if(newDescription.length() > 200)   {
             infoDescription.setFontSize(16);

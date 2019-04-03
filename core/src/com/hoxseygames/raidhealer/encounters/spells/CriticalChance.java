@@ -33,7 +33,6 @@ public class CriticalChance {
 
     public boolean isCritical() {
         if(roll() < chanceThreshold)    {
-            System.out.println("CRITICAL!");
             return true;
         }
         else {

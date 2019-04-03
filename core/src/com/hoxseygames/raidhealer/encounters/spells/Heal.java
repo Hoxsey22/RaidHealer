@@ -30,7 +30,6 @@ public class Heal extends Castable {
     @Override
     public void applySpell(RaidMember target) {
         int currentOutput = getOutput();
-        System.out.println(getName()+"'s output: "+getOutput());
         if(getOwner().isHolyShockIncrease())   {
             currentOutput = getOutput() + (int)(getOutput()*0.5);
             getOwner().setHolyShockIncrease(false);
@@ -43,7 +42,6 @@ public class Heal extends Castable {
 
         if(getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected())    {
             applyCriticalHealerII(target, currentOutput);
-            //applyAtonement(target);
         }
         else if(getOwner().getTalentTree().getTalent(TalentTree.MASTERING_HEALING).isSelected())   {
             applyMasteringHealing(target, currentOutput);

@@ -57,7 +57,6 @@ public class BloodQueen extends Boss {
     public void start() {
         super.start();
         getEnemies().getRaidMembers().get(7).addStatusEffect(new VampiricBiteEffect(this));
-        System.out.println("Phase Manager - number of phases: "+getPhaseManager().getPhases().size()+".");
     }
 
     @Override

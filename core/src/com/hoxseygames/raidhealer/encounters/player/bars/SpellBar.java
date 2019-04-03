@@ -53,11 +53,8 @@ public class SpellBar extends Group {
 
 
     public Spell getSpell(float x, float y) {
-        System.out.println("Cord - x:"+x+", y:"+y);
         for (int i = 0; i < positions.size(); i++) {
-            System.out.println("Position["+i+"]- x:"+positions.get(i).getX()+", y:"+positions.get(i).getY()+", width:"+positions.get(i).getWidth()+", height:"+positions.get(i).getHeight());
             if(positions.get(i).contains(x,y))  {
-                System.out.println("Spell size: "+spells.size());
                 if(i < spells.size())   {
                     return spells.get(i);
                 }
@@ -180,7 +177,6 @@ public class SpellBar extends Group {
                 addSpell(i,owner.getSpellBook().getCopySpell(owner.getSpellBook().getSpell(spellNames.get(i))));
             }
         }
-        System.out.println("-- Spells loaded.");
     }
 
 
@@ -210,16 +206,13 @@ public class SpellBar extends Group {
 
     public void revalidateSpellBar()    {
         for(int i = 0; i < spells.size(); i++)   {
-            System.out.println("Spell: "+spells.get(i).getName());
             if(!owner.getSpellBook().isSpellSelectable(spells.get(i)))    {
                 spells.get(i).remove();
                 spells.remove(i);
-                System.out.println("---- spell removed");
                 i--;
             }
         }
         resetSpellPosition();
-        System.out.println("Spells size:"+spells.size());
     }
 
     public ArrayList<String> getData()  {

@@ -30,8 +30,6 @@ public class ThunderStorm extends Mechanic{
         }
         startPowerlessTimer();
         getParentPhase().pauseMechanics();
-        //pausePhase();
-
     }
 
     private void startPowerlessTimer()    {

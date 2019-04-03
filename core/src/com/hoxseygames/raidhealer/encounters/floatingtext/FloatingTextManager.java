@@ -40,12 +40,10 @@ public class FloatingTextManager {
     private boolean remove(FloatingText floatingText)    {
         int removeIndex = getIndex(floatingText.getId());
         if(removeIndex != -1) {
-            //floatingText.dispose();
             floatingTexts.remove(removeIndex);
             return true;
         }
         else {
-            System.out.println("Index not found!");
             return false;
         }
     }

@@ -40,7 +40,6 @@ public class Earthquake extends Mechanic {
             public void run() {
                 if(count != 3) {
                     count++;
-                    //triggerSFX();
                     AudioManager.playSFX(getAssets().getSound(getAssets().earthquake1SFX), false);
                     getRaid().takeDamage(getDamage());
                 }

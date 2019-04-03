@@ -15,7 +15,6 @@ import java.util.ArrayList;
  * Created by Hoxsey on 6/26/2017.
  */
 public class Assets {
-    //
     private final AssetManager manager;
     public final ArrayList<Vector2> raidPositions;
     public final ArrayList<Vector2> bossIconPosition;
@@ -29,7 +28,6 @@ public class Assets {
     public final String talentTooltipFont = "fonts/talent_tooltip_font.fnt";
     public final String mapTitle = "fonts/title_font.fnt";
     private final String mapDescription = "map_state/description.fnt";
-    // --Commented out by Inspection (5/29/2018 8:13 PM):public String gameFont = "fonts/chela_one_regular.ttf";
 
     public final String gameFont16 = "fonts/game_font_small.fnt";
     public final String gameFont18 = "fonts/game_font_18.fnt";
@@ -198,8 +196,6 @@ public class Assets {
     public final String lastBossBattle3Music = "sfx/Music/last_boss_3_battle_music.wav";
 
     // sounds
-    // OLD CODE
-    //public final String barrierSFX ="sfx/barrier_sfx.mp3";
     public final String castingSFX ="sfx/casting_sfx.mp3";
     public final String cdSFX ="sfx/SFX/cd_sfx.wav";
     public final String hotSFX ="sfx/hot_sfx.mp3";
@@ -504,7 +500,6 @@ public class Assets {
         // raid position
         for(int i = 0; i < 6; i++) {
             for(int j = 0; j < 3; j++) {
-                //raidPositions.add(new Vector2(20+(j*154), 660-(i*79)));
                 raidPositions.add(new Vector2(20+(j*147), 650-(i*70)));
             }
         }
