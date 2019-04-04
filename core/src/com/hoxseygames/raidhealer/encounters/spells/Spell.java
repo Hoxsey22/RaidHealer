@@ -23,7 +23,7 @@ import java.util.ArrayList;
  */
 public abstract class Spell extends Button{
 
-
+    //merge
     public static class SpellData implements Serializable {
 
         public String name;

@@ -88,7 +88,7 @@ public class TutorialState extends EncounterState {
         outlines.add(new Rectangle(raid.getRaidMember(2).getX(), raid.getRaidMember(2).getY(), raid.getRaidMember(2).getWidth(), raid.getRaidMember(2).getHeight()));
         // debuff and buff
         outlines.add(new Rectangle(
-                raid.getRaidMember(0).getHealthBar().getX() + raid.getRaidMember(0).getHealthBar().getWidth() - 20 * (0) - 20,
+                raid.getRaidMember(0).getHealthBar().getX() + raid.getRaidMember(0).getHealthBar().getWidth()- 20,
                 raid.getRaidMember(0).getHealthBar().getY() + raid.getRaidMember(0).getHealthBar().getHeight() + 5,
                 20,
                 20));

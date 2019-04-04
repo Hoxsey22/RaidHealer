@@ -189,10 +189,6 @@ public class RaidMember extends Entity implements Comparable<RaidMember>, Compar
         batch.draw(frame, getX(),getY(),getWidth(),getHeight());
         if(!isDead()) {
             batch.draw(getRoleImage(), getX()+8, getY() + getHeight()- 39, 34,34);
-            /*
-            for (int i = 0; i < effects.size(); i++) {
-                batch.draw(effects.get(i), healthBar.x + healthBar.width - 20 * (i) - 20, healthBar.y + healthBar.height + 5, 20, 20);
-            }*/
             statusEffects.draw(batch, alpha);
             healthBar.draw(batch, alpha);
             floatingTextManager.draw(batch, alpha);

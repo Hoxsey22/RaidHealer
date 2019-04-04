@@ -1,6 +1,7 @@
 package com.hoxseygames.raidhealer.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -10,8 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.hoxseygames.raidhealer.Assets;
-import com.hoxseygames.raidhealer.Button;
 import com.hoxseygames.raidhealer.Player;
 import com.hoxseygames.raidhealer.RaidHealer;
 import com.hoxseygames.raidhealer.ShutterAnimation;
@@ -34,7 +36,8 @@ public class TalentSelectionState extends State {
     private Text title;
     private Text body;
     private final TalentTree talentTree;
-    public Button reset;
+    private TextButton resetButton;
+    private TextButton doneButton;
     private Talent selectedTalent;
     private final Text pointTracker;
     private ShutterAnimation shutterAnimation;
@@ -51,11 +54,13 @@ public class TalentSelectionState extends State {
         pointTracker = new Text("POINTS:",24,Color.WHITE,false, assets);
         pointTracker.setName("Point tracker");
 
-        Button select = new Button("RESET", false, assets);
-        select.setPosition(talentTree.getLeft(), 25);
+        resetButton = new TextButton("RESET", assets.getSkin());
+        resetButton.setPosition(talentTree.getLeft(), 25);
 
-        Button done = new Button("DONE", false, assets);
-        done.setPosition(talentTree.getRight() - done.getWidth(), 25);
+        doneButton = new TextButton("DONE", assets.getSkin());
+        doneButton.setPosition(talentTree.getRight() - doneButton.getWidth(), 25);
+
+        setupTextButtonListners();
 
         talentTreeTitle = new Text("Talent Tree", 45, Color.SKY, true, assets);
         talentTreeTitle.setName("Talent Tree Title");
@@ -67,8 +72,8 @@ public class TalentSelectionState extends State {
         stage = new Stage(viewport);
         stage.addActor(background);
         stage.addActor(talentTree);
-        stage.addActor(select);
-        stage.addActor(done);
+        stage.addActor(resetButton);
+        stage.addActor(doneButton);
 
         createText();
 
@@ -112,7 +117,7 @@ public class TalentSelectionState extends State {
 
     @Override
     protected void handleInput() {
-        Gdx.input.setInputProcessor( new InputProcessor() {
+        Gdx.input.setInputProcessor( new InputMultiplexer(stage,new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
                 return false;
@@ -143,33 +148,6 @@ public class TalentSelectionState extends State {
                     }
                     return false;
                 }
-                else    {
-                    Actor hit = stage.hit(coord.x, coord.y, false);
-                    if(hit != null) {
-                        switch (hit.getName())  {
-                            case "RESET":
-                                if(player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints()) {
-                                    sm.referencePlayer(player);
-                                    if(!sm.showAd(2))    {
-                                        player.getTalentTree().reset();
-                                    }
-                                }
-                                break;
-                            case "DONE":
-                                player.save();
-                                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        sm.set(new MapState(sm, player));
-                                    }
-                                });
-                                shutterAnimation.start();
-                                break;
-                        }
-                    }
-
-
-                }
                 return false;
             }
 
@@ -192,7 +170,39 @@ public class TalentSelectionState extends State {
             public boolean scrolled(int amount) {
                 return false;
             }
+        }));
+
+
+    }
+
+    public void setupTextButtonListners()   {
+
+        resetButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                if(player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints()) {
+                    sm.referencePlayer(player);
+                    if(!sm.showAd(2))    {
+                        player.getTalentTree().reset();
+                    }
+                }
+            }
         });
+
+        doneButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                player.save();
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new MapState(sm, player));
+                    }
+                });
+                shutterAnimation.start();
+            }
+        });
+
 
 
     }

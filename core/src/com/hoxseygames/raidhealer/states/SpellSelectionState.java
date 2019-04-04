@@ -1,17 +1,21 @@
 package com.hoxseygames.raidhealer.states;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 import com.hoxseygames.raidhealer.Assets;
-import com.hoxseygames.raidhealer.Button;
 import com.hoxseygames.raidhealer.Player;
 import com.hoxseygames.raidhealer.RaidHealer;
 import com.hoxseygames.raidhealer.ShutterAnimation;
@@ -35,8 +39,8 @@ public class SpellSelectionState extends State {
     private Text spellCost;
     private Text spellType;
     private Text spellCooldown;
-    private final Button done;
-    private final Button clear;
+    private TextButton done;
+    private TextButton clear;
     private Spell selectedSpell;
     private final SpellBook spellBook;
     private final SpellBar spellBar;
@@ -52,14 +56,14 @@ public class SpellSelectionState extends State {
         spellBook = player.getSpellBook();
         spellBar = player.getSpellBar();
 
+        //spellBook.setDebug(true);
 
-
-        done = new Button("DONE", false,assets);
-
-        clear = new Button("CLEAR", false,assets);
+        done = new TextButton("DONE", assets.getSkin());
+        clear = new TextButton("CLEAR", assets.getSkin());
+        setupTextButtonListners();
 
         Table buttonTable = new Table();
-        buttonTable.setBounds(0, spellBar.getY()+spellBar.getHeight()+ 10, 480, 300);
+        buttonTable.setBounds(0, spellBar.getY()+spellBar.getHeight()+ 10, RaidHealer.WIDTH, done.getHeight());
         buttonTable.add(done).padRight(20);
         buttonTable.add(clear);
 
@@ -134,9 +138,16 @@ public class SpellSelectionState extends State {
 
     @Override
     protected void handleInput() {
-        Gdx.input.setInputProcessor( new InputProcessor() {
+        Gdx.input.setInputProcessor(new InputMultiplexer(new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
+                switch (keycode) {
+                    case Input.Keys.RIGHT:
+                        System.out.println("B SpellBook x: "+spellBook.getX());
+                        spellBook.setX(spellBook.getX()+5);
+                        System.out.println("A SpellBook x: "+spellBook.getX());
+                        break;
+                }
                 return false;
             }
 
@@ -154,41 +165,24 @@ public class SpellSelectionState extends State {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector2 coords = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
 
-                if(done.pressed(coords.x, coords.y))    {
-                    player.save();
-                    done.toggle();
-                    shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
-                        @Override
-                        public void run() {
-                            sm.set(new MapState(sm, player));
-                        }
-                    });
-                    shutterAnimation.start();
-
-                    return false;
-                }
-
-                if(clear.pressed(coords.x, coords.y))    {
-                    clear.toggle();
-                    player.getSpellBar().clearBar();
-
-                    return false;
-                }
                 // check if the user to selecting a spell from the spell book
+                System.out.println("init touchdown");
                 if(coords.y > spellBook.getBottom() - 10 && coords.y < spellBook.getTop()+10) {
-                        Spell hit = spellBook.selectSpell(coords.x, coords.y);
+                    System.out.println("past first if");
+                        Spell hit = spellBook.selectSpell(coords.x, coords.y );
                         if(hit != null) {
+                            System.out.println("past hit");
                             spellDescriptionName.setText(hit.getName());
                             spellDescription.setText(hit.getDescription());
                             spellCost.setText(100*(float)hit.getCost()/player.getMaxMana()+"% of base mana");
                             spellType.setText(hit.getSpellType());
                             spellCooldown.setText(hit.getCooldown()+" second cooldown");
                             selectedSpell = hit;
-                            selectedSpell.setPosition(coords.x-selectedSpell.getWidth()/2, coords.y-selectedSpell.getHeight()/2);
+                            selectedSpell.setPosition(coords.x-selectedSpell.getWidth()/2, coords.y -selectedSpell.getHeight()/2);
                             isSpellSelected = true;
                         }
                         return false;
-                }
+                    }
 
 
                 return false;
@@ -222,7 +216,34 @@ public class SpellSelectionState extends State {
             public boolean scrolled(int amount) {
                 return false;
             }
+        },stage));
+
+
+    }
+
+    public void setupTextButtonListners()    {
+
+        done.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                player.save();
+                shutterAnimation = new ShutterAnimation(stage, assets, true, new Runnable() {
+                    @Override
+                    public void run() {
+                        sm.set(new MapState(sm, player));
+                    }
+                });
+                shutterAnimation.start();
+            }
         });
+
+        clear.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                player.getSpellBar().clearBar();
+            }
+        });
+
 
 
     }

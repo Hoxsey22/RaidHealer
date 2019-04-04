@@ -215,14 +215,14 @@ public class EncounterState extends State {
             @Override
             public boolean keyDown(int keycode) {
                 switch (keycode) {
-                    /*case Input.Keys.NUM_0:
-                        boss.takeDamage(1000);
+                    case Input.Keys.NUM_0:
+                        boss.takeDamage(100000);
                         break;
                     case Input.Keys.NUM_9:
                         for (int i = 0; i < raid.getRaidMembers().size(); i++) {
                             raid.getRaidMembers().get(i).takeDamage(50);
                         }
-                        break;*/
+                        break;
                     case Input.Keys.NUM_1:
                         if (player.getSpellBar().getSpells().size() > 0) {
                             player.getSpellBar().getSpells().get(0).castSpell();

@@ -18,10 +18,6 @@ import com.hoxseygames.raidhealer.encounters.spells.StatusEffect.Debuff.SeedOfCo
 
 public class Apprentice extends Boss {
 
-    private SeedOfCorruption seedOfCorruption;
-    private Fireball fireball;
-    private Pyroblast pyroblast;
-
     public Apprentice(Assets assets) {
         super("Apprentice",
                 Strings.APPRENTICE_DESCRIPTION,
@@ -37,11 +33,11 @@ public class Apprentice extends Boss {
         super.create();
         setDamage(0);
 
-        fireball = new Fireball(this, 2f);
+        Fireball fireball = new Fireball(this, 2f);
         fireball.setDamage(25);
-        pyroblast = new Pyroblast(this, 5f);
+        Pyroblast pyroblast = new Pyroblast(this, 5f);
         pyroblast.setDamage(60);
-        seedOfCorruption = new SeedOfCorruption(this);
+        SeedOfCorruption seedOfCorruption = new SeedOfCorruption(this);
 
         getPhaseManager().addPhase(new Phase(this,0, fireball, seedOfCorruption));
 

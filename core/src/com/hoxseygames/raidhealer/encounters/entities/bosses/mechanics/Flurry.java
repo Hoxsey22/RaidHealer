@@ -47,7 +47,7 @@ public class Flurry extends Mechanic{
                     if (count != 10) {
                         count++;
                         if (random != null) {
-                            if (random != null && random.size() != 0) {
+                            if (random.size() != 0) {
                                 triggerSFX();
                                 random.get(0).takeDamage(getDamage());
                             }
