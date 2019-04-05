@@ -16,7 +16,7 @@ import com.hoxseygames.raidhealer.Player;
 public class CastBar extends Group {
 
 
-    private class Bar extends Group {
+    public class Bar extends Group {
 
         Image blackBar;
         Image whiteBar;
@@ -38,6 +38,10 @@ public class CastBar extends Group {
             addActor(progressionBar);
         }
 
+        public Actor getBlackBar()  {
+            return blackBar;
+        }
+
         protected void update() {
             progressionBar.setWidth((blackBar.getWidth() - 8) * getPercentage());
         }
@@ -52,6 +56,7 @@ public class CastBar extends Group {
         owner = player;
         this.assets = assets;
 
+        setBounds(0,0, 390, 40);
         bar = new Bar(getX(),getY(),390,40);
 
         exitButton = new ImageButton(assets.getSkin(), "exit_button");
@@ -94,6 +99,10 @@ public class CastBar extends Group {
 
     private void setAssets(Assets assets) {
         this.assets = assets;
+    }
+
+    public Bar getBar() {
+        return bar;
     }
 
     @Override

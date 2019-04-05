@@ -101,7 +101,7 @@ public class TutorialState extends EncounterState {
         // mana bar
         outlines.add(new Rectangle(player.getManaBar().getX(), player.getManaBar().getY(), player.getManaBar().getWidth(), player.getManaBar().getHeight()));
         // cast bar
-        outlines.add(new Rectangle(player.getCastBar().getX(), player.getCastBar().getY(), player.getCastBar().getWidth(), player.getCastBar().getHeight()));
+        outlines.add(new Rectangle(castBar.getX(), castBar.getY(), castBar.getWidth(),castBar.getHeight()));
         // conclusion
         outlines.add(new Rectangle());
         // last line
@@ -266,7 +266,6 @@ public class TutorialState extends EncounterState {
         }));
 
     }
-
 
     @Override
     protected void stateLeaveButtonListener()   {

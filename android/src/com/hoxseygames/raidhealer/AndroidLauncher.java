@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -42,23 +41,23 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler{
 					if (Chartboost.hasRewardedVideo(rewardLocation)) {
 						onStart();
 						Chartboost.showRewardedVideo(rewardLocation);
-						Toast.makeText(getApplicationContext(), "SHOW REWARD!", Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getApplicationContext(), "SHOW REWARD!", Toast.LENGTH_SHORT).show();
 					}
 					break;
 				case SHOW_INTERSTITIAL_AD:
 					if(Chartboost.hasInterstitial(interstitialLocation))	{
 						onStart();
 						Chartboost.showInterstitial(interstitialLocation);
-						Toast.makeText(getApplicationContext(), "SHOW INTERSTITIAL", Toast.LENGTH_SHORT).show();
+						//Toast.makeText(getApplicationContext(), "SHOW INTERSTITIAL", Toast.LENGTH_SHORT).show();
 					}
 					break;
 				case LOAD_REWARD_AD:
-					Toast.makeText(getApplicationContext(), "LOAD REWARD ", Toast.LENGTH_SHORT).show();
+					//Toast.makeText(getApplicationContext(), "LOAD REWARD ", Toast.LENGTH_SHORT).show();
 					Chartboost.cacheRewardedVideo(rewardLocation);
 					//loadRewardedVideoAd();
 					break;
 				case LOAD_INTERSTITIAL_AD:
-					Toast.makeText(getApplicationContext(), "LOAD INTERSTITIAL", Toast.LENGTH_SHORT).show();
+					//Toast.makeText(getApplicationContext(), "LOAD INTERSTITIAL", Toast.LENGTH_SHORT).show();
 					Chartboost.cacheInterstitial(interstitialLocation);
 					//loadInterstitialAd();
 					break;
