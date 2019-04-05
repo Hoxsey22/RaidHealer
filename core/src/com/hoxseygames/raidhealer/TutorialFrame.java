@@ -69,26 +69,29 @@ public class TutorialFrame extends Group {
                 getText().setText("This is the Boss's health bar, you must keep your raid alive until the Boss's health bar is depleted.");
                 break;
             case 3:                         // When a special ability is coming, it will state what ability is coming and you will have 1.5 seconds to prepare for said ability.
-                getText().setText("This is the announcement section. When a special ability is coming, it will state what ability is coming and you will have 1.5 seconds to prepare for said ability.");
+                getText().setText("This is the announcement section. " +
+                        "When a special ability is coming, it will state what ability is coming and you will have 1.5 seconds to prepare for said ability.");
                 break;
             case 4:                 // These are your raid frames and each frame is an ally unit you needs to protect so watch them closely!
-                getText().setText("These are your raid frames and each frame is an ally unit you needs to protect so watch them closely!\n" +
-                        "There are three different types of ally units; Tanks, DPS, and Healers. \n");
+                getText().setText("These are your raid frames and each frame is an ally unit you needs to protect.\n" +
+                        "There are three different types of ally units; Tanks, Healers, and DPS. \n");
                 break;
             case 5:
-                getText().setText("The Tank is the primary target for the boss and will normally take constant damage. The tank has double the health of the other ally units, 200 hp to be exact, and the Tank will do 5 damage per second.");
+                getText().setText("The Tank is the primary target for the boss and will normally take consistent damage. " +
+                        "They have double the health compared to other ally units, 200 hp to be exact, and they do 5 damage per second.");
                 break;
             case 6:
-                getText().setText("These are the Healers, your brethren. Healers provide you with 2 mana per second and will deal 2 damage per second.");
+                getText().setText("These are Healers, they provide you with 2 mana per second and will deal 2 damage per second.");
                 break;
             case 7:
-                getText().setText("The DPS, also known as the damage dealers, are your primary source of damage dealing 10 damage per second.");
+                getText().setText("These are DPS, also known as the damage dealers. " +
+                        "They are your primary source of damage, dealing 10 damage per second.");
                 break;
             case 8:
-                getText().setText("These are the buffs and debuffs. Buffs are positive benefits and Debuffs are negative benefits for your ally units. ");
+                getText().setText("These are buffs and debuffs. Buffs are positive effects and debuffs are negative effect on your ally units. ");
                 break;
             case 9:
-                getText().setText("The red box around the ally unit indicates that this particular unit is being targeted by the boss.");
+                getText().setText("The red box around an ally unit indicates that this particular unit is being targeted by the boss.");
                 break;
             case 10:
                 getText().setText("In order to target an ally unit, you must touch the frame of the ally unit you want to select. The frame will turn light blue indicating the ally unit has been selected.");
@@ -106,11 +109,11 @@ public class TutorialFrame extends Group {
                         "This is your mana bar which contains 1000 mana as indicated.");
                 break;
             case 13:                // Certain spells have to be casted before the ability is used. The cast bar shows the progression of the spell cast and when the cast is complete the ability will be triggered.
-                getText().setText("Certain spells have to be casted before the ability is used. " +
-                        "The cast bar shows the progression of the spell cast and when the cast is complete the ability will be triggered.");
+                getText().setText("Certain spells have to be casted before the ability is triggered. " +
+                        "The cast bar shows the progression of the spell cast and when the cast is complete, the ability will be triggered.");
                 break;
             case 14:
-                getText().setText("These are essentials for being a healer and you will learn more as you progress." +
+                getText().setText("These are essentials to becoming a great healer and you will learn more as you progress." +
                         "\nNow let's test your healing skills and start your journey…");
                 break;
             case 15:
