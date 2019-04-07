@@ -67,6 +67,7 @@ public class MainMenuState extends State{
 
         Table buttonTable = new Table();
         buttonTable.setName("button table");
+        buttonTable.top();
         buttonTable.setPosition(RaidHealer.WIDTH/2- buttonTable.getWidth()/2,RaidHealer.HEIGHT/5);
         buttonTable.center().bottom().padBottom(20);
 
@@ -114,15 +115,25 @@ public class MainMenuState extends State{
         buttonTable.row();
 
         creditsButton = new TextButton("Credit", RaidHealer.ui);
-        creditsButton.setPosition(RaidHealer.WIDTH/2-creditsButton.getWidth()/2, RaidHealer.HEIGHT/2-creditsButton.getHeight()/2);
+        //creditsButton.setPosition(RaidHealer.WIDTH/2-creditsButton.getWidth()/2, RaidHealer.HEIGHT/2+creditsButton.getHeight()/2);
         creditsButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 sm.set(new CreditsState(sm, player, 0));
             }
         });
-        buttonTable.add(creditsButton);
+        buttonTable.add(creditsButton).padBottom(15);
 
+        TextButton donationButton = new TextButton("Donate", RaidHealer.ui);
+        //creditsButton.setPosition(RaidHealer.WIDTH/2-creditsButton.getWidth()/2, RaidHealer.HEIGHT/2-creditsButton.getHeight()/2);
+        donationButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.net.openURI("https://donorbox.org/raid-healer-donation");
+            }
+        });
+        buttonTable.row();
+        buttonTable.add(donationButton);
 
         initWindowFrame();
         initNewGameConfirmationWindow();

@@ -133,8 +133,6 @@ public class EncounterState extends State {
         stage.addActor(player.getSpellBar());
         stage.addActor(manaBar);
         stage.addActor(castBar);
-        // Load Ad
-        sm.loadAd(3);
 
         isReady = false;
 
@@ -184,7 +182,6 @@ public class EncounterState extends State {
                         sm.set(new MapState(sm, player, 1));
                     }
                 });
-                sm.showAd(1);
                 shutterAnimation.start();
             }
         });
@@ -384,10 +381,6 @@ public class EncounterState extends State {
                                 }
                             }
                         });
-                        if(boss.getId() > 3) {
-                            sm.showAd(1);
-                            System.out.println("Show ad");
-                        }
                         shutterAnimation.start();
                         break;
                 }
@@ -407,7 +400,6 @@ public class EncounterState extends State {
                     @Override
                     public void run() {
                         sm.set(new MapState(sm, player));
-                        sm.showAd(1);
                     }
                 });
                 shutterAnimation.start();

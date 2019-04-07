@@ -136,7 +136,6 @@ public class TutorialState extends EncounterState {
                         sm.set(new MapState(sm, player, 1));
                     }
                 });
-                sm.showAd(1);
                 shutterAnimation.start();
             }
         });

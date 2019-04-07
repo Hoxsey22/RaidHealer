@@ -19,7 +19,7 @@ public class GiantHornet extends Boss {
     public GiantHornet(Assets assets) {
         super("Giant Hornet",
                 Strings.GIANT_HORNET_DESCRIPTION,
-                125,
+                120,
                 new Raid(6, assets),
                 assets);
         setId(3);

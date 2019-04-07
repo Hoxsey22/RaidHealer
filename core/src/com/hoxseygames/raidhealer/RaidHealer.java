@@ -19,22 +19,16 @@ public class RaidHealer extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private StateManager sm;
 
-	private AdHandler adHandler;
-
-	public RaidHealer(AdHandler handler)	{
-		this.adHandler = handler;
+	public RaidHealer()	{
 	}
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		sm = new StateManager(adHandler);
+		sm = new StateManager();
 		ui = new Skin(Gdx.files.internal("pocket_healer_ui.json"));
 		GameData.loadAudioSettings();
 		sm.push(new LoadingState(sm));
-		// Load Ad
-		sm.loadAd(3);
-		sm.loadAd(4);
 	}
 
 	@Override

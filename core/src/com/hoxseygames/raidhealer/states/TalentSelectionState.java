@@ -41,12 +41,15 @@ public class TalentSelectionState extends State {
     private Talent selectedTalent;
     private final Text pointTracker;
     private ShutterAnimation shutterAnimation;
+    private boolean hasReset;
 
     public TalentSelectionState(StateManager sm, Player player) {
         super(sm);
         assets = player.getAssets();
 
         this.player = player;
+
+        hasReset = false;
 
         talentTree = player.getTalentTree();
         talentTree.setName("Talent Tree");
@@ -180,11 +183,12 @@ public class TalentSelectionState extends State {
         resetButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints()) {
-                    sm.referencePlayer(player);
-                    if(!sm.showAd(2))    {
-                        player.getTalentTree().reset();
-                    }
+                if(player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints() && !hasReset) {
+                    hasReset = true;
+                    player.getTalentTree().reset();
+                }
+                else {
+                    player.getTalentTree().reset();
                 }
             }
         });

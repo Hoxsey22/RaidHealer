@@ -137,5 +137,4 @@ idea {
     }
 }
 dependencies {
-    implementation files('libs/chartboost.jar')
 }
