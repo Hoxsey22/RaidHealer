@@ -271,7 +271,26 @@ public class TalentTree extends Group{
     public void reset() {
         clearTalents();
         owner.getSpellBar().revalidateSpellBar();
+        revalidateTalentPoints();
+    }
+
+    private void revalidateTalentPoints()   {
+        if(owner.getLevel() >= 12)
+            totalPoints = 6;
+        else if(owner.getLevel() >= 11)
+            totalPoints = 5;
+        else if(owner.getLevel() >=  9)
+            totalPoints = 4;
+        else if(owner.getLevel() >=  7)
+            totalPoints = 3;
+        else if(owner.getLevel() >=  6)
+            totalPoints = 2;
+        else if(owner.getLevel() >=  4)
+            totalPoints = 1;
+        else
+            totalPoints = 0;
         unusedPoints = totalPoints;
+
     }
 
     public int getTotalPoints() {

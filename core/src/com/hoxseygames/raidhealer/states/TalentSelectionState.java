@@ -9,15 +9,19 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.utils.Align;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.Player;
 import com.hoxseygames.raidhealer.RaidHealer;
 import com.hoxseygames.raidhealer.ShutterAnimation;
 import com.hoxseygames.raidhealer.Text;
+import com.hoxseygames.raidhealer.WindowFrame;
 import com.hoxseygames.raidhealer.encounters.spells.Talents.Talent;
 import com.hoxseygames.raidhealer.encounters.spells.Talents.TalentTree;
 
@@ -42,6 +46,8 @@ public class TalentSelectionState extends State {
     private final Text pointTracker;
     private ShutterAnimation shutterAnimation;
     private boolean hasReset;
+    protected WindowFrame ngConfirmationWindow;
+    protected Label ngConfirmationText;
 
     public TalentSelectionState(StateManager sm, Player player) {
         super(sm);
@@ -116,6 +122,8 @@ public class TalentSelectionState extends State {
         topTable.add(pointTracker.getLabel()).width(topTable.getWidth());
         stage.addActor(topTable);
 
+        initResetConfirmationWindow();
+
     }
 
     @Override
@@ -183,12 +191,13 @@ public class TalentSelectionState extends State {
         resetButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints() && !hasReset) {
-                    hasReset = true;
-                    player.getTalentTree().reset();
-                }
-                else {
-                    player.getTalentTree().reset();
+
+                if(player.getLevel() > 4) {
+                    if (player.getTalentTree().getTotalPoints() != player.getTalentTree().getUnusedPoints() && !hasReset) {
+                        ngConfirmationWindow.show(stage);
+                    } else {
+                        player.getTalentTree().reset();
+                    }
                 }
             }
         });
@@ -209,6 +218,43 @@ public class TalentSelectionState extends State {
 
 
 
+    }
+
+
+    protected void initResetConfirmationWindow() {
+        ngConfirmationWindow = new WindowFrame(RaidHealer.ui);
+
+        ngConfirmationText = new Label("This is will cost 1 level.\n Are you sure?", RaidHealer.ui);
+        ngConfirmationText.getStyle().fontColor = Color.YELLOW;
+        ngConfirmationText.setFontScale(0.8f);
+        ngConfirmationText.setWrap(true);
+        ngConfirmationText.setAlignment(Align.center);
+
+        TextButton confirmButton = new TextButton("Reset",RaidHealer.ui, "small_button");
+        confirmButton.setTouchable(Touchable.enabled);
+        confirmButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                hasReset = true;
+                player.setLevel(player.getLevel()-1);
+                player.getTalentTree().reset();
+                ngConfirmationWindow.hide();
+            }
+        });
+
+        TextButton backButton = new TextButton("Back",RaidHealer.ui, "small_button");
+        backButton.setTouchable(Touchable.enabled);
+        backButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                ngConfirmationWindow.hide();
+            }
+        });
+
+        ngConfirmationWindow.center();
+        ngConfirmationWindow.add(ngConfirmationText).width(ngConfirmationWindow.getWidth()).center().colspan(2).pad(20).row();
+        ngConfirmationWindow.add(confirmButton).center();
+        ngConfirmationWindow.add(backButton).center();
     }
 
     @Override

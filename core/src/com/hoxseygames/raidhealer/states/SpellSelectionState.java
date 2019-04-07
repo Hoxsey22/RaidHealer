@@ -1,7 +1,6 @@
 package com.hoxseygames.raidhealer.states;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
@@ -141,13 +140,6 @@ public class SpellSelectionState extends State {
         Gdx.input.setInputProcessor(new InputMultiplexer(new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
-                switch (keycode) {
-                    case Input.Keys.RIGHT:
-                        System.out.println("B SpellBook x: "+spellBook.getX());
-                        spellBook.setX(spellBook.getX()+5);
-                        System.out.println("A SpellBook x: "+spellBook.getX());
-                        break;
-                }
                 return false;
             }
 
@@ -166,12 +158,9 @@ public class SpellSelectionState extends State {
                 Vector2 coords = stage.screenToStageCoordinates(new Vector2((float)screenX,(float)screenY));
 
                 // check if the user to selecting a spell from the spell book
-                System.out.println("init touchdown");
                 if(coords.y > spellBook.getBottom() - 10 && coords.y < spellBook.getTop()+10) {
-                    System.out.println("past first if");
                         Spell hit = spellBook.selectSpell(coords.x, coords.y );
                         if(hit != null) {
-                            System.out.println("past hit");
                             spellDescriptionName.setText(hit.getName());
                             spellDescription.setText(hit.getDescription());
                             spellCost.setText(100*(float)hit.getCost()/player.getMaxMana()+"% of base mana");
