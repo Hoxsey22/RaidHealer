@@ -124,7 +124,7 @@ public class MainMenuState extends State{
         });
         buttonTable.add(creditsButton).padBottom(15);
 
-        TextButton donationButton = new TextButton("Donate", RaidHealer.ui);
+        /*TextButton donationButton = new TextButton("Donate", RaidHealer.ui);
         //creditsButton.setPosition(RaidHealer.WIDTH/2-creditsButton.getWidth()/2, RaidHealer.HEIGHT/2-creditsButton.getHeight()/2);
         donationButton.addListener(new ChangeListener() {
             @Override
@@ -133,7 +133,7 @@ public class MainMenuState extends State{
             }
         });
         buttonTable.row();
-        buttonTable.add(donationButton);
+        buttonTable.add(donationButton);*/
 
         initWindowFrame();
         initNewGameConfirmationWindow();

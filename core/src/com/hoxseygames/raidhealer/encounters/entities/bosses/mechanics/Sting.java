@@ -16,7 +16,7 @@ public class Sting extends Mechanic {
     private int numOfTargets;
 
     public Sting(Boss owner) {
-        super("Sting", 15, 15f, owner);
+        super("Sting", 15, 13f, owner);
         numOfTargets = 1;
         setAnnounce();
     }
