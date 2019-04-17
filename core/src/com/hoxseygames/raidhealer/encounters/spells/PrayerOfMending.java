@@ -16,6 +16,7 @@ public class PrayerOfMending extends Castable {
         super(player,
                 "Prayer of Mending",
                 "A ward is placed on an ally unit that heals the ally unit when damaged and will jump to a new target.",
+                assets.getTexture(assets.prayerOfMendingIcon),
                 4,
                 1.5f,
                 25,
@@ -24,7 +25,6 @@ public class PrayerOfMending extends Castable {
                 assets.getSound(assets.pomTriggerSFX),
                 assets);
         setDescription("Grants an ally unit a buff that will heal the ally unit with this buff for "+getOutput()+"hp and jumps to the most injured ally unit and does this 5 times.");
-        setImage(getAssets().getTexture(getAssets().prayerOfMendingIcon));
         setNumOfTargets(5);
     }
 

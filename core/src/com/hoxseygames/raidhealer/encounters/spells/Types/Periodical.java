@@ -1,6 +1,7 @@
 package com.hoxseygames.raidhealer.encounters.spells.Types;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.Player;
@@ -31,9 +32,9 @@ public abstract class Periodical extends InstantCast {
      * @param spellSFX
      * @param assets
      */
-    protected Periodical(Player player, String name, String description, int levelRequirement, int numOfTargets,
+    protected Periodical(Player player, String name, String description, Texture imageIcon, int levelRequirement, int numOfTargets,
                          int output, float costPercentage, float cooldown, float duration, float speed, Sound spellSFX, Assets assets) {
-        super(player, name, description, levelRequirement, numOfTargets, output, costPercentage, cooldown, spellSFX, assets);
+        super(player, name, description, imageIcon, levelRequirement, numOfTargets, output, costPercentage, cooldown, spellSFX, assets);
         setSpellType("Periodical");
         this.duration = duration;
         MIN_DURATION = duration;
@@ -61,12 +62,12 @@ public abstract class Periodical extends InstantCast {
 
             setOutput(10);
             if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected()) {
-                duration = 10;
-                speed = 1.25f;
+                setDuration(10);
+                setSpeed(1.25f);
             }
             else {
-                duration = 12;
-                speed = 1.5f;
+                setDuration(12);
+                setSpeed(1.5f);
             }
 
         }
@@ -86,12 +87,13 @@ public abstract class Periodical extends InstantCast {
         }
     }
 
-    protected float getDuration() {
+    public float getDuration() {
         return duration;
     }
 
-    public void setDuration(float duration) {
+    public float setDuration(float duration) {
         this.duration = duration;
+        return duration;
     }
 
     public float getMIN_DURATION() {
@@ -102,12 +104,13 @@ public abstract class Periodical extends InstantCast {
         this.MIN_DURATION = MIN_DURATION;
     }
 
-    protected float getSpeed() {
+    public float getSpeed() {
         return speed;
     }
 
-    public void setSpeed(float speed) {
+    public float setSpeed(float speed) {
         this.speed = speed;
+        return speed;
     }
 
     public float getMIN_SPEED() {

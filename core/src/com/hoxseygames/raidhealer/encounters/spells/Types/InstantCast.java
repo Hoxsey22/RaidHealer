@@ -1,6 +1,7 @@
 package com.hoxseygames.raidhealer.encounters.spells.Types;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.AudioManager;
 import com.hoxseygames.raidhealer.Player;
@@ -26,9 +27,9 @@ public abstract class InstantCast extends Spell {
      * @param spellSFX
      * @param assets
      */
-    protected InstantCast(Player player, String name, String description, int levelRequirement,
+    protected InstantCast(Player player, String name, String description, Texture imageIcon, int levelRequirement,
                           int numOfTargets, int output, float costPercentage, float cooldown, Sound spellSFX, Assets assets) {
-        super(player, name, description,levelRequirement, output, costPercentage, cooldown, assets);
+        super(player, name, description, imageIcon, levelRequirement, output, costPercentage, cooldown, assets);
         setSpellType("Instant");
         this.spellSFX = spellSFX;
         setNumOfTargets(numOfTargets);
@@ -65,4 +66,11 @@ public abstract class InstantCast extends Spell {
         setTargets(getOwner().getRaid().getRaidMembersWithLowestHp(getNumOfTargets(), currentTarget));
     }
 
+    public Sound getSpellSFX() {
+        return spellSFX;
+    }
+
+    public void setSpellSFX(Sound spellSFX) {
+        this.spellSFX = spellSFX;
+    }
 }

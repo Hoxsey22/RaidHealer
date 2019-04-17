@@ -18,6 +18,7 @@ public class HolyShock extends InstantCast {
     public HolyShock(Player player, Assets assets) {
         super(player, "Holy Shock",
                 "Instantly shocks an ally unit with holy light for a moderate amount and also empowers the next Heal by 50%.",
+                assets.getTexture(assets.criticalHealer2Icon),
                 8,
                 1,
                 35,
@@ -26,7 +27,6 @@ public class HolyShock extends InstantCast {
                 assets.getSound(assets.holyShockSFX),
                 assets);
         setDescription("Heals an ally unit instantly for "+getOutput()+"hp and grants the user a buff that will increase output of the next Heal by 200%.");
-        setImage(getAssets().getTexture(getAssets().criticalHealer2Icon));
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.hoxseygames.raidhealer.encounters.entities.bosses.Boss;
 import com.hoxseygames.raidhealer.encounters.entities.raid.Raid;
 import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
 import com.hoxseygames.raidhealer.encounters.player.bars.CastBar;
+import com.hoxseygames.raidhealer.encounters.player.bars.ItemBar;
 import com.hoxseygames.raidhealer.encounters.player.bars.ManaBar;
 import com.hoxseygames.raidhealer.encounters.player.bars.SpellBar;
 import com.hoxseygames.raidhealer.encounters.spells.Spell;
@@ -47,6 +48,7 @@ public class Player {
     private int mana;
     private ManaBar manaBar;
     private CastBar castBar;
+    public ItemBar itemBar;
     private RaidMember target;
     private Raid raid;
     private Boss eTarget;
@@ -60,6 +62,7 @@ public class Player {
     private int level;
     private PlayerData playerData;
     private boolean holyShockIncrease;
+    private int talentResetTokens;
 
 
 
@@ -78,6 +81,10 @@ public class Player {
         manaBar = new ManaBar(this, assets);
 
         castBar = new CastBar(this, assets);
+
+        itemBar = new ItemBar(this);
+
+        talentResetTokens = 0;
 
         playerData = new PlayerData();
     }

@@ -21,7 +21,8 @@ public class DivineProtection extends Castable {
     public DivineProtection(Player player, Assets assets) {
         super(player,
                 "Divine Protection",
-                "Calls the beyond for protection, reducing all damage by 20%.",
+                "Grants all ally units a buff that will reduce all damage taken by 40% for 15 seconds.",
+                assets.getTexture(assets.divineProtectionIcon),
                 7,
                 2f,
                 0,
@@ -29,8 +30,6 @@ public class DivineProtection extends Castable {
                 100f,
                 assets.getSound(assets.divineProtectionSFX),
                 assets);
-        setDescription("Grants all ally units a buff that will reduce all damage taken by 40% for 15 seconds.");
-        setImage(getAssets().getTexture(getAssets().divineProtectionIcon));
     }
 
     @Override

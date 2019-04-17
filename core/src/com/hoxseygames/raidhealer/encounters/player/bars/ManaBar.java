@@ -43,6 +43,7 @@ public class ManaBar extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(manaBar, getX(),getY(),getWidth(),getHeight());
         batch.draw(manaFill, getX()+11,getY()+5,(getWidth()-20)*getPercentage(),37);
+        text.setPosition(getX()+(getWidth()/2)-(text.getWidth()/2), getY()+getHeight()/2 -text.getHeight()/2);
         text.setText(owner.getMana()+"/"+owner.getMaxMana());
         text.draw(batch,parentAlpha);
     }

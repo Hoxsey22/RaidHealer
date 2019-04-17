@@ -1,6 +1,7 @@
 package com.hoxseygames.raidhealer.encounters.spells.Types;
 
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.AudioManager;
@@ -34,9 +35,9 @@ public abstract class Castable extends Spell {
      * @param spellSFX
      * @param assets
      */
-    protected Castable(Player player, String name, String description, int levelRequirement, float castTime,
+    protected Castable(Player player, String name, String description, Texture imageIcon, int levelRequirement, float castTime,
                        int output, float costPercentage, float cooldown, Sound spellSFX, Assets assets) {
-        super(player, name, description, levelRequirement, output, costPercentage, cooldown, assets);
+        super(player, name, description, imageIcon, levelRequirement, output, costPercentage, cooldown, assets);
         setSpellType("Castable");
         this.spellSFX = spellSFX;
         this.castTime = castTime;

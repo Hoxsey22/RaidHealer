@@ -23,7 +23,9 @@ public class Renew extends Periodical {
      * @param assets
      */
     public Renew(Player player, Assets assets) {
-        super(player, "Renew", "A renewing amount of holy light is place on an ally unit.",
+        super(player, "Renew",
+                "A renewing amount of holy light is place on an ally unit.",
+                assets.getTexture(assets.renewIcon),
                 0,
                 1,
                 7,
@@ -32,9 +34,9 @@ public class Renew extends Periodical {
                 10f,
                 2f,
                 assets.getSound(assets.renewSFX), assets);
-        setDescription("Heals an ally unit for "+getOutput()+"hp every 2 seconds for 10 seconds.");
-        setImage(this.getAssets().getTexture(getAssets().renewIcon));
 
+        checkTalents();
+        setDescription("Heals an ally unit for "+getOutput()+"hp every "+getSpeed()+" seconds for "+getDuration()+" seconds.");
     }
 
     @Override
@@ -59,22 +61,28 @@ public class Renew extends Periodical {
     @Override
     public void checkTalents() {
         resetDefault();
-
         checkAoD();
+        checkLifeboom();
         checkCriticalHealer();
+
     }
 
     @Override
     public void checkLifeboom() {
         if(getOwner().getTalentTree().getTalent(TalentTree.LIFEBOOM).isSelected())  {
-            if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())
-                buff = new LifeboomEffect(getOwner(), 10.5f, 1.75f,getOutput());
-            else
+            if(getOwner().getTalentTree().getTalent(TalentTree.AOD).isSelected())    {
                 buff = new LifeboomEffect(getOwner(), getDuration(), getSpeed(),getOutput());
+            }
+            else    {
+                if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())
+                    buff = new LifeboomEffect(getOwner(), setDuration(10.5f), setSpeed(1.75f),getOutput());
+                else
+                    buff = new LifeboomEffect(getOwner(), getDuration(), getSpeed(),getOutput());
+            }
         }
         else    {
             if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())
-                buff = new RenewEffect(getOwner(), 10.5f, 1.75f,getOutput());
+                buff = new RenewEffect(getOwner(), setDuration(10.5f), setSpeed(1.75f),getOutput());
             else
                 buff = new RenewEffect(getOwner(), getDuration(), getSpeed(),getOutput());
         }

@@ -267,7 +267,7 @@ public class Entity extends Button{
         return isDead;
     }
 
-    protected void setDead(boolean dead) {
+    public void setDead(boolean dead) {
         isDead = dead;
     }
 

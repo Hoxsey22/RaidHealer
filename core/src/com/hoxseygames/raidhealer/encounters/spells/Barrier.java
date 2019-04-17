@@ -13,7 +13,9 @@ import com.hoxseygames.raidhealer.encounters.spells.Types.InstantCast;
 public class Barrier extends InstantCast {
 
     public Barrier(Player player, Assets assets) {
-        super(player,"Barrier", "Places a barrier around the ally unit, absorbing incoming damage.",
+        super(player,"Barrier",
+                "Places a barrier around the ally unit, absorbing incoming damage.",
+                assets.getTexture(assets.barrierIcon),
                 6,
                 1,
                 40,
@@ -21,9 +23,8 @@ public class Barrier extends InstantCast {
                 4f,
                 assets.getSound(assets.barrierSFX),
                 assets);
-        setDescription("Grants an ally unit a barrier that prevents "+getOutput()+" damage.");
-        setImage(this.getAssets().getTexture(getAssets().barrierIcon));
         checkTalents();
+        setDescription("Grants an ally unit a barrier that prevents "+getOutput()+" damage.");
     }
 
     @Override

@@ -30,6 +30,7 @@ import com.hoxseygames.raidhealer.encounters.entities.bosses.Boss;
 import com.hoxseygames.raidhealer.encounters.entities.raid.Raid;
 import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
 import com.hoxseygames.raidhealer.encounters.player.bars.CastBar;
+import com.hoxseygames.raidhealer.encounters.player.bars.ItemBar;
 import com.hoxseygames.raidhealer.encounters.player.bars.ManaBar;
 import com.hoxseygames.raidhealer.encounters.spells.Spell;
 
@@ -40,6 +41,7 @@ public class EncounterState extends State {
     protected final Player player;
     protected ManaBar manaBar;
     protected CastBar castBar;
+    protected ItemBar itemBar;
     protected Stage stage;
     protected final Raid raid;
     protected final Boss boss;
@@ -103,11 +105,25 @@ public class EncounterState extends State {
 
         assets = player.getAssets();
 
-        manaBar = new ManaBar(player, assets);
+        itemBar = player.itemBar;
+        itemBar.setupDebug();
 
-        castBar = new CastBar(player, assets);
-        castBar.setPosition(20, manaBar.getY()+manaBar.getHeight()+10);
+        if(!itemBar.isEmpty()) {
+            itemBar.setPosition(player.getSpellBar().getX(), player.getSpellBar().getY() + player.getSpellBar().getHeight() - 2);
 
+            manaBar = new ManaBar(player, assets);
+            manaBar.setPosition(0, itemBar.getY() + itemBar.getEmptyItemTable().getHeight() + 2);
+
+            castBar = new CastBar(player, assets);
+            castBar.setPosition(20, manaBar.getY() + manaBar.getHeight() + 10);
+        }
+        else {
+            manaBar = new ManaBar(player, assets);
+            manaBar.setPosition(0, player.getSpellBar().getY() + player.getSpellBar().getHeight());
+
+            castBar = new CastBar(player, assets);
+            castBar.setPosition(20, manaBar.getY() + manaBar.getHeight() + 10);
+        }
         player.setRaid(boss.getEnemies());
 
         if(boss.getId() < 7)    {
@@ -133,6 +149,11 @@ public class EncounterState extends State {
         stage.addActor(player.getSpellBar());
         stage.addActor(manaBar);
         stage.addActor(castBar);
+
+        if(!itemBar.isEmpty())
+            stage.addActor(itemBar);
+
+
 
         isReady = false;
 

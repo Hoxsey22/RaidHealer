@@ -13,6 +13,11 @@ import com.badlogic.gdx.utils.Align;
 
 public class Text extends Actor{
 
+    public static final int FONT_SIZE_16 = 16;
+    public static final int FONT_SIZE_18 = 18;
+    public static final int FONT_SIZE_24 = 24;
+    public static final int FONT_SIZE_32 = 32;
+    public static final int FONT_SIZE_45 = 45;
     private Assets assets;
     private Label label;
     private Label.LabelStyle labelStyle;
@@ -127,6 +132,14 @@ public class Text extends Actor{
 
     public void setAlpha(float newAlpha)  {
         label.setColor(label.getColor().r,label.getColor().g,label.getColor().b,newAlpha);
+    }
+
+    public void disable()   {
+        setAlpha(0);
+    }
+
+    public void show()  {
+        setAlpha(1f);
     }
 
     public float getXCenter()    {

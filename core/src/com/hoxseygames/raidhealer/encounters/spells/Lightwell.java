@@ -18,6 +18,7 @@ public class Lightwell extends Periodical {
         super(player,
                 "Light Well",
                 "Summons a magical Light Well that will send holy light at the most injured ally unit and will give the use a little bit of mana.",
+                assets.getTexture(assets.lightWellIcon),
                 7,
                 1,
                 7,
@@ -28,7 +29,6 @@ public class Lightwell extends Periodical {
                 assets.getSound(assets.lightwellSFX),
                 assets);
         setDescription("Heals the most injured ally unit for "+getOutput()+"hp every second for 60 seconds.");
-        setImage(this.getAssets().getTexture(getAssets().lightWellIcon));
     }
 
     @Override

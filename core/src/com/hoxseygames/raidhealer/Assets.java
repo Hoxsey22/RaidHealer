@@ -64,6 +64,7 @@ public class Assets {
     public final String lightwellSFX = "sfx/SFX/p_spells/lightwell_sfx.ogg";
     public final String renewSFX = "sfx/SFX/p_spells/renew_sfx.ogg";
     public final String smiteSFX = "sfx/SFX/p_spells/smite_sfx.ogg";
+    public final String itemUseSFX = "sfx/SFX/p_spells/item_use_sfx.ogg";
     //penance package
     public final String penanceHit1SFX = "sfx/SFX/p_spells/penance/penance_hit1_sfx.ogg";
     public final String penanceHit2SFX = "sfx/SFX/p_spells/penance/penance_hit2_sfx.ogg";
@@ -192,6 +193,7 @@ public class Assets {
     public final String map1 = "map_state/map_level_1.png";
     public final String map2 = "map_state/map_level_2.png";
     public final String map3 = "map_state/map_level_3.png";
+    public final String itemBar = "item_bar.png";
 
     //credits
     public final String creditsLayer1 = "credits_state/credits_layer_1.png";
@@ -342,6 +344,8 @@ public class Assets {
         manager.load(creditsLayer3, Texture.class, param);
         manager.load(creditsLayer4, Texture.class, param);
         manager.load(creditsLayer5, Texture.class, param);
+
+        manager.load(itemBar, Texture.class);
 
     }
 

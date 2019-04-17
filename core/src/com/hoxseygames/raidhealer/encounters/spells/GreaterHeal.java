@@ -9,24 +9,14 @@ import com.hoxseygames.raidhealer.Player;
 class GreaterHeal extends Heal {
 
     public GreaterHeal(Player player, Assets assets) {
-        super(player, assets);
-        setName("Greater Heal");
-        setOutput(60);
-
-        setMIN_OUTPUT(70);
-
-        setDescription("Heals an ally unit for "+getOutput()+"hp.");
-
-        setImage(getAssets().getTexture(getAssets().greaterHealerIcon));
-
-        setCostPercentage(2.2f);
-
-        setMIN_COST(2.2f);
-
-        setMIN_CAST_TIME(2f);
-
-        setCastTime(getMIN_CAST_TIME());
-
-        setLevelRequirement(6);
+        super(player,
+                "Greater Heal",
+                "Heals an ally unit for 70hp, but at the cost of a slow cast time.",
+                assets.getTexture(assets.greaterHealerIcon),
+                6,
+                2f,
+                70,
+                2.2f,
+                assets);
     }
 }

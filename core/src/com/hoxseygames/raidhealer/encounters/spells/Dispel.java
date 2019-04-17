@@ -17,7 +17,8 @@ public class Dispel extends InstantCast {
      */
     public Dispel(Player player, Assets assets) {
         super(player, "Dispel",
-                "Dispels all dispellable debuffs from the targeted ally unit. ",
+                "Removes a dispellable debuff off an ally unit.\"",
+                assets.getTexture(assets.dispelIcon),
                 3,
                 1,
                 0,
@@ -25,8 +26,6 @@ public class Dispel extends InstantCast {
                 1f,
                 assets.getSound(assets.dispelSFX),
                 assets);
-        setDescription("Dispels a magic effect off an ally unit.");
-        setImage(getAssets().getTexture(getAssets().dispelIcon));
     }
 
     @Override

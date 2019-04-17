@@ -20,6 +20,7 @@ public class HolyNova extends Castable {
         super(player,
                 "Holy Nova",
                 "An explosion of holy light that heals several ally units for a moderate amount.",
+                assets.getTexture(assets.holyNovaIcon),
                 4,
                 1.8f,
                 25,
@@ -27,9 +28,9 @@ public class HolyNova extends Castable {
                 1f,
                 assets.getSound(assets.holyNovaSFX),
                 assets);
-        setDescription("Heals the targeted ally unit and 4 other injured ally unit for "+getOutput()+"hp.");
-        setImage(getAssets().getTexture(getAssets().holyNovaIcon));
+        checkTalents();
         setNumOfTargets(MIN_NUM_OF_TARGETS);
+        setDescription("Heals the targeted ally unit and "+(numOfTargets+1)+" other injured ally unit for "+getOutput()+"hp.");
         chainHealChance = new Random();
     }
 

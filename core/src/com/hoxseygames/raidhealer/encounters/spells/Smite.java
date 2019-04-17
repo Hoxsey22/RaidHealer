@@ -18,7 +18,8 @@ public class Smite extends Castable {
      */
     public Smite(Player player, Assets assets) {
         super(player, "Smite",
-                "Smites a boss for a small amount of damage that will heal the most injured ally unit for a faction of the damage.",
+                "Deals 5 damage to the boss and heals the most injured ally unit for 5hp.",
+                assets.getTexture(assets.smiteIcon),
                 7,
                 1.25f,
                 5,
@@ -26,8 +27,8 @@ public class Smite extends Castable {
                 0.5f,
                 assets.getSound(assets.smiteSFX),
                 assets);
-        setDescription("Damages the enemy and heals an ally unit with the lowest health for the damage dealt to the enemy.");
-        setImage(getAssets().getTexture(getAssets().smiteIcon));
+        checkTalents();
+
     }
 
     @Override
@@ -38,6 +39,9 @@ public class Smite extends Castable {
 
         if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
             setOutput(getOutput()+5);
+            setDescription("Deals "+getOutput()+" damage to the boss and heals all ally units with atonement " +
+                    "buff for "+getOutput()+"hp. If atonement isn't present, the most injured ally unit will be " +
+                    "healed for "+getOutput()+"hp.");
         }
         checkHasteBuild();
     }

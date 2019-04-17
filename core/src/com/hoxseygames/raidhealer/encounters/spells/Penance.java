@@ -18,6 +18,7 @@ public class Penance extends ChannelCast {
         super(player, "Penance",
                 "Throws a volley of holy light at an ally unit. If atonement is present, Penance will be casted on the enemy unit" +
                         " dealing damage and healing all those with atonement.",
+                assets.getTexture(assets.penanceIcon),
                 9,
                 2.5f,
                 4,
@@ -28,7 +29,7 @@ public class Penance extends ChannelCast {
                 true,
                 assets);
         setDescription("Heals an ally unit for "+getOutput()+"hp 4 times.");
-        setImage(getAssets().getTexture(getAssets().penanceIcon));
+        checkTalents();
 
     }
 
@@ -60,30 +61,6 @@ public class Penance extends ChannelCast {
                 }
             }
         }
-/*
-            RaidMember lowest = getOwner().getRaid().getRaidMemberWithLowestHp();
-            int newOutput = getOwner().getBoss().takeDamage(getOutput(), getCriticalChance().isCritical());
-
-            if (getOwner().getTalentTree().getTalent(TalentTree.CRITICAL_HEALER_II).isSelected()) {
-                applyCriticalHealerII(lowest, newOutput);
-            }
-            else {
-                lowest.receiveHealing(newOutput, getCriticalChance().isCritical());
-            }
-
-            if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-                applyAtonement(target);
-            }
-
-            if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
-                for (int i = 0; i < getOwner().getRaid().getRaidMembers().size(); i++) {
-                    if(getOwner().getRaid().getRaidMembers().get(i).getStatusEffectList().contains("Atonement Effect")) {
-                        getOwner().getRaid().getRaidMembers().get(i).receiveHealing((int)(newOutput*0.4f), getCriticalChance().isCritical());
-                    }
-                }
-            }
-        }*/
-
 
     }
 
@@ -113,6 +90,11 @@ public class Penance extends ChannelCast {
         if(getOwner().getTalentTree().getTalent(TalentTree.HASTE_BUILD).isSelected())    {
             setCastTime(getMIN_CAST_TIME() - 0.25f);
             setTicksPerCast(5);
+        }
+        if(getOwner().getTalentTree().getTalent(TalentTree.DISCIPLINE).isSelected())    {
+            setDescription("Deals "+(int)(getOutput()*0.7)+" damage 4 times to the boss and all ally" +
+                    " units with atonement buff will be healed for "+(int)(getOutput()*0.7)+"hp each time" +
+                    " the boss takes damage from penance.");
         }
     }
 }

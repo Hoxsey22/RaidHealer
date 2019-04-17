@@ -15,6 +15,7 @@ public class BlessedGarden extends Castable {
         super(player,
                 "Blessed Garden",
                 "Blossoms a beautiful garden around the entire raid, increasing all heals by 40%.",
+                assets.getTexture(assets.blessedGardenIcon),
                 7,
                 2f,
                 0,
@@ -23,7 +24,6 @@ public class BlessedGarden extends Castable {
                 assets.getSound(assets.blessedGardenSFX),
                 assets);
         setDescription("Grants all ally units a buff that will increase all healing received by 40% for 15 seconds.");
-        setImage(getAssets().getTexture(getAssets().blessedGardenIcon));
     }
 
     @Override

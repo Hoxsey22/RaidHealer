@@ -1,5 +1,6 @@
 package com.hoxseygames.raidhealer.encounters.spells;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.Player;
 import com.hoxseygames.raidhealer.encounters.entities.raid.RaidMember;
@@ -15,7 +16,8 @@ public class Heal extends Castable {
     public Heal(Player player, Assets assets) {
         super(player,
                 "Heal",
-                "An efficient heal that heal an ally unit for a moderate amount.",
+                "Heals an ally unit for 40hp.",
+                assets.getTexture(assets.healIcon),
                 0,
                 1.5f,
                 40,
@@ -23,9 +25,48 @@ public class Heal extends Castable {
                 0.5f,
                 assets.getSound(assets.healSFX),
                 assets);
-        setDescription("Heals an ally unit for "+getOutput()+"hp.");
-        setImage(getAssets().getTexture(getAssets().healIcon));
     }
+
+    // flash heal
+    public Heal(Player player, String name, String description, Texture iconTexture, int levelRequirement, float castTime, float costPercentage, Assets assets) {
+        super(player,
+                name,
+                description,
+                iconTexture,
+                levelRequirement,
+                castTime,
+                40,
+                costPercentage,
+                0.5f,
+                assets.getSound(assets.healSFX),
+                assets);
+        setMIN_CAST_TIME(castTime);
+        setMIN_COST(costPercentage);
+        setCriticalChance(getMIN_CRITICAL());
+    }
+
+    // greater heal
+    public Heal(Player player, String name, String description,  Texture iconTexture, int levelRequirement, float castTime, int output, float costPercentage, Assets assets) {
+        super(player,
+                name,
+                description,
+                iconTexture,
+                levelRequirement,
+                castTime,
+                output,
+                costPercentage,
+                0.5f,
+                assets.getSound(assets.healSFX),
+                assets);
+        setMIN_CAST_TIME(castTime);
+        setMIN_COST(costPercentage);
+        setCriticalChance(getMIN_CRITICAL());
+    }
+
+
+
+
+
 
     @Override
     public void applySpell(RaidMember target) {

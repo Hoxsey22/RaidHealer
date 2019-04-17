@@ -15,7 +15,8 @@ public class DivineHymn extends ChannelCast {
 
     public DivineHymn(Player player, Assets assets) {
         super(player, "Divine Hymn",
-                "A glorious hymn is rang throughout the raid, healing all ally units several times.",
+                "",
+                assets.getTexture(assets.divineHymnIcon),
                 7,
                 4f,
                 4,
@@ -26,7 +27,6 @@ public class DivineHymn extends ChannelCast {
                 true,
                 assets);
         setDescription("Heals the majority of the raid for "+getOutput()+"hp every second for 4 seconds");
-        setImage(getAssets().getTexture(getAssets().divineHymnIcon));
     }
 
     @Override

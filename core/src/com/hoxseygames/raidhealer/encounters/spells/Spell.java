@@ -3,8 +3,10 @@ package com.hoxseygames.raidhealer.encounters.spells;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Timer;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.Player;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by Hoxsey on 6/17/2017.
  */
-public abstract class Spell extends Button{
+public abstract class Spell extends ImageButton {
 
     //merge
     public static class SpellData implements Serializable {
@@ -62,7 +64,8 @@ public abstract class Spell extends Button{
     private float cdCounter;
     private boolean isReady;
     private boolean isCasting;
-    private Texture image;
+    private Image image;
+    private Image cooldownImage;
     private float cdPercentage;
     private Timer cdTimer;
     private Assets assets;
@@ -86,18 +89,20 @@ public abstract class Spell extends Button{
      */
     protected Spell(Player player, String name, String description, int levelRequirement, int output,
                     float costPercentage, float cooldown, Assets assets) {
+        super(new ImageButtonStyle());
         setBounds(0,0,80,80);
         owner = player;
         this.assets = assets;
         this.name = name;
-        setName(name);
+        //setName(name);
         this.description = description;
         this.levelRequirement = levelRequirement;
         this.output = output;
-        MIN_OUTPUT = output;
         this.cost = (int)((float)owner.getMaxMana()*(costPercentage/100f));
-        MIN_COST = cost;
         this.cooldown = cooldown;
+
+        MIN_OUTPUT = output;
+        MIN_COST = cost;
         MIN_COOLDOWN = cooldown;
         isReady = true;
         isCasting = false;
@@ -106,13 +111,62 @@ public abstract class Spell extends Button{
         MIN_CRITICAL = 15;
         criticalChance = new CriticalChance(MIN_CRITICAL);
         spellData = new SpellData();
-        setupText();
+
+        setupDisplay();
     }
+
+
+    /**
+     * @param player
+     * @param name
+     * @param description
+     * @param output
+     * @param costPercentage
+     * @param cooldown
+     * @param assets
+     */
+    protected Spell(Player player, String name, String description, Texture imageTexture, int levelRequirement, int output,
+                    float costPercentage, float cooldown, Assets assets) {
+        super(new TextureRegionDrawable(new TextureRegion(imageTexture)));
+        setBounds(0,0,80,80);
+        owner = player;
+        this.assets = assets;
+        this.name = name;
+        this.description = description;
+        this.levelRequirement = levelRequirement;
+        this.output = output;
+        this.cost = (int)((float)owner.getMaxMana()*(costPercentage/100f));
+        this.cooldown = cooldown;
+        image = new Image(imageTexture);
+        cooldownImage = new Image(assets.getTexture(assets.cooldownBar));
+        cooldownImage.setSize(80,0);
+
+        //setName(name);
+        MIN_OUTPUT = output;
+        MIN_COST = cost;
+        MIN_COOLDOWN = cooldown;
+        isReady = true;
+        isCasting = false;
+        cdCounter = 0f;
+        cdPercentage = 1f;
+        MIN_CRITICAL = 15;
+        criticalChance = new CriticalChance(MIN_CRITICAL);
+        spellData = new SpellData();
+
+        setupDisplay();
+    }
+
     public abstract void castSpell();
 
     public abstract void checkTalents();
 
     public abstract void applySpell(final RaidMember target);
+
+    private void setupDisplay() {
+        addActor(cooldownImage);
+        setupText();
+        addActor(text.getLabel());
+    }
 
     /**
      * This starts the cooldown timer for the spell
@@ -120,6 +174,7 @@ public abstract class Spell extends Button{
     protected void startCooldownTimer()    {
         cdTimer = new Timer();
         isReady = false;
+
         setCdCounter(cooldown);
         cdTimer.scheduleTask(new Timer.Task() {
             @Override
@@ -129,6 +184,7 @@ public abstract class Spell extends Button{
                     cdTimer.clear();
                     isReady = true;
                     setCdCounter(0);
+                    text.disable();
                 }
 
             }
@@ -136,10 +192,10 @@ public abstract class Spell extends Button{
     }
 
     private void setupText() {
-        text = new Text("", 24, Color.WHITE, true,assets);
+        text = new Text(String.format("%.1f",cdCounter), Text.FONT_SIZE_24, Color.WHITE, true, assets);
         text.setPosition(getX()+getWidth()/2 - text.getXCenter(), getY() + getHeight()/2 -
                 text.getYCenter());
-        text.setAlignment(Align.center);
+        text.disable();
     }
 
     /**
@@ -191,11 +247,11 @@ public abstract class Spell extends Button{
         getCdPercentage();
     }
 
-    public Texture getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(Texture image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
@@ -294,6 +350,7 @@ public abstract class Spell extends Button{
         isReady = true;
         isCasting = false;
         setCdCounter(0);
+        text.disable();
     }
 
     public abstract void stop();
@@ -463,6 +520,14 @@ public abstract class Spell extends Button{
         this.levelRequirement = levelRequirement;
     }
 
+    private void update()   {
+        cooldownImage.setHeight(getHeight()*getCdPercentage());
+        if(!isReady)    {
+            text.setText(String.format("%.1f",cdCounter));
+            text.show();
+        }
+    }
+
     protected int getNumOfTargets() {
         return numOfTargets;
     }
@@ -488,12 +553,7 @@ public abstract class Spell extends Button{
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        batch.draw(image, getX(),getY(),getWidth(), getHeight());
-        batch.draw(getAssets().getTexture("cooldown_bar.png"), getX(),getY(),getWidth(), getHeight()*getCdPercentage());
-        text.setText(String.format("%.1f",cdCounter));
-        text.setPosition(getX()+getWidth()/2 - text.getXCenter(), getY() + getHeight()/2 -
-                text.getYCenter());
-        if(!isReady)
-            text.draw(batch, parentAlpha);
+        update();
+        super.draw(batch, parentAlpha);
     }
 }

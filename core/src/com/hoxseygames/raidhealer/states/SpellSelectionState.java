@@ -8,11 +8,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.hoxseygames.raidhealer.Assets;
 import com.hoxseygames.raidhealer.Player;
@@ -60,6 +62,7 @@ public class SpellSelectionState extends State {
         done = new TextButton("DONE", assets.getSkin());
         clear = new TextButton("CLEAR", assets.getSkin());
         setupTextButtonListners();
+        setupSpellDragListener();
 
         Table buttonTable = new Table();
         buttonTable.setBounds(0, spellBar.getY()+spellBar.getHeight()+ 10, RaidHealer.WIDTH, done.getHeight());
@@ -235,6 +238,67 @@ public class SpellSelectionState extends State {
 
 
 
+    }
+
+    private void setupSpellDragListener()   {
+        for(int i = 0; i < spellBook.getSpells().size(); i++)   {
+            final Spell currentSpell = spellBook.getSpells().get(i);
+            spellBook.getSpells().get(i).addListener(new ClickListener() {
+
+
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    //Vector2 coords = stage.screenToStageCoordinates(new Vector2(x,y));
+                    Vector2 coords = currentSpell.localToStageCoordinates(new Vector2(x,y));
+                    Spell hit = spellBook.getCopySpell(currentSpell);
+                    if(hit != null) {
+                        spellDescriptionName.setText(hit.getName());
+                        spellDescription.setText(hit.getDescription());
+                        spellCost.setText(100 * (float) hit.getCost() / player.getMaxMana() + "% of base mana");
+                        spellType.setText(hit.getSpellType());
+                        spellCooldown.setText(hit.getCooldown() + " second cooldown");
+                        selectedSpell = hit;
+                        selectedSpell.setPosition(coords.x - selectedSpell.getWidth() / 2, coords.y - selectedSpell.getHeight() / 2);
+                        isSpellSelected = true;
+                    }
+                    return super.touchDown(event, x, y, pointer, button);
+
+                }
+
+                /*@Override
+                public void dragStart(InputEvent event, float x, float y, int pointer) {
+                    super.dragStart(event, x, y, pointer);
+                    Vector2 coords = stage.screenToStageCoordinates(new Vector2(x,y));
+                    Spell hit = spellBook.selectSpell(coords.x, coords.y );
+                    spellDescriptionName.setText(hit.getName());
+                    spellDescription.setText(hit.getDescription());
+                    spellCost.setText(100*(float)hit.getCost()/player.getMaxMana()+"% of base mana");
+                    spellType.setText(hit.getSpellType());
+                    spellCooldown.setText(hit.getCooldown()+" second cooldown");
+                    selectedSpell = hit;
+                    selectedSpell.setPosition(coords.x-selectedSpell.getWidth()/2, coords.y -selectedSpell.getHeight()/2);
+                    isSpellSelected = true;
+                }
+
+                @Override
+                public void drag(InputEvent event, float x, float y, int pointer) {
+                    super.drag(event, x, y, pointer);
+                    Vector2 coords = stage.screenToStageCoordinates(new Vector2(x,y));
+                    if(isSpellSelected) {
+                        selectedSpell.setPosition(coords.x-selectedSpell.getWidth()/2, coords.y-selectedSpell.getHeight()/2);
+                    }
+                }
+
+                @Override
+                public void dragStop(InputEvent event, float x, float y, int pointer) {
+                    super.dragStop(event, x, y, pointer);
+                    if(isSpellSelected) {
+                        spellBar.addSpell(selectedSpell);
+                    }
+                    isSpellSelected = false;
+                }*/
+            });
+        }
     }
 
     @Override

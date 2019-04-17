@@ -168,6 +168,7 @@ public class SpellBook extends Group{
                 if(owner.getTalentTree().getTalent(TalentTree.HOLY_FOCUS).isSelected()) {
                     return new Lightwell(owner, assets);
                 }
+                break;
             case SMITE:
                 return new Smite(owner,assets);
             case PRAYER_OF_MENDING:
