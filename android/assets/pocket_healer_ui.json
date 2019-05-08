@@ -95,6 +95,39 @@ com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
 		up: exit_button
 	}
 }
+com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
+	default: {
+		font: game_font_large
+		fontColor: Black
+		up: small_button
+		down: small_button
+	}
+	gold_currency_button: {
+		imageUp: gold_icon
+		font: game_font_large
+		fontColor: Black
+		up: button
+		down: button
+	}
+	silver_currency_button: {
+		imageUp: silver_icon
+		font: game_font_large
+		fontColor: Black
+		up: button
+		down: button
+	}
+	silver_display: {
+		imageUp: silver_icon
+		imageDown: silver_icon
+		font: game_font_large
+		fontColor: Black
+	}
+	gold_display: {
+		imageUp: gold_icon
+		font: game_font_large
+		fontColor: Black
+	}
+}
 com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
 	default: {
 		font: game_font_large

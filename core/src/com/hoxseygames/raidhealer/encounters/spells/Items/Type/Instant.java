@@ -18,9 +18,9 @@ public abstract class Instant extends Item {
      * @param cooldown
      * @param sfx
      */
-    public Instant(Player player, String name, String description, Texture iconTexture,
+    public Instant(Player player, String name, String description, int goldCost, Texture iconTexture,
                    int quantity, int output, float cooldown, boolean needsTarget, Sound sfx) {
-        super(player, name, description, iconTexture, quantity, output, cooldown,needsTarget);
+        super(player, name, description, goldCost, iconTexture, quantity, output, cooldown,needsTarget);
 
         setSpellType("Instant");
         this.sfx = sfx;
@@ -36,9 +36,9 @@ public abstract class Instant extends Item {
      * @param cooldown
      * @param sfx
      */
-    public Instant(Player player, String name, String description, Texture iconTexture,
+    public Instant(Player player, String name, String description, int silverCost, int goldCost, Texture iconTexture,
                    int output, float cooldown, boolean needsTarget, Sound sfx) {
-        super(player, name, description, iconTexture, 0, output, cooldown, needsTarget);
+        super(player, name, description, goldCost, iconTexture, 0, output, cooldown, needsTarget);
 
         setSpellType("Instant");
         this.sfx = sfx;

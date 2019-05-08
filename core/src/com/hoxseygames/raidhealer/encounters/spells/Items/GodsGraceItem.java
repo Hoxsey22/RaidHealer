@@ -12,6 +12,7 @@ public class GodsGraceItem extends Castable {
                 "Pray to God for redemption and his grace will be revealed. All allies " +
                         "will be resurrected. Before casting this item, there must be at least one " +
                         "ally unit alive.",
+                1,
                 player.getAssets().getTexture(player.getAssets().divineHymnIcon),
                 0,
                 100,

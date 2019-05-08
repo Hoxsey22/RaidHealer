@@ -24,9 +24,9 @@ public abstract class Castable extends Item {
      * @param cooldown
      * @param needsTarget
      */
-    public Castable(Player player, String name, String description, Texture iconTexture, int quantity,
+    public Castable(Player player, String name, String description, int goldCost, Texture iconTexture, int quantity,
                     int output, float cooldown, boolean needsTarget, float castTime, Sound castingSfx, Sound sfx) {
-        super(player, name, description, iconTexture, quantity, output, cooldown, needsTarget);
+        super(player, name, description, goldCost, iconTexture, quantity, output, cooldown, needsTarget);
 
         this.castTime = castTime;
         this.castingSfx = castingSfx;

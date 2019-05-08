@@ -7,6 +7,7 @@ import com.hoxseygames.raidhealer.encounters.player.bars.CastBar;
 import com.hoxseygames.raidhealer.encounters.player.bars.ItemBar;
 import com.hoxseygames.raidhealer.encounters.player.bars.ManaBar;
 import com.hoxseygames.raidhealer.encounters.player.bars.SpellBar;
+import com.hoxseygames.raidhealer.encounters.spells.Items.Type.Item;
 import com.hoxseygames.raidhealer.encounters.spells.Spell;
 import com.hoxseygames.raidhealer.encounters.spells.SpellBook;
 import com.hoxseygames.raidhealer.encounters.spells.Talents.TalentTree;
@@ -63,6 +64,8 @@ public class Player {
     private PlayerData playerData;
     private boolean holyShockIncrease;
     private int talentResetTokens;
+    private int silver;
+    private int gold;
 
 
 
@@ -347,4 +350,55 @@ public class Player {
     public void setHolyShockIncrease(boolean holyShockIncrease) {
         this.holyShockIncrease = holyShockIncrease;
     }
+
+    public int getSilver()  {
+        return silver;
+    }
+
+    public int getGold()    {
+        return gold;
+    }
+
+    public void setSilver(int silver)   {
+        this.silver = silver;
+    }
+
+    public void setGold(int gold)   {
+        this.gold = gold;
+    }
+
+    public int takeGold(int goldTaken)   {
+        if( (gold - goldTaken)< 0)    {
+            return -1;
+        }
+        else {
+            return gold = gold - goldTaken;
+        }
+    }
+
+    public int takeSilver(int silverTaken)   {
+        if( (silver - silverTaken)< 0)    {
+            return -1;
+        }
+        else {
+            return silver = silver - silverTaken;
+        }
+    }
+
+    public int receiveGold(int goldReceive)    {
+        gold = gold + goldReceive;
+        return goldReceive;
+    }
+
+    public int receiveSilver(int silverReceive)    {
+        silver = silver + silverReceive;
+        return silverReceive;
+    }
+
+    // NEEDS TO BE COMPLETED
+    public boolean receiveItem(Item newItem)    {
+        return true;
+    }
+
+
 }

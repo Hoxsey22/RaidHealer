@@ -18,8 +18,10 @@ import com.hoxseygames.raidhealer.BossIcon;
 import com.hoxseygames.raidhealer.InfoFrame;
 import com.hoxseygames.raidhealer.MapFrame;
 import com.hoxseygames.raidhealer.Player;
+import com.hoxseygames.raidhealer.RaidHealer;
 import com.hoxseygames.raidhealer.ShutterAnimation;
 import com.hoxseygames.raidhealer.Strings;
+import com.hoxseygames.raidhealer.WindowMenu.GoldBankWindow;
 
 /**
  * Created by Hoxsey on 7/11/2017.
@@ -39,6 +41,7 @@ public class MapState extends State {
     private TextButton talentButton;
     private TextButton startButton;
     private TextButton spellButton;
+    private TextButton shopButton;
     private Table buttonTable;
     private int previousState;
     private ShutterAnimation shutterAnimation;
@@ -73,6 +76,9 @@ public class MapState extends State {
         page = 1;
 
         this.player = player;
+        // TEST GOLD
+        player.setGold(100);
+        player.setSilver(1000);
 
         startPage();
         createButtons();
@@ -295,6 +301,10 @@ public class MapState extends State {
 
             spellButton = new TextButton("SPELL", assets.getSkin());
 
+            shopButton = new TextButton("Shop", assets.getSkin());
+            shopButton.setPosition(RaidHealer.WIDTH/2 -shopButton.getWidth()/2, RaidHealer.HEIGHT/2 -shopButton.getHeight()/2);
+            stage.addActor(shopButton);
+
             buttonTable.add(talentButton).padRight(5).padTop(5);
             buttonTable.add(startButton).padRight(5).padLeft(5).padTop(5);
             buttonTable.add(spellButton).padLeft(5).padTop(5);
@@ -382,6 +392,17 @@ public class MapState extends State {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 sm.set(new MainMenuState(sm, player));
+            }
+        });
+
+        shopButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                /*BlackMarketWindow blackMarketWindow = new BlackMarketWindow(player);
+                stage.addActor(blackMarketWindow);*/
+
+                GoldBankWindow goldBankWindow = new GoldBankWindow(player);
+                stage.addActor(goldBankWindow);
             }
         });
     }

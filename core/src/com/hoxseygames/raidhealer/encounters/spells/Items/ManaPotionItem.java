@@ -13,6 +13,7 @@ public class ManaPotionItem extends Instant {
         super(player,
                 "Mana Potion",
                 "Supplies 300 mana to you.",
+                4,
                 player.getAssets().getTexture(player.getAssets().resurgenceIcon),
                 0,
                 300,
@@ -25,10 +26,11 @@ public class ManaPotionItem extends Instant {
     /**
      * @param player
      */
-    public ManaPotionItem(Player player, String name, int output, Texture iconTexture) {
+    public ManaPotionItem(Player player, String name, int goldCost, int output, Texture iconTexture) {
         super(player,
                 name,
                 "Supplies "+output+" mana to you.",
+                goldCost,
                 iconTexture,
                 0,
                 output,

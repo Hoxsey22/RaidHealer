@@ -166,6 +166,9 @@ public class Assets {
     public final String battleBg3 = "encounter_state/battle_bg3.png";
     public final String disableBG = "disable_bg.png";
     public final String spellBG = "spell_bg.png";
+    public final String goldCoinsIcon = "icons/coins_icon.png";
+    public final String bagOfGoldIcon = "icons/bag_of_coins_icon.png";
+    public final String brickOfGoldIcon = "icons/brick_of_gold_icon.png";
     // misc
     public final String blackBar = "black_bar.png";
     public final String whiteBar = "white_bar.png";
@@ -194,6 +197,8 @@ public class Assets {
     public final String map2 = "map_state/map_level_2.png";
     public final String map3 = "map_state/map_level_3.png";
     public final String itemBar = "item_bar.png";
+    public final String goldIcon = "shop_popup/gold_coin.png";
+    public final String silverIcon = "shop_popup/silver_coin.png";
 
     //credits
     public final String creditsLayer1 = "credits_state/credits_layer_1.png";
@@ -202,6 +207,12 @@ public class Assets {
     public final String creditsLayer4 = "credits_state/credits_layer_4.png";
     public final String creditsLayer5 = "credits_state/credits_layer_5.png";
     public final ArrayList<String> maps;
+
+    // window pop up menu
+    public final String windowMenuBG = "shop_popup/window_menu_bg.png";
+    public final String purchasePlateImage = "shop_popup/purchase_plate.png";
+    public final String dividerImage = "shop_popup/line_divider.png";
+    public final String windowMenuTitle = "shop_popup/top_title_bar.png";
 
     // skin
     private final String uiSkin = "pocket_healer_ui.json";
@@ -347,6 +358,14 @@ public class Assets {
 
         manager.load(itemBar, Texture.class);
 
+        manager.load(windowMenuBG, Texture.class, param);
+        manager.load(windowMenuTitle, Texture.class, param);
+        manager.load(dividerImage, Texture.class, param);
+        manager.load(purchasePlateImage, Texture.class, param);
+
+        manager.load(goldCoinsIcon, Texture.class, param);
+        manager.load(bagOfGoldIcon, Texture.class, param);
+        manager.load(brickOfGoldIcon, Texture.class, param);
     }
 
     private void loadSounds() {

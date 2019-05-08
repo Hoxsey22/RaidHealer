@@ -13,6 +13,8 @@ public abstract class Item extends Spell {
     protected Text quantityUI;
     protected int quantity;
     protected boolean needsTarget;
+    protected int silverCost;
+    protected int goldCost;
 
     /**
      * @param player
@@ -21,8 +23,12 @@ public abstract class Item extends Spell {
      * @param output
      * @param cooldown
      */
-    public Item(Player player, String name, String description, Texture iconTexture, int quantity, int output, float cooldown, boolean needsTarget) {
+    public Item(Player player, String name, String description, int goldCost, Texture iconTexture, int quantity, int output, float cooldown, boolean needsTarget) {
         super(player, name, description,iconTexture,0,output, 0, cooldown,player.getAssets());
+
+        this.goldCost = goldCost;
+        this.silverCost = 100 * goldCost;
+
 
         setAssets(player.getAssets());
         this.quantity = quantity;
@@ -78,6 +84,14 @@ public abstract class Item extends Spell {
             return false;
         }
         return true;
+    }
+
+    public int getSilverCost() {
+        return silverCost;
+    }
+
+    public int getGoldCost() {
+        return goldCost;
     }
 
     @Override
